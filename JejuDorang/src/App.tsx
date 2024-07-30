@@ -1,11 +1,12 @@
-import React from "react";
-import "./App.css";
+import { Fragment } from 'react';
+import './App.css';
+import React from 'react';
 
 function App() {
   return (
-    <p className="read-the-docs">
-      Click on the Vite and React logos to learn more
-    </p>
+    <Fragment>
+      <div className="bg-blue-500">HERE</div>
+    </Fragment>
   );
 }
 

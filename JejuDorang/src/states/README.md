@@ -1,6 +1,6 @@
 # 🗄️ States
 
-여기는 JejuDorang Team의 components directory 입니다.
+여기는 JejuDorang Team의 states directory 입니다.
 
 ---
 
@@ -17,13 +17,13 @@
 ### 🌱 How to contribute
 
 - 만들고자 하는 전역 파일의 이름으로 현재 디렉토리의 하위에 디렉토리를 생성한다.
-    - 디렉토리의 이름은 모두 소문자로 작성한다. `user.ts`
+  - 디렉토리의 이름은 모두 소문자로 작성한다. `user.ts`
 
 ### 💡 Example
 
 ```tsx
 // src/states/user.ts
-import { createStore } from "zustand";
+import { createStore } from 'zustand';
 
 export type AuthStore = {
   isLoggedIn: boolean;
@@ -39,5 +39,4 @@ export type AuthStore = {
   userNumber: number | null;
   setUserNumber: (userNumber: number) => void;
 };
-
 ```

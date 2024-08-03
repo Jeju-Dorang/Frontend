@@ -1,12 +1,18 @@
-import { Fragment } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import React from 'react';
+import Main from './Main/page';
 
 function App() {
   return (
-    <Fragment>
-      <div className="bg-blue-500">HERE</div>
-    </Fragment>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />}></Route>
+        {/* <Route path="/dorang" element={<Dorang />}></Route> */}
+        {/* <Route path="/activitiy" element={<Activitiy />}></Route> */}
+        {/* <Route path="/stay" element={<Stay />}></Route> */}
+        {/* <Route path="*" element={<NotFound />}></Route> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

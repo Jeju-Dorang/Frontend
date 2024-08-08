@@ -50,7 +50,9 @@ const AchievementBox: React.FC<AchievementBoxProps> = ({ achievement, content, t
             }}>
                 {title}
             </div>
-            <button className="absolute top-[45px] right-[9px] flex justify-center items-center w-[57px] h-[24px] rounded-[10px] border text-[10px]"
+            <button
+            // onClick="location.href='/';"
+            className="absolute top-[45px] right-[9px] flex justify-center items-center w-[57px] h-[24px] rounded-[10px] border text-[10px]"
             style={{
                 color: 'var(--gray_color, #BDBDBD)',
                 fontFamily: 'Pretendard, sans-serif',

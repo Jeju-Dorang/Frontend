@@ -1,4 +1,5 @@
 
+import StayBox from "../../components/StayBox";
 import AchievementBox from "../../components/AchievementBox";
 
 const Main = () => {
@@ -13,6 +14,7 @@ const Main = () => {
         content={content}
         title={title}
       />
+      <StayBox />
     </>
   );
 };

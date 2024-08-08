@@ -6,7 +6,8 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT : "#F1C4A3" // 주황색
+          orange : "#F1C4A3", // 주황색
+          blue : '#5F88FE' // 파란색
         },
         gray: {
           dg: "#BDBDBD", // dark gray

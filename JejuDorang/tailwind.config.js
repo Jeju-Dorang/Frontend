@@ -5,11 +5,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        main: '#F1C4A3',
-        gray: '#BDBDBD',
-        subgray: '#E8E8E8',
-        black: '#000000',
-        blue: '#5F88FE',
+        primary: {
+          orange: '#F1C4A3',
+          blue: '#5F88FE',
+        },
+        gray: {
+          dg: '#BDBDBD',
+          lg: '#E8E8E8',
+        },
       },
     },
   },

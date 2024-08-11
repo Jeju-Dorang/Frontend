@@ -1,4 +1,4 @@
-import Profile from '@/components/Profile/index';
+import Profile from '@components/Profile/index';
 
 const Main = () => {
   return (

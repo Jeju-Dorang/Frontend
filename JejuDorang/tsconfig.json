@@ -12,8 +12,13 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "#/*": ["./public/*"]
+      "@components/*": ["./src/components/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@states/*": ["./src/states/*"],
+      "@types/*": ["./src/types/*"],
+      "@utils/*": ["./src/utils/*"],
+      "#img/*": ["./assets/img/*"]
     }
   },
   "include": ["src", "**/*.tsx", "types.d.ts"]

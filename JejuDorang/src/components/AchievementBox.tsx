@@ -4,19 +4,14 @@ interface AchievementBoxProps {
     achievement: string;
     content: string;
     title: string;
+    // img // 이미지 데이터도 받아와야함
 }
 
-const AchievementBox: React.FC<AchievementBoxProps> = ({ achievement, content, title }) => {
+const AchievementBox: React.FC<AchievementBoxProps> = ({ achievement, content, title}) => {
     return (
         <div className="relative w-[357px] h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB]">
-            <img 
-            src="image-url.jpg" 
-            alt="업적" 
-            className="absolute top-[9px] left-[10px] w-[65px] h-[65px] rounded-[10px] border-2 bg-white"
-            style={{ borderColor: 'var(--gray_color, #BDBDBD)' }}
-            />
-            <p className="absolute top-[10px] left-[82px] text-black text-[15px] font-bold leading-[140%] tracking-[-0.3px]"
-            style={{ fontFamily: 'Pretendard, sans-serif' }}>
+            <img src="image-url.jpg" alt="업적" className="absolute top-[9px] left-[10px] w-[65px] h-[65px] rounded-[10px] border-2 bg-white" style={{ borderColor: 'var(--gray_color, #BDBDBD)' }}/>
+            <p className="absolute top-[10px] left-[82px] text-black text-[15px] font-bold leading-[140%] tracking-[-0.3px]" style={{ fontFamily: 'Pretendard, sans-serif' }}>
                 {achievement}
             </p>
             <div className="absolute top-[30px] left-[82px] w-[145px] h-[40px]">
@@ -51,7 +46,6 @@ const AchievementBox: React.FC<AchievementBoxProps> = ({ achievement, content, t
                 {title}
             </div>
             <button
-            // onClick="location.href='/';"
             className="absolute top-[45px] right-[9px] flex justify-center items-center w-[57px] h-[24px] rounded-[10px] border text-[10px]"
             style={{
                 color: 'var(--gray_color, #BDBDBD)',

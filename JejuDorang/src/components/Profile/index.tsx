@@ -15,7 +15,7 @@ const Profile = ({ name, email, dDay = 0 }: Props) => {
         <img src={profileImg} alt="Profile" />
         <div className="mt-2">
           <h1 className="font-bold text-xl">{name}</h1>
-          <p className="text-gray-lg">{email}</p>
+          <p className="text-gray-dg">{email}</p>
           <h3>🍊제주살이 D-{dDay}</h3>
         </div>
       </div>

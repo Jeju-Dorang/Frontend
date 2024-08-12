@@ -9,7 +9,7 @@ interface Props {
 const KakaoMap = ({ lat, lng, css }: Props) => {
   return (
     <div className={`${css}`}>
-      <Map center={{ lat, lng }} style={{ width: '100%', height: '360px' }}>
+      <Map center={{ lat, lng }} style={{ width: '100%', height: '460px' }}>
         <MapMarker position={{ lat, lng }}></MapMarker>
       </Map>
     </div>

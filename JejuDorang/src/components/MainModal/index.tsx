@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 import KakaoMap from '@components/KakaoMap';
+import ArroundKakaoMap from '@components/ArroundKakaoMap';
 
 const buttons = [
   { id: 0, label: '도랑이' },
@@ -21,11 +22,21 @@ const MainModal = () => {
             <p className="text-sm font-semibold">내 숙소</p>
             {/* 숙소설정을 안한경우 예외처리 필요 */}
             {/* 좌표를 인자로 받아서 표기하도록 수정필요 */}
-            <KakaoMap lat={33.55635} lng={126.795841} css="mt-4 mb-4 " />
+            <KakaoMap lat={33.55635} lng={126.795841} css="mt-4 mb-4" />
           </Fragment>
         );
       case 2:
-        return <p className="text-sm font-semibold">내 숙소 주변 둘러보기</p>;
+        return (
+          <Fragment>
+            <p className="text-sm font-semibold">내 숙소 주변 둘러보기</p>
+            <ArroundKakaoMap
+              lat={33.55635}
+              lng={129.795841}
+              category={'BK9'}
+              css={'mt-4 mb-4'}
+            />
+          </Fragment>
+        );
     }
   };
 
@@ -34,7 +45,7 @@ const MainModal = () => {
       <button
         key={button.id}
         onClick={() => setIdx(button.id)}
-        className={`w-4 h-4 rounded-full ${
+        className={`w-3.5 h-3.5 rounded-full ${
           idx === button.id ? 'bg-primary-orange' : 'bg-gray-lg'
         }`}
       />

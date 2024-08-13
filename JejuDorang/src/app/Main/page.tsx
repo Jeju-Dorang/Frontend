@@ -1,5 +1,13 @@
+import AchievementBox from '@components/AchievementBox';
+import Profile from '@components/Profile/index';
+
 const Main = () => {
-  return <h1>Main</h1>;
+  return (
+    <>
+      <Profile name="손성호" email="shson1217@naver.com" dDay={27} />
+      <hr />
+    </>
+  );
 };
 
 export default Main;

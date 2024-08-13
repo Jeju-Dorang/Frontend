@@ -10,16 +10,16 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "types": ["kakao.maps.d.ts"],
     "paths": {
       "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@states/*": ["./src/states/*"],
-      "@types/*": ["./src/types/*"],
+      "@type/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
       "#img/*": ["./assets/img/*"]
     }
   },
-  "include": ["src", "**/*.tsx", "types.d.ts"]
+  "include": ["src", "**/*.tsx", "**/*.ts"]
 }

@@ -11,16 +11,15 @@
     "strict": true,
     "skipLibCheck": true,
     "types": ["kakao.maps.d.ts"],
-    "baseUrl": ".",
     "paths": {
       "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@states/*": ["./src/states/*"],
-      "@types/*": ["./src/types/*"],
+      "@type/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
       "#img/*": ["./assets/img/*"]
     }
   },
-  "include": ["src", "**/*.tsx", "types.d.ts"]
+  "include": ["src", "**/*.tsx", "**/*.ts"]
 }

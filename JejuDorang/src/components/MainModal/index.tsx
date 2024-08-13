@@ -3,37 +3,35 @@ import { Fragment } from 'react/jsx-runtime';
 import KakaoMap from '@components/KakaoMap';
 import ArroundKakaoMap from '@components/ArroundKakaoMap';
 
-const buttons = [
-  { id: 0, label: '도랑이' },
-  { id: 1, label: '내 숙소' },
-  { id: 2, label: '내 숙소 주변 둘러보기' },
-];
+const buttons = [{ id: 0 }, { id: 1 }, { id: 2 }];
 
 const MainModal = () => {
   const [idx, setIdx] = useState<number>(1);
-
   const renderContent = () => {
     switch (idx) {
       case 0:
-        return <p className="text-sm font-semibold">도랑이</p>;
+        return <p className="text-[14px] font-semibold">도랑이</p>;
       case 1:
         return (
           <Fragment>
-            <p className="text-sm font-semibold">내 숙소</p>
+            <p className="text-[14px] font-semibold">내 숙소</p>
             {/* 숙소설정을 안한경우 예외처리 필요 */}
             {/* 좌표를 인자로 받아서 표기하도록 수정필요 */}
-            <KakaoMap lat={33.55635} lng={126.795841} css="mt-4 mb-4" />
+            <KakaoMap
+              lat={33.55635}
+              lng={126.795841}
+              css={'w-[321px] h-[458px] mt-4 mb-4'}
+            />
           </Fragment>
         );
       case 2:
         return (
           <Fragment>
-            <p className="text-sm font-semibold">내 숙소 주변 둘러보기</p>
+            <p className="text-[14px] font-semibold">내 숙소 주변 둘러보기</p>
             <ArroundKakaoMap
               lat={33.55635}
-              lng={129.795841}
-              category={'BK9'}
-              css={'mt-4 mb-4'}
+              lng={126.795841}
+              css={'w-[321px] h-[500px] mt-4 mb-4'}
             />
           </Fragment>
         );
@@ -55,7 +53,7 @@ const MainModal = () => {
   return (
     <Fragment>
       <div className="flex flex-col h-auto mt-4 mx-5 p-5 border-solid border border-gray rounded-xl">
-        {renderContent()}
+        <div className="flex-grow">{renderContent()}</div>
         <div className="flex justify-center space-x-2">{renderButtons()}</div>
       </div>
     </Fragment>

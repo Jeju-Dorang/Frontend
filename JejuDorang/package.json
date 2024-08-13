@@ -1,5 +1,5 @@
 {
-  "name": "my-vite-app",
+  "name": "jeju-dorang",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^22.2.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.40",
     "react": "^18.3.1",

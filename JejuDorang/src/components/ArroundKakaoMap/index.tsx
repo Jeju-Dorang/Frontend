@@ -1,37 +1,34 @@
 import { CategoryCode } from 'CategoryCodes';
 import { useEffect, useState } from 'react';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
-
-interface Place {
-  id: string;
-  place_name: string;
-  y: number;
-  x: number;
-}
-
-interface PlacesSearchResultItem {
-  id: string;
-  place_name: string;
-  y: string;
-  x: string;
-}
+import { Map } from 'react-kakao-maps-sdk';
+import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers';
+import { Place, PlacesSearchResultItem } from '@type/place';
+import { categories } from '@constants/category';
 
 interface Props {
   lat: number;
   lng: number;
-  category: CategoryCode;
   css: string;
 }
 
-const ArroundKakaoMap = ({ lat, lng, category, css }: Props) => {
+const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
   const [places, setPlaces] = useState<Place[]>([]);
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
+  const [category, setCategory] = useState<CategoryCode>('CS2');
+  const [markers, setMarkers] = useState<kakao.maps.Marker[]>([]);
   const [infoWindow, setInfoWindow] = useState<kakao.maps.InfoWindow | null>(
     null,
   );
 
   useEffect(() => {
     if (!map) return;
+
+    markers.forEach((marker) => marker.setMap(null));
+    setMarkers([]);
+    if (infoWindow) {
+      infoWindow.close();
+      setInfoWindow(null);
+    }
 
     const ps = new kakao.maps.services.Places();
     const placesSearchCB = (
@@ -46,6 +43,14 @@ const ArroundKakaoMap = ({ lat, lng, category, css }: Props) => {
           x: Number(item.x),
         }));
         setPlaces(formattedPlaces);
+        const newMarkers = formattedPlaces.map((place) => {
+          const marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(place.y, place.x),
+            map: map,
+          });
+          return marker;
+        });
+        setMarkers(newMarkers);
       } else {
         console.error('장소 검색 실패:', status);
       }
@@ -57,39 +62,46 @@ const ArroundKakaoMap = ({ lat, lng, category, css }: Props) => {
     });
   }, [lat, lng, category, map]);
 
-  const handleMarkerClick = (place: Place) => {
+  const handleCategoryChange = (buttonId: CategoryCode) => {
+    setCategory(buttonId);
     if (infoWindow) {
       infoWindow.close();
       setInfoWindow(null);
-    } else {
-      const newInfoWindow = new kakao.maps.InfoWindow({
-        content: `<div style="padding:5px;font-size:12px;">${place.place_name}</div>`,
-      });
-
-      const marker = new kakao.maps.Marker({
-        position: new kakao.maps.LatLng(place.y, place.x),
-      });
-      if (!map) return;
-
-      newInfoWindow.open(map, marker);
-      setInfoWindow(newInfoWindow);
     }
+  };
+
+  const renderButtons = () => {
+    return (
+      <div className="flex flex-nowrap mb-[15px]">
+        {categories.map((button) => (
+          <button
+            key={button.id}
+            onClick={() => handleCategoryChange(button.id as CategoryCode)}
+            className={`rounded-[15px] w-[74px] h-[24px] mx-2 shadow-lg text-[10px] ${
+              category === button.id ? 'text-primary-orange' : 'text-gray-dg'
+            }`}
+          >
+            {button.label}
+          </button>
+        ))}
+      </div>
+    );
   };
 
   return (
     <div className={`${css}`}>
+      {renderButtons()}
       <Map
         center={{ lat, lng }}
         style={{ width: '100%', height: '460px' }}
         onCreate={setMap}
       >
-        {places.map((place) => (
-          <MapMarker
-            key={place.id}
-            position={{ lat: Number(place.y), lng: Number(place.x) }}
-            onClick={() => handleMarkerClick(place)}
-          />
-        ))}
+        <PlaceMarkers
+          places={places}
+          map={map}
+          infoWindow={infoWindow}
+          setInfoWindow={setInfoWindow}
+        />
       </Map>
     </div>
   );

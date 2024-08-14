@@ -13,6 +13,7 @@ export default {
           dg: '#BDBDBD',
           lg: '#E8E8E8',
         },
+        background: '#f1c4a380',
       },
     },
   },

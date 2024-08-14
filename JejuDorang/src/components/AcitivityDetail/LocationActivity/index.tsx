@@ -1,0 +1,41 @@
+import { StayData } from "@type/stay";
+import ActivityKakaoMap from "./ActivityKakaoMap";
+import StayBox from "@components/StayBox";
+
+// 임시 더미 데이터 -> api 연결시 삭제
+const ActivityData: StayData[] = [
+    {name: '카세로지', distance: '530m', location: '제주특별자치도 서귀포시 표선면 가시로 383', description:'표선에 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능'},
+    {name: '카세로지', distance: '530m', location: '제주특별자치도 서귀포시 표선면 가시로 383', description:'표선에 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능'},
+    {name: '카세로지', distance: '530m', location: '제주특별자치도 서귀포시 표선면 가시로 383', description:'표선에 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능'},
+    {name: '카세로지', distance: '530m', location: '제주특별자치도 서귀포시 표선면 가시로 383', description:'표선에 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능'},
+];
+
+const LocationAcitivity= () => {
+    return(
+        <div className="w-[100%] h-[60px] inline-flex pl-[27px] pr-[181px] items-start gap-[8px] flex-col">
+            <h1 className = "font-semibold text-[20px] text-black">
+                사용자 맞춤 추천
+            </h1>
+            <h3 className = "font-semibold text-[13px] text-gray-dg">
+                내 위치를 기반으로한 맞춤 추천
+            </h3>
+            <ActivityKakaoMap lat ={33.473654} lng={126.910741} css={'absolute top-[173px] left-[31px]'}/>
+            
+
+            <div className='absolute w-[100%] top-[391px] flex flex-col gap-[15px]'>
+                {ActivityData.map((data, index) => (
+                    <StayBox
+                        key={index}
+                        name={data.name}
+                        distance={data.distance}
+                        location={data.location}
+                        description={data.description}
+                    />
+                ))}
+            </div>
+        </div>
+
+    );
+}
+
+export default LocationAcitivity;

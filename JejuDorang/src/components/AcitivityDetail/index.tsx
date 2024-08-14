@@ -1,6 +1,7 @@
 import DorangAcitivity from "./DorangActivity";
 import LocationAcitivity from "./LocationActivity";
 
+
 interface Props {
     status: number;
 }

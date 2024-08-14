@@ -1,4 +1,4 @@
-export const categories = [
+export const mapCategory = [
   {
     id: 'CS2',
     label: '편의점',
@@ -15,4 +15,10 @@ export const categories = [
     id: 'BK9',
     label: '은행',
   },
+];
+
+export const dorangCategory = [
+  { id: 1, name: '아이템' },
+  { id: 2, name: '펫' },
+  { id: 3, name: '배경' },
 ];

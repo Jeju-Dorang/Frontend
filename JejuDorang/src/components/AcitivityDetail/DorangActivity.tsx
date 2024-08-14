@@ -33,8 +33,7 @@ const DorangAcitivity= () => {
             <div className="relative top-[21px] w-[345px] h-[118px] left-[15px] bg-[#F3F3F3] rounded-[15px]">
                 <img src={dorangProfile} alt="도랑이 프로필" className = "absolute top-[11px] left-[14px] w-[95px] h-[95px]" />
                 <p className='absolute top-[44px] left-[118px] text-[13px] font-bold'>
-                    <span className="text-primary-blue">{userName}</span> 님은 현재 
-                    <span className="text-primary-blue">{achievements}개</span> 업적을 달성했어요!
+                    <span className="text-primary-blue">{userName}</span> 님은 현재 <span className="text-primary-blue">{achievements}개</span> 업적을 달성했어요!
                 </p>
                 <p className='absolute top-[68px] left-[118px] text-[12px] font-semibold'>
                     앞으로 이런 업적들도 도전해보는게 어떨까요?

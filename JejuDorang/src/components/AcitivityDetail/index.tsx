@@ -5,7 +5,7 @@ interface Props {
     status: number;
 }
 
-const AcitivityHeader= ({status}:Props) => {
+const AcitivityDetail= ({status}:Props) => {
     return(
         <div className="w-[100%] top-[88px]">
             {status === 0 ? <LocationAcitivity /> : <DorangAcitivity />}
@@ -13,4 +13,4 @@ const AcitivityHeader= ({status}:Props) => {
     );
 }
 
-export default AcitivityHeader;
+export default AcitivityDetail;

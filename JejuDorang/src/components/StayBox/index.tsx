@@ -10,7 +10,7 @@ interface StayBoxProps {
 
 const StayBox: React.FC<StayBoxProps> = ({name,distance,location,description}) => {
     return (
-        <div className='relative w-[367px] h-[201px] rounded-[15px] bg-white shadow'
+        <button className='relative w-[367px] h-[201px] rounded-[15px] bg-white shadow'
             style={{
                 boxShadow: '0px 1px 6px 0px rgba(0, 0, 0, 0.25)',
             }}>
@@ -30,7 +30,7 @@ const StayBox: React.FC<StayBoxProps> = ({name,distance,location,description}) =
                 <img src="image-url.jpg" alt="숙소1" className='w-1/2 h-full'/>
                 <img src="image-url.jpg" alt="숙소2" className='w-1/2 h-full'/>
             </div>
-        </div>
+        </button>
         
     );
 };

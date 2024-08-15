@@ -5,9 +5,9 @@ import DorangChat from './DorangChat';
 import LinkToDorang from './LinkToDorang';
 import Achievement from './Achievement';
 //테스트이미지
-import alpaca from '#img/alpaca.webp';
-import camera from '#img/camera.webp';
-import forest from '#img/forest.webp';
+import alpaca from '#img/dorang/pet/alpaca.webp';
+import camera from '#img/dorang/item/camera.webp';
+import forest from '#img/dorang/background/forest.webp';
 
 const MainDorang = () => {
   const [itemImageUrl, setItemImageUrl] = useState<string>(camera);

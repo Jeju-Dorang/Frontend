@@ -1,14 +1,11 @@
-import mainDorang from '#img/defaultDorang.webp';
+import mainDorang from '#img/dorang/defaultDorang.webp';
 
 interface CharacterProps {
   itemImageUrl: string | undefined;
   petImageUrl: string | undefined;
 }
 
-const Character = ({
-  itemImageUrl,
-  petImageUrl,
-}: CharacterProps) => {
+const Character = ({ itemImageUrl, petImageUrl }: CharacterProps) => {
   return (
     <div className="relative h-[198px] w-[192px] mb-[29px]">
       <img

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 import KakaoMap from '@components/KakaoMap';
 import ArroundKakaoMap from '@components/ArroundKakaoMap';
+import MainDorang from '@components/MainDorang';
 
 const buttons = [{ id: 0 }, { id: 1 }, { id: 2 }];
 
@@ -10,7 +11,12 @@ const MainModal = () => {
   const renderContent = () => {
     switch (idx) {
       case 0:
-        return <p className="text-[14px] font-semibold">도랑이</p>;
+        return (
+          <Fragment>
+            <p className="text-[14px] pb-[11px] font-semibold">도랑이</p>
+            <MainDorang />
+          </Fragment>
+        );
       case 1:
         return (
           <Fragment>
@@ -20,7 +26,7 @@ const MainModal = () => {
             <KakaoMap
               lat={33.55635}
               lng={126.795841}
-              css={'w-[321px] h-[458px] mt-4 mb-4'}
+              css={'h-[458px] mt-4 mb-4'}
             />
           </Fragment>
         );
@@ -31,7 +37,7 @@ const MainModal = () => {
             <ArroundKakaoMap
               lat={33.55635}
               lng={126.795841}
-              css={'w-[321px] h-[500px] mt-4 mb-4'}
+              css={'h-[500px] mt-4 mb-4'}
             />
           </Fragment>
         );

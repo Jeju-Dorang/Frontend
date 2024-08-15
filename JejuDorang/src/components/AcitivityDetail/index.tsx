@@ -3,13 +3,13 @@ import LocationAcitivity from "./LocationActivity";
 
 
 interface Props {
-    status: number;
+    status: boolean;
 }
 
 const AcitivityDetail= ({status}:Props) => {
     return(
         <div className="w-[100%] top-[88px]">
-            {status === 0 ? <LocationAcitivity /> : <DorangAcitivity />}
+            {!status ? <LocationAcitivity /> : <DorangAcitivity />}
         </div>
     );
 }

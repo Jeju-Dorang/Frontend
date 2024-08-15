@@ -3,6 +3,7 @@ import './App.css';
 import Main from './Main/page';
 import SettingDorang from './SettingDorang/page';
 import Activity from './Activity/page';
+import Dorang from './Dorang/page';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/settingDorang" element={<SettingDorang />}></Route>
-        {/* <Route path="/dorang" element={<Dorang />}></Route> */}
+        <Route path="/dorang" element={<Dorang />}></Route>
         <Route path="/activity" element={<Activity />}></Route>
         {/* <Route path="/stay" element={<Stay />}></Route> */}
         {/* <Route path="/mypage" element={<MyPage />}></Route> */}

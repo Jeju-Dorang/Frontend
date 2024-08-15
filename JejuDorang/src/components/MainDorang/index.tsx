@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import Setting from './Setting';
-import Character from './Character';
-import DorangChat from './DorangChat';
-import LinkToDorang from './LinkToDorang';
-import Achievement from './Achievement';
+import Setting from './Setting/index';
+import Character from './Character/index';
+import DorangChat from './DorangChat/index';
+import LinkToDorang from './LinkToDorang/index';
+import Achievement from './Achievement/index';
 //테스트이미지
-import alpaca from '#img/alpaca.webp';
-import camera from '#img/camera.webp';
-import forest from '#img/forest.webp';
+import alpaca from '#img/dorang/pet/alpaca.webp';
+import camera from '#img/dorang/item/camera.webp';
+import forest from '#img/dorang/background/forest.webp';
 
 const MainDorang = () => {
   const [itemImageUrl, setItemImageUrl] = useState<string>(camera);

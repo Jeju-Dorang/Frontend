@@ -65,7 +65,7 @@ const ActivityKakaoMap = ({ lat, lng, css }: Props) => {
         <div className={`${css}`}>
             <Map 
                 center={{ lat, lng }}
-                style={{ width: '305px', height: '185px' }} 
+                style={{ width: '315px', height: '185px' }} 
                 onCreate={setMap}
             >
                 <MapMarker 

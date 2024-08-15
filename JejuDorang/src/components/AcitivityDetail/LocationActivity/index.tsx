@@ -19,10 +19,10 @@ const LocationAcitivity= () => {
             <h3 className = "font-semibold text-[13px] text-gray-dg">
                 내 위치를 기반으로한 맞춤 추천
             </h3>
-            <ActivityKakaoMap lat ={33.473654} lng={126.910741} css={'absolute top-[173px] left-[31px] flex items-center'}/>
+            <ActivityKakaoMap lat ={33.473654} lng={126.910741} css={'mt-[23px] justify-center flex items-center'}/>
             
 
-            <div className='absolute w-[100%] top-[391px] flex flex-col gap-[15px]'>
+            <div className='w-[100%] mt-[33px] flex flex-col gap-[15px]'>
                 {ActivityData.map((data, index) => (
                     <StayBox
                         key={index}

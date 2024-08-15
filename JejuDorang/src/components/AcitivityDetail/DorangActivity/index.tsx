@@ -30,23 +30,23 @@ const DorangAcitivity= () => {
                 </h3>
             </div>
 
-            <div className="relative top-[21px] w-[345px] h-[118px] left-[15px] bg-[#F3F3F3] rounded-[15px]">
+            <div className="relative top-[21px] w-[345px] h-[118px] ml-[15px] mr-[15px] items-center justify-center flex bg-[#F3F3F3] rounded-[15px]">
                 <img src={dorangProfile} alt="도랑이 프로필" className = "absolute top-[11px] left-[14px] w-[95px] h-[95px]" />
-                <p className='absolute top-[44px] left-[118px] text-[13px] font-bold'>
+                <p className='absolute top-[44px] left-[118px] text-[12px] font-bold'>
                     <span className="text-primary-blue">{userName}</span> 님은 현재 <span className="text-primary-blue">{achievements}개</span> 업적을 달성했어요!
                 </p>
-                <p className='absolute top-[68px] left-[118px] text-[12px] font-semibold'>
+                <p className='absolute top-[68px] left-[118px] text-[11px] font-semibold'>
                     앞으로 이런 업적들도 도전해보는게 어떨까요?
                 </p>
             </div>
             
 
-            <img src={info} alt="info" className='absolute top-[312px] left-[26px] w-[20px] h-[20px]' />
+            <img src={info} alt="info" className='absolute flex top-[312px] ml-[26px] items-start w-[20px] h-[20px]' />
             <p className='absolute top-[317px] left-[56px] text-[8px] font-medium text-gray-dg'>
                 인증은, 스토리에 태그를 선택하셔서 글을 작성해주세요!
             </p>
             <button>
-                <img src={refresh} alt="refresh" className='absolute top-[307px] left-[332px] w-[20px] h-[29px]' />
+                <img src={refresh} alt="refresh" className='absolute top-[307px] ml-[332px] w-[20px] h-[29px]' />
             </button>
 
             <div className='absolute w-[390px] h-[408px] top-[335px] flex flex-col gap-[5px] mt-[24px]'>

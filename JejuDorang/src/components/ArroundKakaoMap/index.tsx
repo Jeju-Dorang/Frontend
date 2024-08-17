@@ -1,7 +1,7 @@
 import { CategoryCode } from 'CategoryCodes';
 import { useEffect, useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
-import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/PlaceMarkers';
+import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/index';
 import { Place, PlacesSearchResultItem } from '@type/place';
 import { mapCategory } from '@constants/category';
 

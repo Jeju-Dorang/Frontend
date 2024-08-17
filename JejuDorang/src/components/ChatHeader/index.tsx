@@ -8,7 +8,7 @@ const ChatHeader = () => {
             <p className='mt-[13px] font-bold text-[14px] text-gray-dg'>
                 도랑이와 대화해보세요
             </p>
-            <p className='mt-[9px] font-bold text-[13px] text-gray-dg'>
+            <p className='mt-[4px] font-bold text-[13px] text-gray-dg'>
             도랑이가 취향에 맞는 여행지를 추천해줍니다
             </p>
         </div>

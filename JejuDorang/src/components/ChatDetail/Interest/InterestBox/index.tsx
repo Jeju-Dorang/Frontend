@@ -9,9 +9,9 @@ const InterestBox = ({interest, onInterestChange}:Props) => {
     
     const [isClicked, setIsClicked] = useState(false);
 
-    const handleClick = useCallback(() => {
+    const handleClick = () => {
         setIsClicked(prevState => !prevState);
-    }, []);
+    };
     
     useEffect(() => {
         if (onInterestChange) {

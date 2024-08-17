@@ -1,10 +1,16 @@
 import DorangProfile from '#img/dorangProfile.webp'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import InterestBox from './InterestBox';
 
-const Interest = () => {
+interface Props {
+    openOnboarding: (savedInterests:string[]) => void;
+}
+
+
+const Interest = ({openOnboarding}:Props) => {
     const interests = ['휴식', '맛집투어', '관광지', '액티비티', '등산', '카페'];
     const [interest, setInterest] = useState<string[]>([]);
+    const [isClicked, setIsClicked] = useState<boolean>(false);
 
     const handleInterestChange = (selectedInterest: string, clicked: boolean) => {
         setInterest(prevState => {
@@ -19,6 +25,13 @@ const Interest = () => {
             }
         });
     };
+
+    useEffect(() => {
+        if (isClicked) {
+            openOnboarding(interest)
+        }
+    }, [isClicked]);
+
 
     // interest 디버깅
     console.log(interest)
@@ -49,6 +62,13 @@ const Interest = () => {
                     ))}
                 </div>
             </div>
+
+            <button onClick = {() =>setIsClicked(!isClicked)}
+                    className={`flex mt-[15px] ml-[273px] w-[60px] h-[20px] justify-center items-center
+                                ${isClicked? 'bg-white text-gray-dg':'bg-primary-orange text-black'}`}>
+                <p className='font-bold text-[10px]'>선택완료</p>
+            </button>
+
         </div>
 
     );

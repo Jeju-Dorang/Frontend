@@ -24,7 +24,7 @@ const InterestBox = ({interest, onInterestChange}:Props) => {
     return (
         <button 
                 onClick={handleClick} 
-                className={`flex h-[24px] rounded-[100px] font-pretendard font-semibold text-[12px] border
+                className={`flex h-[24px] rounded-[100px] font-pretendard font-bold text-[10px] border
                         border-gray-dg items-center justify-center px-[13px] py-[4px]
                         ${isClicked ? 'bg-[#DADADA] text-gray-dg' : ' bg-white text-primary-orange'}`}
         >

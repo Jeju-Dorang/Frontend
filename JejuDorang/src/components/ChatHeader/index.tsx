@@ -2,7 +2,7 @@ import DorangProfile from '#img/dorangProfile.webp'
 
 const ChatHeader = () => {
     return (
-        <div className="w-[100%] flex flex-col justify-center items-center">
+        <div className="w-[100%] h-[187px] flex flex-col justify-center items-center">
             <img src = {DorangProfile} alt="도랑이 프로필" 
                 className='flex mt-[35px] w-[84px] h-[84px]' />
             <p className='mt-[13px] font-bold text-[14px] text-gray-dg'>

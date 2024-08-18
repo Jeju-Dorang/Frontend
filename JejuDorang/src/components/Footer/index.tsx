@@ -10,6 +10,7 @@ import ClickHome from '#img/footer/Clicked/home.webp'
 import ClickChat from '#img/footer/Clicked/chat.webp'
 import ClickRecord from '#img/footer/Clicked/record.webp'
 import ClickUser from '#img/footer/Clicked/user.webp'
+import { target } from "@type/footerTarget";
 
 
 const Footer = () => {
@@ -20,8 +21,6 @@ const Footer = () => {
     const [user, setUser] = useState<boolean>(false);
 
     const navigate = useNavigate();
-
-    type target = 'activity' | 'home' | 'chat' | 'record' | 'user' ;
 
     const handleChange = (target:target) => {
         setActivity(target === 'activity');

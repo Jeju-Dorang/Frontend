@@ -1,6 +1,7 @@
 import DorangProfile from '#img/dorangProfile.webp'
 import { useEffect, useState } from 'react';
 import InterestBox from './InterestBox';
+import { interests } from '@constants/interests';
 
 interface Props {
     openOnboarding: (savedInterests:string[]) => void;
@@ -8,7 +9,6 @@ interface Props {
 
 
 const Onboarding = ({openOnboarding}:Props) => {
-    const interests = ['휴식', '맛집투어', '관광지', '액티비티', '등산', '카페'];
     const [interest, setInterest] = useState<string[]>([]);
     const [isClicked, setIsClicked] = useState<boolean>(false);
 

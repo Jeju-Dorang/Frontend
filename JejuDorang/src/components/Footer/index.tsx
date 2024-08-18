@@ -37,7 +37,7 @@ const Footer = () => {
     }}
 
     return (
-        <div className="fixed flex w-screen h-[93px] bottom-0 bg-white
+        <div className="fixed flex w-screen h-[90px] bottom-0 bg-white
                         items-center justify-center gap-[42px] z-40"
             style={{ boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.15)' }}
         >

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
 import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/index';
 import { Place, PlacesSearchResultItem } from '@type/place';
-import { mapCategory } from '@constants/category';
+import { MAP_CATEGORY } from '@constants/category';
 
 interface Props {
   lat: number;
@@ -73,7 +73,7 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
   const renderButtons = () => {
     return (
       <div className="flex flex-nowrap mb-[15px]">
-        {mapCategory.map((button) => (
+        {MAP_CATEGORY.map((button) => (
           <button
             key={button.id}
             onClick={() => handleCategoryChange(button.id as CategoryCode)}

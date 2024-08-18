@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { itemList } from '@constants/itemList';
-import { dorangCategory } from '@constants/category';
+import { ITEM_LIST } from '@constants/itemList';
+import { DORANG_CATEGORY } from '@constants/category';
 
 const buttonStyles = (isActive: boolean) =>
   `w-[64px] h-[31px] text-[15px] leading-[140%] rounded-[50px] border whitespace-nowrap ${
@@ -20,7 +20,7 @@ const ItemBox = ({
 }: Props) => {
   const [category, setCategory] = useState<string>('아이템');
 
-  const filteredItems = itemList.filter((item) => item.type === category);
+  const filteredItems = ITEM_LIST.filter((item) => item.type === category);
 
   const handleItemClick = (url: string) => {
     switch (category) {
@@ -41,7 +41,7 @@ const ItemBox = ({
   return (
     <div className="h-[210px] border-2 rounded-[16px]">
       <div className="flex flex-row pt-[12px] pl-[16px] gap-[10px] mb-[19px]">
-        {dorangCategory.map((categoryItem) => (
+        {DORANG_CATEGORY.map((categoryItem) => (
           <button
             className={buttonStyles(category === categoryItem.name)}
             key={categoryItem.id}

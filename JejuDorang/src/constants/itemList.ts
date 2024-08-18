@@ -9,7 +9,7 @@ import forest from '#img/dorang/background/forest.webp';
 import market from '#img/dorang/background/market.webp';
 import museum from '#img/dorang/background/museum.webp';
 
-export const itemList = [
+export const ITEM_LIST = [
   { type: '아이템', url: camera },
   { type: '아이템', url: boat },
   { type: '아이템', url: orange },

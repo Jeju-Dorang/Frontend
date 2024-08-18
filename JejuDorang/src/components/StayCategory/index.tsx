@@ -1,4 +1,4 @@
-import { stayCategory } from '@constants/category';
+import { STAY_CATEGORY } from '@constants/category';
 interface Props {
   className?: string;
   selectCategory: number;
@@ -10,7 +10,7 @@ const StayCategory = ({
   selectCategory,
   setSelectCategory,
 }: Props) => {
-  const renderButton = stayCategory.map((item) => {
+  const renderButton = STAY_CATEGORY.map((item) => {
     const isSelected = selectCategory === item.id;
     return (
       <button

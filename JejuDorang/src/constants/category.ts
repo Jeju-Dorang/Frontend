@@ -1,4 +1,4 @@
-export const mapCategory = [
+export const MAP_CATEGORY = [
   {
     id: 'CS2',
     label: '편의점',
@@ -17,8 +17,15 @@ export const mapCategory = [
   },
 ];
 
-export const dorangCategory = [
+export const DORANG_CATEGORY = [
   { id: 1, name: '아이템' },
   { id: 2, name: '펫' },
   { id: 3, name: '배경' },
+];
+
+export const STAY_CATEGORY = [
+  { id: 1, name: '호텔' },
+  { id: 2, name: '민박' },
+  { id: 3, name: '펜션' },
+  { id: 4, name: '게스트 하우스' },
 ];

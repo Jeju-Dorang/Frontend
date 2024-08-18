@@ -1,4 +1,4 @@
-export const interests:string[] = [
+export const INTERESTS = [
     '휴식', 
     '맛집투어', 
     '관광지', 

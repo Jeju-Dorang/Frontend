@@ -1,7 +1,7 @@
 import DorangProfile from '#img/dorangProfile.webp'
 import { useEffect, useState } from 'react';
 import InterestBox from './InterestBox';
-import { interests } from '@constants/interests';
+import { INTERESTS } from '@constants/interests';
 
 interface Props {
     openOnboarding: (savedInterests:string[]) => void;
@@ -53,7 +53,7 @@ const Onboarding = ({openOnboarding}:Props) => {
             <div className="flex w-[242px] ml-[92px] px-[12px] py-[8px]
                             border border-gray-dg rounded-[17px] bg-white">
                 <div className="flex flex-wrap gap-[5px]">
-                    {interests.map((data, index) => (
+                    {INTERESTS.map((data, index) => (
                         <InterestBox
                             key={index}
                             interest={data}

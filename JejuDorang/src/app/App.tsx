@@ -4,6 +4,7 @@ import Main from './Main/page';
 import SettingDorang from './SettingDorang/page';
 import Activity from './Activity/page';
 import Dorang from './Dorang/page';
+import Footer from '@components/Footer';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         {/* <Route path="/record" element={<Record />}></Route> */}
         {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

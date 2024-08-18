@@ -64,8 +64,9 @@ const Onboarding = ({openOnboarding}:Props) => {
             </div>
 
             <button onClick = {() =>setIsClicked(!isClicked)}
-                    className={`flex mt-[15px] ml-[273px] w-[60px] h-[20px] justify-center items-center rounded-[10px]
-                                ${isClicked? 'bg-white text-gray-dg':'bg-primary-orange text-black'}`}>
+                    className='flex mt-[15px] ml-[273px] w-[60px] h-[20px] justify-center items-center rounded-[10px]
+                                bg-primary-orange text-black disabled:bg-white disabled:text-gray-dg'
+                    disabled={interest.length === 0}>
                 <p className='font-semibold text-[10px]'>선택완료</p>
             </button>
 

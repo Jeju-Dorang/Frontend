@@ -7,7 +7,7 @@ interface Props {
 }
 
 
-const Interest = ({openOnboarding}:Props) => {
+const Onboarding = ({openOnboarding}:Props) => {
     const interests = ['휴식', '맛집투어', '관광지', '액티비티', '등산', '카페'];
     const [interest, setInterest] = useState<string[]>([]);
     const [isClicked, setIsClicked] = useState<boolean>(false);
@@ -37,7 +37,7 @@ const Interest = ({openOnboarding}:Props) => {
     console.log(interest)
 
     return (
-        <div className="flex w-full h-[217px] mt-[15px] flex-col bg-gray-lg">
+        <div className="flex w-full h-[217px] mt-[15px] flex-col ">
             <div className="flex flex-row mt-[23px]">
                 <img src = {DorangProfile} alt = "도랑이 프로필"
                     className='flex ml-[27px] w-[56px] h-[56px]' />
@@ -75,4 +75,4 @@ const Interest = ({openOnboarding}:Props) => {
 
 }
 
-export default Interest;
+export default Onboarding;

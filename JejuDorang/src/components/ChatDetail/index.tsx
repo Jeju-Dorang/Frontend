@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Interest from "./Interest";
+import Chat from "./Chat";
+import Onboarding from "./Onboarding";
 
 
 const ChatDetail = () => {
@@ -13,13 +14,12 @@ const ChatDetail = () => {
 
 
     return (
-        <>
-        {openOnboarding && (
-            <Interest openOnboarding={handleCloseOnboarding}/>
-            
-        )}
-        <p>{interests}</p>
-        </>
+        <div className="h-screen bg-gray-100">
+        {openOnboarding ?
+            <Onboarding openOnboarding={handleCloseOnboarding}/> :
+            <Chat interests={interests} />
+        }
+        </div>
 
     );
 

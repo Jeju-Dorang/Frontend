@@ -22,3 +22,10 @@ export const dorangCategory = [
   { id: 2, name: '펫' },
   { id: 3, name: '배경' },
 ];
+
+export const stayCategory = [
+  { id: 1, name: '호텔' },
+  { id: 2, name: '민박' },
+  { id: 3, name: '펜션' },
+  { id: 4, name: '게스트 하우스' },
+]

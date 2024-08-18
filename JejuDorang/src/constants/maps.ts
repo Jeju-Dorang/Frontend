@@ -1,7 +1,7 @@
-import mapEast from '#img/mapEast.webp';
-import mapWest from '#img/mapWest.webp';
-import mapNorth from '#img/mapNorth.webp';
-import mapSouth from '#img/mapSouth.webp';
+import mapEast from '#img/maps/mapEast.webp';
+import mapWest from '#img/maps/mapWest.webp';
+import mapNorth from '#img/maps/mapNorth.webp';
+import mapSouth from '#img/maps/mapSouth.webp';
 
 export const MAPS = [
   { name: '북', src: mapNorth },

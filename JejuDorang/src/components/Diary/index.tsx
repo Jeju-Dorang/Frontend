@@ -46,7 +46,7 @@ const Diary = () => {
 
   return (
     <div>
-      <div className="flex flex-row gap-[21px] mb-[71px]">{renderStory()}</div>
+      <div className="flex flex-row gap-[12px] mb-[71px]">{renderStory()}</div>
       <h1 className="text-[14px] mb-[8px] font-semibold">내 일기</h1>
       <div className="flex w-[280px] justify-between">
         <span className="text-[11px] font-semibold text-gray-lg">

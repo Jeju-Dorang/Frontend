@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Story from '@components/Story';
 import { StoryItem } from '@type/storyItem';
+import CustomCalendar from '@components/CustomCalendar';
 
 const DayRecord = () => {
   const [storyList, setStoryList] = useState<StoryItem[]>([]);
@@ -46,9 +47,9 @@ const DayRecord = () => {
 
   return (
     <div>
-      <div className="flex flex-row gap-[12px] mb-[71px]">{renderStory()}</div>
+      <div className="flex flex-row gap-[12px] mb-[51px]">{renderStory()}</div>
       <h1 className="text-[14px] mb-[8px] font-semibold">내 일기</h1>
-      <div className="flex w-[280px] justify-between">
+      <div className="flex w-[280px] mb-[17px] justify-between">
         <span className="text-[11px] font-semibold text-gray-lg">
           한달 동안의 추억을 기록해보세요
         </span>
@@ -59,6 +60,7 @@ const DayRecord = () => {
           전체 보기
         </button>
       </div>
+      <CustomCalendar />
     </div>
   );
 };

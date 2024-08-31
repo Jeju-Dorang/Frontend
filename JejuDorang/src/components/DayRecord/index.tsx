@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Story from '@components/Story';
 import { StoryItem } from '@type/storyItem';
 
-const Diary = () => {
+const DayRecord = () => {
   const [storyList, setStoryList] = useState<StoryItem[]>([]);
 
   useEffect(() => {
@@ -63,4 +63,4 @@ const Diary = () => {
   );
 };
 
-export default Diary;
+export default DayRecord;

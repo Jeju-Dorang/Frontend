@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Community from '@components/Community';
-import Diary from '@components/Diary';
+import DayRecord from '@components/DayRecord';
 
 const Record = () => {
   const [category, setcategory] = useState<string>('record');
@@ -29,7 +29,7 @@ const Record = () => {
           속닥속닥
         </span>
       </div>
-      {category === 'community' ? <Community /> : <Diary />}
+      {category === 'record' ? <DayRecord /> : <Community />}
     </div>
   );
 };

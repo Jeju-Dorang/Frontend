@@ -1,4 +1,5 @@
 # 🔗 Services
+
 여기는 JejuDorang Team의 api directory 입니다.
 
 ---
@@ -9,13 +10,12 @@
 
 ### 🔎 How to use
 
-```tsx
-import { getDataApi } from '@apis/example';
-...
+```ts
+import { postLogin } from '@apis/postLogin';
 
-const data = await getDataApi()
-  .then((res) => res.data)
-  .catch(() => []);
+return postLogin().then((res) => {
+  doSomegthing();
+});
 ```
 
 ### 🌱 How to contribute
@@ -27,8 +27,9 @@ const data = await getDataApi()
 ### 💡 Example
 
 ```tsx
-export const getDataApi = () => fetch('/example/request/api', {
-  method: 'GET',
-  headers: { ... }
-})
+export const apiFunction = async()=>{
+  return api.method<return type, data>(isrequireToken,url, data).then((res)=>{
+    doSomething();
+  })
+}
 ```

@@ -2,7 +2,7 @@ import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
 import './index.css';
 
-const CustomCalendar: React.FC = () => {
+const CustomCalendar = () => {
   return (
     <Calendar
       tileContent={({ date, view }) =>
@@ -18,7 +18,7 @@ const CustomCalendar: React.FC = () => {
       prev2Label={null}
       next2Label={null}
       showNeighboringMonth={false}
-      className="custom-calendar"
+      className="custom-calendar mb-[30px] ml-[45px]"
       tileDisabled={() => true}
     />
   );

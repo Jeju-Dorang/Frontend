@@ -1,9 +1,13 @@
 import KakaoLoginImg from '#img/login/kakaoLogin.webp';
 import jejuDorang from '#img/login/jejuDorang.webp';
+import { postLogin } from '@apis/postLogin';
 
 const LoginButton = () => {
-  const handleLogin = () => {
+  const handleLogin = async () => {
     //post보내서 jwt받아오면 store에 저장
+    return postLogin().then((res) => {
+      console.log(res);
+    });
   };
   return (
     <div className="flex flex-col justify-center items-center h-screen">

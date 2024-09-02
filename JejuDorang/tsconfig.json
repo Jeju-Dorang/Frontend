@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2022",
     "jsx": "react-jsx",
     "allowJs": true,
     "allowImportingTsExtensions": true,
@@ -12,6 +12,7 @@
     "skipLibCheck": true,
     "types": ["kakao.maps.d.ts"],
     "paths": {
+      "@apis/*": ["./src/apis/*"],
       "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
       "@hooks/*": ["./src/hooks/*"],

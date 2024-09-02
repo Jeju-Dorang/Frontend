@@ -1,0 +1,68 @@
+.custom-calendar.react-calendar {
+  width: 100%;
+  max-width: 300px;
+  border: none;
+}
+
+.custom-calendar .react-calendar__tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+}
+
+.custom-calendar .react-calendar__month-view__days__day {
+  color: inherit;
+}
+
+.custom-calendar .react-calendar__tile:disabled {
+  background-color: transparent;
+}
+
+.custom-calendar .react-calendar__tile:enabled:hover,
+.custom-calendar .react-calendar__tile:enabled:focus {
+  background-color: transparent;
+}
+
+.custom-calendar .react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+}
+
+.custom-calendar .react-calendar__navigation button:enabled:hover {
+  background-color: #e6e6e6;
+}
+
+.custom-calendar .react-calendar__navigation button:disabled {
+  background-color: transparent;
+}
+
+.custom-calendar .react-calendar__navigation button:focus {
+  background-color: transparent;
+}
+
+.custom-calendar .react-calendar__navigation button:enabled:hover:focus {
+  background-color: #e6e6e6;
+}
+
+.custom-calendar .react-calendar__navigation__label {
+  pointer-events: none;
+  cursor: default;
+}
+
+.custom-calendar .react-calendar__navigation__label:hover,
+.custom-calendar .react-calendar__navigation__label:focus {
+  background-color: transparent !important;
+}
+
+.custom-calendar .react-calendar__tile--now {
+  color: #5f88fe;
+  font-weight: bold;
+}
+
+/* 오늘 날짜에 호버 시에도 배경색 변경 방지 */
+.custom-calendar .react-calendar__tile--now:enabled:hover,
+.custom-calendar .react-calendar__tile--now:enabled:focus {
+  background-color: transparent;
+  color: #5f88fe;
+}

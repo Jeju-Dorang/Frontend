@@ -12,8 +12,8 @@ const Chat = ({interests}:Props) => {
 
     return (
 
-        <div className="w-full h-full flex flex-col mt-[15px]">
-            <p className="flex ml-[130px] mt-[10px] text-primary-orange font-semibold text-[12px]">
+        <div className="w-[100%] h-screen flex flex-col mt-[15px] overflow-y-auto">
+            <p className="flex ml-[130px] mt-[10px] text-primary-orange font-semibold text-[12px] items-center">
                 여행키워드 : {interests.join(', ')}
             </p>
             <div className="mt-[10px]">

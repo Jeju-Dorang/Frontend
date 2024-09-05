@@ -1,5 +1,5 @@
-import KakaoLoginImg from '#img/kakaoLogin.webp';
-import jejuDorang from '#img/jejuDorang.webp';
+import KakaoLoginImg from '#img/login/kakaoLogin.webp';
+import jejuDorang from '#img/login/jejuDorang.webp';
 
 const LoginButton = () => {
   const handleLogin = () => {

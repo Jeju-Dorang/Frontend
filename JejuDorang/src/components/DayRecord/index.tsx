@@ -1,32 +1,24 @@
 import { useEffect, useState } from 'react';
-import Story from '@components/Story';
-import { StoryItem } from '@type/storyItem';
 import CustomCalendar from '@components/CustomCalendar';
+import Story from '@components/Story';
+import WriteDiary from '@components/WriteDiary';
+import { StoryItem } from '@type/storyItem';
+import { getDiary } from '@apis/getDiary';
 
 const DayRecord = () => {
   const [storyList, setStoryList] = useState<StoryItem[]>([]);
+  const [isWriteDiary, setIsWriteDiary] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data: StoryItem[] = [
-        //삭제예정
-        {
-          diaryId: 4,
-          name: '서지',
-          image: 'url',
-          viewStatus: false,
-        },
-        {
-          diaryId: 5,
-          name: '성호',
-          image: 'url',
-          viewStatus: true,
-        },
-      ];
-      setStoryList(data);
+      const data = await getDiary();
+      if (data) {
+        setStoryList(data);
+      } else {
+        console.error('Failed to fetch diary data');
+      }
     };
-
-    fetchData();
+    // fetchData();
   }, []);
 
   const renderStory = () => {
@@ -46,7 +38,7 @@ const DayRecord = () => {
   };
 
   const writeTodayDiary = () => {
-    console.log('오늘 일기 쓰기');
+    setIsWriteDiary(true);
   };
 
   return (
@@ -74,6 +66,7 @@ const DayRecord = () => {
         >
           오늘 일기 쓰기
         </button>
+        {isWriteDiary && <WriteDiary setIsWriteDiary={setIsWriteDiary} />}
       </div>
     </div>
   );

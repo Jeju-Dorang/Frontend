@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 
 interface Props {
     interest : string;
@@ -24,7 +24,7 @@ const InterestBox = ({interest, onInterestChange}:Props) => {
     return (
         <button 
                 onClick={handleClick} 
-                className={`flex h-[24px] rounded-[100px] font-pretendard font-bold text-[10px] border
+                className={`flex h-[24px] rounded-[100px] font-pretendard font-bold text-[13px] border
                         border-gray-dg items-center justify-center px-[13px] py-[4px]
                         ${isClicked ? 'bg-primary-orange text-black' : ' bg-white text-primary-orange'}`}
         >

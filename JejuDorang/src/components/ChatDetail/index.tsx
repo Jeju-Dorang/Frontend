@@ -3,14 +3,15 @@ import Chat from "./Chat";
 import Onboarding from "./Onboarding";
 import InputMessage from "./Chat/InputMessage";
 import ChatHeader from "@components/ChatHeader";
-import Footer from "@components/Footer";
 import { CHAT } from "@type/chat";
 
+interface Props {
+    setIsNavVisible: (visible: boolean) => void;
+}
 
-const ChatDetail = () => {
+const ChatDetail = ({ setIsNavVisible }: Props) => {
     const [openOnboarding, setOpenOnboarding] = useState<boolean>(true);
     const [interests, setInterests] = useState<string[]>([]);
-    const [showFooter, setShowFooter] = useState(false);
     const [messages, setMessages] = useState<CHAT[]>([]);
 
     const sendMessage = (message:string) => {
@@ -27,28 +28,34 @@ const ChatDetail = () => {
         setOpenOnboarding(!openOnboarding)
         setInterests(savedInterests); 
     }
+
+
+    const handleScroll = () => {
+        const isScrolledToBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight;
+
+        // 스크롤이 끝까지 내려가면 NavBar를 표시하고, 그렇지 않으면 숨기기
+        if (isScrolledToBottom) {
+            setIsNavVisible(true);
+        } else {
+            setIsNavVisible(false);
+        }
+    };
     
-    // 스크롤 감지 이벤트
+      // 컴포넌트가 마운트될 때 스크롤 이벤트 리스너 추가
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollHeight = document.documentElement.scrollHeight;
-            const scrollTop = document.documentElement.scrollTop;
-            const clientHeight = document.documentElement.clientHeight;
-    
-            // 페이지의 하단에 도달하면 추가 푸터 표시
-            if (scrollTop + clientHeight >= scrollHeight - 10) {
-                setShowFooter(true);
-            } else {
-                setShowFooter(false);
-            }
-        };
-    
+        if (openOnboarding) {
+            setIsNavVisible(false);
+        }
+
         window.addEventListener('scroll', handleScroll);
     
+        // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [openOnboarding]);
+    
         
 
 
@@ -58,11 +65,12 @@ const ChatDetail = () => {
         <div className="flex flex-col h-screen w-[100%] bg-gray-100">
         {openOnboarding ?
             <Onboarding openOnboarding={handleCloseOnboarding}/> :
-            <Chat interests={interests} messages={messages} />
+            <>
+                
+                <Chat interests={interests} messages={messages} />
+                <InputMessage sendMessage = {sendMessage} />
+            </>
         }
-        {(!openOnboarding && !showFooter) ? 
-            <InputMessage sendMessage = {sendMessage} /> : <Footer />}
-        
         </div>
         </>
 

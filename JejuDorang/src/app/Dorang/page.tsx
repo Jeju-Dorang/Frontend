@@ -1,9 +1,13 @@
 import ChatDetail from "@components/ChatDetail";
 
-const Dorang =() =>{
+interface Props {
+    setIsNavVisible: (visible: boolean) => void;
+}
+
+const Dorang =({ setIsNavVisible }: Props) =>{
     return (
         <>
-        <ChatDetail />
+        <ChatDetail setIsNavVisible={setIsNavVisible}/>
         </>
     );
     

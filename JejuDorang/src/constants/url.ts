@@ -1,2 +1,2 @@
-const BASE_URL = 'localhost:8080';
-export const API_URL = `http://${BASE_URL}/`;
+const BASE_URL = 'http://localhost:8080';
+export const API_URL = `${BASE_URL}/`;

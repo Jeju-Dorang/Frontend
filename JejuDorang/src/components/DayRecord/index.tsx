@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import CustomCalendar from '@components/CustomCalendar';
-import Story from '@components/Story';
-import WriteDiary from '@components/WriteDiary';
+import CustomCalendar from './CustomCalendar';
+import Story from './Story';
+import WriteDiary from './WriteDiary';
 import { StoryItem } from '@type/storyItem';
 import { getDiary } from '@apis/getDiary';
 

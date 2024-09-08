@@ -7,8 +7,8 @@ import Login from './Login/page';
 import Dorang from './Dorang/page';
 import Footer from '@components/Footer';
 import { useState } from 'react';
-
-
+import Stay from './Stay/page';
+import Record from './Record/page';
 
 
 function App() {
@@ -23,9 +23,9 @@ function App() {
         <Route path="/settingDorang" element={<SettingDorang />} />
         <Route path="/dorang" element={<Dorang setIsNavVisible={setIsNavVisible}/>}></Route>
         <Route path="/activity" element={<Activity />} />
-        {/* <Route path="/stay" element={<Stay />}></Route> */}
+        <Route path="/stay" element={<Stay />}></Route>
+        <Route path="/record" element={<Record />}></Route>
         {/* <Route path="/mypage" element={<MyPage />}></Route> */}
-        {/* <Route path="/record" element={<Record />}></Route> */}
         {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
       {/* 챗봇 페이지에서만 footer 제외 */}

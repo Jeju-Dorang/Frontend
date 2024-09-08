@@ -14,6 +14,7 @@ export default {
           lg: '#E8E8E8',
         },
         background: '#f1c4a380',
+        blue: '#5F88FE',
       },
     },
   },

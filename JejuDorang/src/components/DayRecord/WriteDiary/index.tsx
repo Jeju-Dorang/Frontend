@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { maxTextLength } from '@constants/maxTextLength';
+import diaryDefault from '#img/diaryDefault.webp';
 
 interface Props {
   setIsWriteDiary: React.Dispatch<React.SetStateAction<boolean>>;
@@ -35,7 +36,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
     const diaryData = {
       title: title,
       content: diaryContent,
-      imageUrl: imagePreview,
+      imageUrl: imagePreview || diaryDefault,
       secret: isPublic ? 'public' : 'private',
       tagList: tagList,
     };

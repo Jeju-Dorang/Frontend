@@ -10,9 +10,9 @@ interface Tag {
 }
 
 const WriteDiary = ({ setIsWriteDiary }: Props) => {
-  const [title, setTitle] = useState('');
-  const [diaryContent, setDiaryContent] = useState('');
-  const [isPublic, setIsPublic] = useState(false);
+  const [title, setTitle] = useState<string>('');
+  const [diaryContent, setDiaryContent] = useState<string>('');
+  const [isPublic, setIsPublic] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [tags, setTags] = useState<string[]>(['', '', '']);
 
@@ -25,6 +25,9 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (title === '' || diaryContent === '') {
+      return alert('제목과 내용을 입력해주세요.');
+    }
     const tagList: Tag[] = tags
       .filter((tag) => tag !== '')
       .map((tag) => ({ tagName: tag }));
@@ -36,6 +39,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
       secret: isPublic ? 'public' : 'private',
       tagList: tagList,
     };
+    setIsWriteDiary(false);
     //api 호출
   };
 
@@ -69,7 +73,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
         <div className="flex justify-between items-center mb-[6px]">
           <input
             type="text"
-            className="text-[15px] font-bold text-primary-orange w-[100px]"
+            className="text-[15px] font-bold text-primary-orange w-[100px] placeholder-primary-orange"
             placeholder="제목"
             maxLength={20}
             value={title}
@@ -117,7 +121,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
         </div>
         <div className="relative mb-4">
           <textarea
-            className="w-full p-2 border rounded resize-none overflow-hidden text-lg"
+            className="w-full p-2 border rounded resize-none overflow-hidden text-base"
             value={diaryContent}
             onChange={handleTextareaChange}
             placeholder="오늘의 이야기를 적어주세요..."

@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Chat from "./Chat";
 import Onboarding from "./Onboarding";
 import InputMessage from "./Chat/InputMessage";
-import ChatHeader from "@components/ChatHeader";
+import ChatMainHeader from "@components/ChatMainHeader";
 import { CHAT } from "@type/chat";
+import Header from "./Chat/Header";
 
 interface Props {
     setIsNavVisible: (visible: boolean) => void;
@@ -28,32 +29,12 @@ const ChatDetail = ({ setIsNavVisible }: Props) => {
         setOpenOnboarding(!openOnboarding)
         setInterests(savedInterests); 
     }
-
-
-    const handleScroll = () => {
-        const isScrolledToBottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight;
-
-        // 스크롤이 끝까지 내려가면 NavBar를 표시하고, 그렇지 않으면 숨기기
-        if (isScrolledToBottom) {
-            setIsNavVisible(true);
-        } else {
-            setIsNavVisible(false);
-        }
-    };
     
-      // 컴포넌트가 마운트될 때 스크롤 이벤트 리스너 추가
     useEffect(() => {
-        if (openOnboarding) {
+        if (!openOnboarding) {
             setIsNavVisible(false);
+            setMessages([]);
         }
-
-        window.addEventListener('scroll', handleScroll);
-    
-        // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
     }, [openOnboarding]);
     
         
@@ -61,12 +42,11 @@ const ChatDetail = ({ setIsNavVisible }: Props) => {
 
     return (
         <>
-        {openOnboarding && <ChatHeader />}
+        {openOnboarding ? <ChatMainHeader /> : <Header setOpenOnboarding={setOpenOnboarding} /> }
         <div className="flex flex-col h-screen w-[100%] bg-gray-100">
         {openOnboarding ?
             <Onboarding openOnboarding={handleCloseOnboarding}/> :
             <>
-                
                 <Chat interests={interests} messages={messages} />
                 <InputMessage sendMessage = {sendMessage} />
             </>

@@ -8,15 +8,18 @@ interface Props {
 }
 
 const Chat = ({interests, messages}:Props) => {
+
     
     {/* 디버깅코드 */}
     console.log("messages" , messages)
 
     return (
-        <div className="w-[100%] h-screen flex flex-col mt-[15px] overflow-y-auto">
-            <p className="flex ml-[130px] mt-[10px] text-primary-orange font-semibold text-[12px] items-center">
-                여행키워드 : {interests.join(', ')}
-            </p>
+        <div className="w-[100%] h-full flex flex-col mt-[15px] overflow-y-auto">
+            <div className="flex justify-center items-center">
+                <p className="flex mt-[51px] text-primary-orange font-semibold text-[12px]">
+                    여행키워드 : {interests.join(', ')}
+                </p>
+            </div>
             <div className="mt-[10px]">
                 <DorangMessage 
                     message="안녕하세요 챗봇 도랑이입니다.

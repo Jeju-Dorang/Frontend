@@ -16,9 +16,12 @@ const Chat = ({interests, messages}:Props) => {
     return (
         <div className="w-[100%] h-full flex flex-col mt-[15px] overflow-y-auto">
             <div className="flex justify-center items-center">
-                <p className="flex mt-[51px] text-primary-orange font-semibold text-[12px]">
-                    여행키워드 : {interests.join(', ')}
-                </p>
+                <div className="flex justify-center items-center mt-[51px] h-[24px] rounded-[100px] 
+                                border border-gray-dg bg-white">
+                    <p className="flex text-primary-orange font-bold text-[13px] m-2">
+                        여행키워드 : {interests.join(', ')}
+                    </p>
+                </div>
             </div>
             <div className="mt-[10px]">
                 <DorangMessage 

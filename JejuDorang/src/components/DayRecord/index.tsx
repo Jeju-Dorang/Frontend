@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import Story from '@components/Story';
 import { StoryItem } from '@type/storyItem';
+import { getStories } from '@apis/diary';
+import Story from '@components/Story';
 import CustomCalendar from '@components/CustomCalendar';
 
 const DayRecord = () => {
@@ -8,21 +9,7 @@ const DayRecord = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data: StoryItem[] = [
-        //삭제예정
-        {
-          diaryId: 4,
-          name: '서지',
-          image: 'url',
-          viewStatus: false,
-        },
-        {
-          diaryId: 5,
-          name: '성호',
-          image: 'url',
-          viewStatus: true,
-        },
-      ];
+      const data: StoryItem[] = await getStories();
       setStoryList(data);
     };
 

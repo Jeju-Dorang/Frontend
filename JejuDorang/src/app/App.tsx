@@ -8,6 +8,7 @@ import Dorang from './Dorang/page';
 import Footer from '@components/Footer';
 import Stay from './Stay/page';
 import Record from './Record/page';
+import KakaoCallback from './KakaoCallback/page';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/auth/kakao/callback" element={<Main />} />
+        <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
         <Route path="/settingDorang" element={<SettingDorang />} />
         <Route path="/dorang" element={<Dorang />}></Route>
         <Route path="/activity" element={<Activity />} />

@@ -12,7 +12,6 @@ const DayRecord = () => {
       const data: StoryItem[] = await getStories();
       setStoryList(data);
     };
-
     fetchData();
   }, []);
 

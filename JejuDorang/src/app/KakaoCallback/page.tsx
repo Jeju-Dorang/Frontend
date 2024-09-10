@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { getToken } from '@apis/getToken';
+import { getToken } from '@apis/auth';
 
 const KakaoCallback = () => {
   const navigate = useNavigate();

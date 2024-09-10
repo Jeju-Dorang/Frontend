@@ -7,7 +7,7 @@ interface KakaoLoginResponse {
 
 export const getToken = async (code: string): Promise<boolean> => {
   return api
-    .get<KakaoLoginResponse>(false, ``)
+    .get<KakaoLoginResponse>(false, `/auth/kakao/login?code=${code}`)
     .then((response) => {
       if (response.data && response.data.token) {
         useAuthStore.getState().setToken(response.data.token);

@@ -10,10 +10,9 @@ const KakaoCallback = () => {
     return getToken(code).then((isSuccess) => {
       if (!isSuccess) {
         console.error('Kakao login failed');
-        // navigate('/login');
         return;
       }
-      //   navigate('/');
+      navigate('/');
     });
   };
 

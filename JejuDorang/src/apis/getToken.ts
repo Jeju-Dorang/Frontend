@@ -5,6 +5,7 @@ export const getToken = async (code: string): Promise<boolean> => {
   return api
     .get<void>(false, `/auth/kakao/login?code=${code}`)
     .then((response) => {
+      console.log(response);
       const token = response.headers['Authorization'];
       console.log(token);
       if (token) {

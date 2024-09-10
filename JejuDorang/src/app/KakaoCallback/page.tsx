@@ -7,13 +7,12 @@ const KakaoCallback = () => {
   const location = useLocation();
 
   const handleKakaoLogin = async (code: string) => {
-    return getToken(code).then((isSuccess) => {
-      if (!isSuccess) {
-        console.error('Kakao login failed');
-        return;
-      }
-      navigate('/');
-    });
+    const isSuccess = await getToken(code);
+    if (!isSuccess) {
+      console.error('Kakao login failed');
+      return;
+    }
+    navigate('/');
   };
 
   useEffect(() => {

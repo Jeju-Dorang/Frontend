@@ -1,14 +1,14 @@
 import KakaoLoginImg from '#img/login/kakaoLogin.webp';
 import jejuDorang from '#img/login/jejuDorang.webp';
-import { postLogin } from '@apis/postLogin';
 
 const LoginButton = () => {
   const handleLogin = async () => {
-    //post보내서 jwt받아오면 store에 저장
-    window.location.href = 'http://localhost:8080/auth/kakao/login';
-    return postLogin().then((res) => {
-      console.log(res);
-    });
+    const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+    const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+
+    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}`;
+
+    window.location.href = kakaoAuthUrl;
   };
   return (
     <div className="flex flex-col justify-center items-center h-screen">

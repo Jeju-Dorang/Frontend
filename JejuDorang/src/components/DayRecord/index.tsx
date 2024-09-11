@@ -18,7 +18,7 @@ const DayRecord = () => {
         console.error('Failed to fetch diary data');
       }
     };
-    // fetchData();
+    fetchData();
   }, []);
 
   const renderStory = () => {

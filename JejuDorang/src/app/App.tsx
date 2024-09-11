@@ -9,6 +9,7 @@ import Footer from '@components/Footer';
 import { useState } from 'react';
 import Stay from './Stay/page';
 import Record from './Record/page';
+import KakaoCallback from './KakaoCallback/page';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/auth/kakao/callback" element={<Main />} />
+        <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
         <Route path="/settingDorang" element={<SettingDorang />} />
         <Route path="/dorang" element={<Dorang setIsNavVisible={setIsNavVisible}/>}></Route>
         <Route path="/activity" element={<Activity />} />

@@ -6,11 +6,15 @@ import Activity from './Activity/page';
 import Login from './Login/page';
 import Dorang from './Dorang/page';
 import Footer from '@components/Footer';
+import { useState } from 'react';
 import Stay from './Stay/page';
 import Record from './Record/page';
 import KakaoCallback from './KakaoCallback/page';
 
+
 function App() {
+  const [isNavVisible, setIsNavVisible] = useState(true);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -18,14 +22,15 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
         <Route path="/settingDorang" element={<SettingDorang />} />
-        <Route path="/dorang" element={<Dorang />}></Route>
+        <Route path="/dorang" element={<Dorang setIsNavVisible={setIsNavVisible}/>}></Route>
         <Route path="/activity" element={<Activity />} />
         <Route path="/stay" element={<Stay />}></Route>
         <Route path="/record" element={<Record />}></Route>
         {/* <Route path="/mypage" element={<MyPage />}></Route> */}
         {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
-      <Footer />
+      {/* 챗봇 페이지에서만 footer 제외 */}
+      {isNavVisible && <Footer />}
     </BrowserRouter>
   );
 }

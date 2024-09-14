@@ -1,14 +1,13 @@
-import Profile from '@components/Profile/index';
-import MainModal from '@components/MainModal';
 import { useEffect } from 'react';
+import EditProfile from '@components/EditProfile';
 
 const MyPage = () => {
     useEffect(() => {}, []);
     return (
         <>
-        <Profile name="손성호" email="shson1217@naver.com" dDay={27} />
+        
+        <EditProfile userName="손성호" userEmail="shson1217@naver.com" userDetail="제주살이 일주일지남" />
         <hr />
-        <MainModal />
         </>
     );
 };

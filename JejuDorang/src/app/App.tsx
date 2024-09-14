@@ -17,23 +17,28 @@ function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
-        <Route path="/settingDorang" element={<SettingDorang />} />
-        <Route path="/dorang" element={<Dorang setIsNavVisible={setIsNavVisible}/>}></Route>
-        <Route path="/activity" element={<Activity />} />
-        <Route path="/stay" element={<Stay />}></Route>
-        <Route path="/record" element={<Record />}></Route>
-        <Route path="/mypage" element={<MyPage />}></Route>
-        {/* <Route path="/mypage/edit" element={<EditMyPage />}></Route> */}
-        {/* <Route path="*" element={<NotFound />}></Route> */}
-      </Routes>
-      {/* 챗봇 페이지에서만 footer 제외 */}
-      {isNavVisible && <Footer />}
-    </BrowserRouter>
+    <div className="flex justify-center items-center w-full h-full bg-background">
+      <div className="w-full h-full max-w-[402px] max-h-[874px] overflow-y-auto bg-white rounded-[20px] shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+            <Route path="/settingDorang" element={<SettingDorang />} />
+            <Route
+              path="/dorang"
+              element={<Dorang setIsNavVisible={setIsNavVisible} />}
+            />
+            <Route path="/activity" element={<Activity />} />
+            <Route path="/stay" element={<Stay />} />
+            <Route path="/record" element={<Record />} />
+            <Route path="/mypage" element={<MyPage />} />
+            {/* <Route path="*" element={<NotFound />} /> */}
+          </Routes>
+          {isNavVisible && <Footer />}
+        </BrowserRouter>
+      </div>
+    </div>
   );
 }
 

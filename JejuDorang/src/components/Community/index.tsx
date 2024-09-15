@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import CommunityList from './CommunityList';
 
 const Community = () => {
@@ -14,8 +14,12 @@ const Community = () => {
     }
   };
 
+  const handleModal = () => {
+    
+  };
+
   return (
-    <div className="container mx-auto p-4">
+    <Fragment>
       <h1 className="text-2xl font-bold mb-4">속닥속닥 게시글들</h1>
       <div className="mb-[28px] relative">
         <input
@@ -57,12 +61,15 @@ const Community = () => {
       </div>
       <div className="flex justify-between items-center">
         <span className="text-[14px] font-semibold">질문</span>
-        <button className="w-[88px] h-[20px] mt-[17px] rounded-[3px] bg-primary-orange text-white font-semibold text-[10px]">
+        <button
+          className="w-[88px] h-[20px] my-[18px] rounded-[3px] bg-primary-orange font-semibold text-[10px]"
+          onClick={handleModal}
+        >
           질문 글 쓰기
         </button>
       </div>
       <CommunityList />
-    </div>
+    </Fragment>
   );
 };
 

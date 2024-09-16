@@ -10,10 +10,10 @@ const CustomCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   useEffect(() => {
-    fetchData(currentDate.getFullYear(), currentDate.getMonth() + 1);
+    fetchStreaks(currentDate.getFullYear(), currentDate.getMonth() + 1);
   }, [currentDate]);
 
-  const fetchData = async (year: number, month: number) => {
+  const fetchStreaks = async (year: number, month: number) => {
     const data = await getStreaks(year, month);
     if (data) {
       setStreaks(data);

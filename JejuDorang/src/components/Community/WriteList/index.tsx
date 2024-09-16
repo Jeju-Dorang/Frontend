@@ -7,8 +7,8 @@ interface Props {
 }
 
 const WriteList = ({ handleModal, fetchQuestions }: Props) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
 
   const handleSubmit = async () => {
     const res = await postQuestion(title, content);

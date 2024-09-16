@@ -11,7 +11,7 @@ interface Props {
 }
 
 const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
-  const [newComment, setNewComment] = useState('');
+  const [newComment, setNewComment] = useState<string>('');
   const [localComments, setLocalComments] = useState<comments[]>(
     question.comments,
   );

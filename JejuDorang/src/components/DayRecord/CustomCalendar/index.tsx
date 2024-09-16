@@ -7,7 +7,7 @@ import { Streak } from '@type/streak';
 
 const CustomCalendar = () => {
   const [streaks, setStreaks] = useState<Streak[]>([]);
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState<Date>(new Date());
 
   useEffect(() => {
     fetchStreaks(currentDate.getFullYear(), currentDate.getMonth() + 1);

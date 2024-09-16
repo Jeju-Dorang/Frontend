@@ -4,11 +4,11 @@ import profileImg from '#img/profile.webp';
 interface Props {
   name: string;
   email: string;
-  dDay: number;
+  detail: string; //상태메세지를 위한 string으로 변수 및 타입 변경
 }
 
 //이미지도 인자로 받아야함, 백엔드와 얘기필요
-const Profile = ({ name, email, dDay = 0 }: Props) => {
+const Profile = ({ name, email, detail}: Props) => {
   return (
     <Fragment>
       <div className="flex w-full gap-[21px] pt-[30px] px-[30px] pb-[9px]">
@@ -16,7 +16,7 @@ const Profile = ({ name, email, dDay = 0 }: Props) => {
         <div>
           <h1 className="font-bold text-[20px]">{name}</h1>
           <p className="text-gray-dg">{email}</p>
-          <h3 className="mt-[3px]">🍊제주살이 D-{dDay}</h3>
+          <h3 className="mt-[3px]">{detail}</h3>
         </div>
       </div>
     </Fragment>

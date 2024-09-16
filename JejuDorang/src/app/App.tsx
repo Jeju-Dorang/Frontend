@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
+// import './App.css';
 import Main from './Main/page';
 import SettingDorang from './SettingDorang/page';
 import Activity from './Activity/page';
@@ -11,6 +11,7 @@ import Stay from './Stay/page';
 import Record from './Record/page';
 import KakaoCallback from './KakaoCallback/page';
 import MyPage from './MyPage/page';
+import EditMyPage from './EditMyPage/page';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/stay" element={<Stay />} />
             <Route path="/record" element={<Record />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/mypage/edit" element={<EditMyPage />} />
             {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
           {isNavVisible && <Footer />}

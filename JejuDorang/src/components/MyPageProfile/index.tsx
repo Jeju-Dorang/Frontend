@@ -22,7 +22,7 @@ const MyPageProfile = () => {
             <h1 className='mt-5 font-semibold text-black text-[21px]'>
                 플레이스
             </h1>
-            <div className = "flex flex-row items-center justify-between gap-36">
+            <div className = "flex flex-row items-center justify-between gap-32">
                 <h2 className='mt-1 font-semibold text-[#7E7E7E] text-[16px]'>
                     카세로지 게스트하우스
                 </h2>

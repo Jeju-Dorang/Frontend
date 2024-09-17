@@ -5,6 +5,10 @@ import Info from '#img/info.svg'
 import { AchievementData } from "@type/achievement";
 import AchievementBox from "@components/AchievementBox";
 
+interface Props {
+    setMainMypage: (mainMypage : boolean) => void;
+}
+
 // api 연결할 때 바꿀 예정
 const achievementData: AchievementData[] = [
     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
@@ -13,18 +17,19 @@ const achievementData: AchievementData[] = [
     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
 ];
 
+
 const buttonStyles = (isActive: boolean) =>
     `w-[64px] h-[31px] text-[15px] leading-[140%] rounded-[50px] border whitespace-nowrap ${
         isActive ? 'bg-primary-orange text-white' : 'bg-white text-[#515356]'
     }`;
 
-const AchievementList = () => {
+const AchievementList = ({setMainMypage}:Props) => {
     const [category, setCategory] = useState<string>('전체');
     const [showInfo, setShowInfo] = useState<boolean>(false);
 
     return (
         <>
-            <Header />
+            <Header setMainMypage={setMainMypage}/>
             <div className="flex flex-row pt-[12px] pl-[16px] gap-[10px] mb-[19px]">
                 {ACHEIVEMENT_CATEGORY.map((categoryItem) => (
                 <button

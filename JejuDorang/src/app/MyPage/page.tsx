@@ -15,7 +15,7 @@ const MyPage = () => {
             <MyPageDiary />
             <MyPageAchievement setMainMypage = {setMainMypage} />
             </>
-            :<AchievementList />
+            :<AchievementList setMainMypage = {setMainMypage} />
         }
         </>
     );

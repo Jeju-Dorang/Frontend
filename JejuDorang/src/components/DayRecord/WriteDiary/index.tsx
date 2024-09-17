@@ -1,9 +1,10 @@
 import { useState, ChangeEvent } from 'react';
 import { maxTextLength } from '@constants/maxTextLength';
 import diaryDefault from '#img/diaryDefault.webp';
+import { postDiary } from '@apis/diary';
 
 interface Props {
-  setIsWriteDiary: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsWriteDiary: () => void;
 }
 
 interface Tag {
@@ -40,8 +41,12 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
       secret: isPublic ? 'public' : 'private',
       tagList: tagList,
     };
-    setIsWriteDiary(false);
-    //api 호출
+    const res = await postDiary(diaryData);
+    if (res === false) {
+      alert('일기 작성에 실패했습니다.');
+      return;
+    }
+    setIsWriteDiary();
   };
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -156,7 +161,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
           <button
             type="button"
             className="px-4 bg-gray-200 rounded w-[70px] h-[20px] text-[10px] hover:text-white"
-            onClick={() => setIsWriteDiary(false)}
+            onClick={() => setIsWriteDiary()}
           >
             취소
           </button>

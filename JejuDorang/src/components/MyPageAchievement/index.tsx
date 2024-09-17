@@ -1,7 +1,6 @@
 import AchievementBox from "@components/AchievementBox";
 import { AchievementData } from "@type/achievement";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 // api 연결할 때 바꿀 예정
 const achievementData: AchievementData[] = [
@@ -13,7 +12,11 @@ const achievementData: AchievementData[] = [
 ];
 //
 
-const MyPageAchievement= () => {
+interface Props {
+    setMainMypage: (mainMypage : boolean) => void;
+}
+
+const MyPageAchievement= ({setMainMypage}:Props) => {
     useEffect(() => {}, []);
     return (
         <>
@@ -22,15 +25,15 @@ const MyPageAchievement= () => {
                 업적
             </h1>
             {/* 페이지에서 useState로 관리할 부분 */}
-            <Link
-                to="/record"
+            <button
+                onClick={() => {setMainMypage(false)}}
                 className="mt-5 mr-5 font-bold text-[15px] 
                 text-gray-dg cursor-pointer hover:text-primary-orange"
                 >
                 자세히 보기
-            </Link>
+            </button>
         </div>
-        <div className='flex w-[370px] h-[408px] top-[335px] flex-col gap-2 mt-3 items-center'>
+        <div className='flex flex-col gap-2 mt-3 items-center'>
                 {/* 4개만 출력 */}
                 {achievementData.slice(0, 4).map((data, index) => (
                     <AchievementBox

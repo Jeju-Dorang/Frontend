@@ -9,6 +9,10 @@ import { useState } from 'react';
 import Stay from './Stay/page';
 import Record from './Record/page';
 import KakaoCallback from './KakaoCallback/page';
+import MyPage from './MyPage/page';
+import EditMyPage from './EditMyPage/page';
+import AllDiaries from './AllDiaries/page';
+
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -29,7 +33,9 @@ function App() {
             <Route path="/activity" element={<Activity />} />
             <Route path="/stay" element={<Stay />} />
             <Route path="/record" element={<Record />} />
-            {/* <Route path="/mypage" element={<MyPage />} /> */}
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/mypage/edit" element={<EditMyPage />} />
+            <Route path="/allDiaries" element={<AllDiaries />} />
             {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
           {isNavVisible && <Footer />}

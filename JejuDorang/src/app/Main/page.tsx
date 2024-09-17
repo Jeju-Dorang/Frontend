@@ -6,7 +6,7 @@ const Main = () => {
   useEffect(() => {}, []);
   return (
     <>
-      <Profile name="손성호" email="shson1217@naver.com" dDay={27} />
+      <Profile name="손성호" email="shson1217@naver.com" detail="🍊제주살이 D-14" />
       <hr />
       <MainModal />
     </>

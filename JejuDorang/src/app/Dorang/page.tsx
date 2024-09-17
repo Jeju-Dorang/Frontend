@@ -1,13 +1,12 @@
 import ChatDetail from "@components/ChatDetail";
+import ChatHeader from "@components/ChatHeader";
+import { useState } from "react";
 
-interface Props {
-    setIsNavVisible: (visible: boolean) => void;
-}
-
-const Dorang =({ setIsNavVisible }: Props) =>{
+const Dorang =() =>{
     return (
         <>
-        <ChatDetail setIsNavVisible={setIsNavVisible}/>
+        <ChatHeader />
+        <ChatDetail />
         </>
     );
     

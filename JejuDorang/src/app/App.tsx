@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
 import Main from './Main/page';
 import SettingDorang from './SettingDorang/page';
 import Activity from './Activity/page';

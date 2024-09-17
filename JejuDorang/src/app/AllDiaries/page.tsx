@@ -1,9 +1,9 @@
 import DiaryPreviewBox from "@components/DiaryPreviewBox";
-import { Diary } from "@type/diary";
+import {DiaryPreview} from "@type/diaryPreview"
 import { useNavigate } from "react-router-dom";
 
 //더미데이터
-const Dummy : Diary[]= [
+const Dummy : DiaryPreview[]= [
     {
         title: '오늘은 축구를 했다',
         content :'아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고 아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고',

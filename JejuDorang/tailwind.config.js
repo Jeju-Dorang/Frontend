@@ -15,6 +15,7 @@ export default {
         },
         background: '#f1c4a380',
         blue: '#5F88FE',
+        'darkest-gray': '#646464',
       },
     },
   },

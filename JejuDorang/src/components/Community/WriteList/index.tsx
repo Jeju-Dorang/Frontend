@@ -47,7 +47,7 @@ const WriteList = ({ handleModal, fetchQuestions }: Props) => {
         <div className="flex justify-end space-x-2">
           <button
             onClick={handleModal}
-            className="px-4 py-2 bg-gray-200 text-black rounded-md hover:text-white"
+            className="px-4 py-2 bg-gray-200 text-white rounded-md hover:text-black"
           >
             취소
           </button>

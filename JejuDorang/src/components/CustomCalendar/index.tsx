@@ -1,6 +1,6 @@
 import 'react-calendar/dist/Calendar.css';
-import './index.css';
 import Calendar from 'react-calendar';
+import './index.css';
 
 const CustomCalendar = () => {
   return (

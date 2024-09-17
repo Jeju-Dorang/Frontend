@@ -1,6 +1,6 @@
 import DorangProfile from '#img/dorangProfile.webp'
 
-const ChatMainHeader = () => {
+const ChatHeader = () => {
     return (
         <div className="w-[100%] h-[187px] flex flex-col justify-center items-center">
             <img src = {DorangProfile} alt="도랑이 프로필" 
@@ -16,4 +16,4 @@ const ChatMainHeader = () => {
     );
 }
 
-export default ChatMainHeader;
+export default ChatHeader;

@@ -8,7 +8,6 @@ const Message = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;
         
-        // max 글자수를 넘었을 때
         if (inputValue.length > maxProfileDetailLength){
             alert("최대글자수를 초과하였습니다.")
             return

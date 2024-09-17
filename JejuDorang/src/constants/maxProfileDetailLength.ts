@@ -1,0 +1,1 @@
+export const maxProfileDetailLength = 20;

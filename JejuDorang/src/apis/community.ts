@@ -1,17 +1,19 @@
+import { Post } from '@type/Post';
 import { api } from './index';
 import { Question, DetailQuestion } from '@type/question';
 
-// const searchPost = async (searchString: string) => {
-//   try {
-//     // const response = await api.get<void>(
-//     //   false,
-//     //   ``,
-//     // );
-//   } catch (error) {
-//     console.error('Kakao login failed:', error);
-//     return;
-//   }
-// };
+const getPost = async (keyword: string): Promise<Post[] | null> => {
+  try {
+    const response = await api.get<Post[]>(
+      true,
+      `/posts/search/questions?keyword=${keyword}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Kakao login failed:', error);
+    return null;
+  }
+};
 
 const getQuestions = async (): Promise<Question[] | null> => {
   try {
@@ -81,6 +83,7 @@ const postComment = async (
 };
 
 export {
+  getPost,
   getQuestions,
   getQuestion,
   postQuestion,

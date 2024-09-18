@@ -7,10 +7,14 @@ export const getToken = async (code: string): Promise<boolean> => {
       false,
       `/auth/kakao/login?code=${code}`,
     );
-    const token = response.headers['authorization'];
 
-    if (token) {
-      useAuthStore.getState().setToken(token);
+    console.log(response.headers);
+    const accessToken = response.headers['Access-Token'];
+    const refreshToken = response.headers['Refresh-Token'];
+
+    if (accessToken && refreshToken) {
+      useAuthStore.getState().setAccessToken(accessToken);
+      useAuthStore.getState().setRefreshToken(refreshToken);
       return true;
     } else {
       console.error('Token not found in the response headers');

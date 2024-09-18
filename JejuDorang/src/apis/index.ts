@@ -12,7 +12,7 @@ const $axios = (requiredToken: boolean) => {
 
   if (requiredToken) {
     client.interceptors.request.use((config) => {
-      const token = useAuthStore.getState().token;
+      const token = useAuthStore.getState().accessToken;
       if (token) {
         config.headers.Authorization = token;
       }

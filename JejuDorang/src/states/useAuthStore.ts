@@ -7,8 +7,12 @@ export const useAuthStore = createStore(
   persist<AuthStore>(
     (set) => ({
       isLoggedIn: false,
-      token: null,
-      setToken: (token: string) => set({ token: token }),
+      accessToken: null,
+      setAccessToken: (accessToken: string) =>
+        set({ accessToken: accessToken }),
+      refreshToken: null,
+      setRefreshToken: (refreshToken: string) =>
+        set({ refreshToken: refreshToken }),
       login: () => set({ isLoggedIn: true }),
       logout: () =>
         set({

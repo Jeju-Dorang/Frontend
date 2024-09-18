@@ -8,9 +8,8 @@ export const getToken = async (code: string): Promise<boolean> => {
       `/auth/kakao/login?code=${code}`,
     );
 
-    console.log(response.headers);
-    const accessToken = response.headers['Access-Token'];
-    const refreshToken = response.headers['Refresh-Token'];
+    const accessToken = response.headers['access-token'];
+    const refreshToken = response.headers['refresh-token'];
 
     if (accessToken && refreshToken) {
       useAuthStore.getState().setAccessToken(accessToken);

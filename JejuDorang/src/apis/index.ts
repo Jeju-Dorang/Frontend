@@ -14,7 +14,7 @@ const $axios = (requiredToken: boolean) => {
     client.interceptors.request.use((config) => {
       const token = useAuthStore.getState().accessToken;
       if (token) {
-        config.headers.Authorization = token;
+        config.headers.accessToken = token;
       }
       return config;
     });
@@ -32,7 +32,7 @@ const api = {
     return $axios(requiredToken).post<T>(url, data);
   },
 
-  get: async <T,>(
+  get: async <T>(
     requiredToken: boolean,
     url: string,
   ): Promise<AxiosResponse<T>> => {
@@ -47,7 +47,7 @@ const api = {
     return $axios(requiredToken).patch<T>(url, data);
   },
 
-  delete: async <T,>(
+  delete: async <T>(
     requiredToken: boolean,
     url: string,
   ): Promise<AxiosResponse<T>> => {

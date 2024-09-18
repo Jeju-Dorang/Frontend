@@ -12,17 +12,15 @@ const ActivityData: StayData[] = [
 
 const LocationAcitivity= () => {
     return(
-        <div className="w-[100%] h-[60px] inline-flex pl-[27px] pr-[181px] items-start gap-[8px] flex-col">
+        <div className="flex ml-6 items-start gap-[8px] flex-col">
             <h1 className = "font-semibold text-[20px] text-black">
                 사용자 맞춤 추천
             </h1>
             <h3 className = "font-semibold text-[13px] text-gray-dg">
                 내 위치를 기반으로한 맞춤 추천
-            </h3>
-            <ActivityKakaoMap lat ={33.473654} lng={126.910741} css={'mt-[23px] justify-center flex items-center'}/>
-            
-
-            <div className='w-[100%] mt-[33px] flex flex-col gap-[15px]'>
+            </h3> 
+            <ActivityKakaoMap lat ={33.473654} lng={126.910741} css={'flex'} />
+            <div className='flex flex-col gap-2 justify-center items-center'>
                 {ActivityData.map((data, index) => (
                     <StayBox
                         key={index}

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Main from './Main/page';
 import NotFound from './NotFound/page';
 import SettingDorang from './SettingDorang/page';
@@ -16,6 +16,15 @@ import AllDiaries from './AllDiaries/page';
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
+
+  useEffect(() => {
+    // 특정 경로에서 Footer를 숨기고 싶은 경우 조건 설정
+    if (location.pathname === '/login' || location.pathname === '/auth/kakao/callback') {
+      setIsNavVisible(false);
+    } else {
+      setIsNavVisible(true);
+    }
+  }, [location.pathname]);
 
   return (
     <BrowserRouter>

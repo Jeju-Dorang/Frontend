@@ -64,7 +64,7 @@ const CustomCalendar = () => {
       prev2Label={null}
       next2Label={null}
       showNeighboringMonth={false}
-      className="custom-calendar mb-[30px] ml-[45px]"
+      className="custom-calendar mb-[30px] "
       tileDisabled={() => true}
       onActiveStartDateChange={onActiveStartDateChange}
     />

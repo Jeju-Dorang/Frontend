@@ -12,10 +12,10 @@ export interface Achievement {
 }
 
 export interface FullAchievementData {
-  achievementIcon: string;
+  achievementIcon?: string;
   achievementName: string;
   achievementComment: string;
   maxAchieve : number;
   achievementCnt : number;
-  achievementStatus : achievementStatus;
+  achievementStatus? : achievementStatus;
 }

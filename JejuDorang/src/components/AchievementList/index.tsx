@@ -62,9 +62,10 @@ const AchievementList = ({setMainMypage}:Props) => {
                 {achievementData.map((data, index) => (
                     <AchievementBox
                         key={index}
-                        achievement={data.achievement}
-                        content={data.content}
-                        title={data.title}
+                        achievementName={data.achievement}
+                        achievementComment={data.content}
+                        maxAchieve = {10}
+                        achievementCnt={8}
                     />
                 ))}
             </div>
@@ -78,9 +79,10 @@ const AchievementList = ({setMainMypage}:Props) => {
                 {achievementData.map((data, index) => (
                     <AchievementBox
                         key={index}
-                        achievement={data.achievement}
-                        content={data.content}
-                        title={data.title}
+                        achievementName={data.achievement}
+                        achievementComment={data.content}
+                        maxAchieve = {10}
+                        achievementCnt={5}
                     />
                 ))}
             </div>

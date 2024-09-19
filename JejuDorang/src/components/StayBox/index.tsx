@@ -2,13 +2,13 @@ import React from 'react';
 
 interface Props {
     name: string;
-    distance: string;
+    distance?: string;
     location: string;
-    description: string;
-    // img // 이미지 데이터도 받아와야함
+    description?: string;
+    img : string;
 }
 
-const StayBox = ({name,distance,location,description}:Props) => {
+const StayBox = ({name,distance,location,description,img}:Props) => {
     return (
         <button className='flex flex-col w-full h-[171px] rounded-[15px] bg-white shadow'
             style={{
@@ -29,8 +29,8 @@ const StayBox = ({name,distance,location,description}:Props) => {
                 {description}
             </h2>
             <div className='mt-1 mb-2 ml-[25px] w-[260px] mr-[25px] h-[77px] rounded-[10px] gap-[3px] flex bg-gray-dg'>
-                <img src="image-url.jpg" alt="숙소1" className='w-1/2 h-full'/>
-                <img src="image-url.jpg" alt="숙소2" className='w-1/2 h-full'/>
+                <img src={img} alt="숙소1" className='w-1/2 h-full'/>
+                <img src={img} alt="숙소2" className='w-1/2 h-full'/>
             </div>
         </button>
         

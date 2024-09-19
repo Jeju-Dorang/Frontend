@@ -1,16 +1,15 @@
-import { Post } from '@type/Post';
 import { api } from './index';
 import { Question, DetailQuestion } from '@type/question';
 
-const getPost = async (keyword: string): Promise<Post[] | null> => {
+const getPost = async (keyword: string): Promise<Question[] | null> => {
   try {
-    const response = await api.get<Post[]>(
+    const response = await api.get<Question[]>(
       true,
       `/posts/search/questions?keyword=${keyword}`,
     );
     return response.data;
   } catch (error) {
-    console.error('Kakao login failed:', error);
+    console.error('Failed to get Post:', error);
     return null;
   }
 };

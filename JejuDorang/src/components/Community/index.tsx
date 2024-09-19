@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect } from 'react';
-import { getQuestions, getQuestion } from '@apis/community';
+import { getQuestions, getQuestion, getPost } from '@apis/community';
 import { Question } from '@type/question';
 import { DetailQuestion, comments } from '@type/question';
 import WriteList from './WriteList/index';
@@ -9,7 +9,7 @@ import ListViewer from './ListViewer';
 const Community = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isWriteList, setIsWriteList] = useState<boolean>(false);
-  const [questionList, setQuestionList] = useState<Question[]>([]);
+  const [questionList, setQuestionList] = useState<Question[] | null>(null);
   const [selectedQuestion, setSelectedQuestion] =
     useState<DetailQuestion | null>(null);
 
@@ -24,8 +24,9 @@ const Community = () => {
     }
   };
 
-  const handleSearch = () => {
-    console.log('Searching for:', searchTerm);
+  const handleSearch = async () => {
+    const questions = await getPost(searchTerm);
+    setQuestionList(questions);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -59,7 +60,7 @@ const Community = () => {
   };
 
   const renderList = () => {
-    return questionList.map((question) => (
+    return questionList?.map((question) => (
       <List
         key={question.postId}
         post={question}
@@ -71,7 +72,7 @@ const Community = () => {
   return (
     <Fragment>
       {!selectedQuestion ? (
-        <>
+        <div className="mx-[49px]">
           <h1 className="text-[24px] font-bold mb-4">속닥속닥 게시글들</h1>
           <div className="mb-[28px] relative">
             <input
@@ -123,7 +124,7 @@ const Community = () => {
           <div className="flex flex-col items-center gap-[4px]">
             {renderList()}
           </div>
-        </>
+        </div>
       ) : (
         <ListViewer
           question={selectedQuestion}

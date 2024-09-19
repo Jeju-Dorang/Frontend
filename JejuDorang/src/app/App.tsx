@@ -17,30 +17,32 @@ function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
 
   return (
-    <div className="flex justify-center items-center w-full h-full bg-background">
-      <div className="w-full h-full max-w-[402px] max-h-[874px] overflow-y-auto bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] custom:rounded-[20px]">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
-            <Route path="/settingDorang" element={<SettingDorang />} />
-            <Route
-              path="/dorang"
-              element={<Dorang setIsNavVisible={setIsNavVisible} />}
-            />
-            <Route path="/activity" element={<Activity />} />
-            <Route path="/stay" element={<Stay />} />
-            <Route path="/record" element={<Record />} />
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/mypage/edit" element={<EditMyPage />} />
-            <Route path="/allDiaries" element={<AllDiaries />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
-          </Routes>
+    <BrowserRouter>
+      <div className="flex justify-center items-center w-full min-h-screen bg-background">
+        <div className="w-full h-full min-h-screen max-w-[402px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] custom:rounded-[20px] flex flex-col">
+          <div className="flex-grow overflow-y-auto">
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/auth/kakao/callback" element={<KakaoCallback />} />
+              <Route path="/settingDorang" element={<SettingDorang />} />
+              <Route
+                path="/dorang"
+                element={<Dorang setIsNavVisible={setIsNavVisible} />}
+              />
+              <Route path="/activity" element={<Activity />} />
+              <Route path="/stay" element={<Stay />} />
+              <Route path="/record" element={<Record />} />
+              <Route path="/mypage" element={<MyPage />} />
+              <Route path="/mypage/edit" element={<EditMyPage />} />
+              <Route path="/allDiaries" element={<AllDiaries />} />
+              {/* <Route path="*" element={<NotFound />} /> */}
+            </Routes>
+          </div>
           {isNavVisible && <Footer />}
-        </BrowserRouter>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

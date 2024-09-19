@@ -1,6 +1,9 @@
 import { StayData } from "@type/stay";
 import ActivityKakaoMap from "./ActivityKakaoMap";
 import StayBox from "@components/StayBox";
+import { Location, LocationApiRequest } from "@type/location";
+import { useEffect } from "react";
+import { postLocationActivity } from "@apis/locationActivity";
 
 // 임시 더미 데이터 -> api 연결시 삭제
 const ActivityData: StayData[] = [
@@ -11,6 +14,23 @@ const ActivityData: StayData[] = [
 ];
 
 const LocationAcitivity= () => {
+
+    function handleLocation({ latitude, longitude }:Location) {
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        const location:LocationApiRequest = {
+            mapX : latitude.toString(),
+            mapY : longitude.toString()
+        };
+        postLocationActivity(location);
+    }
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            handleLocation({ latitude, longitude });
+        });
+    }, []);
+
     return(
         <div className="flex ml-6 items-start gap-[8px] flex-col">
             <h1 className = "font-semibold text-[20px] text-black">

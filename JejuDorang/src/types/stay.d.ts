@@ -4,3 +4,9 @@ export interface StayData {
     location: string;
     description: string;
 }
+
+export interface StayApiResponse {
+    name : string;
+	image : string;
+	address : string
+}

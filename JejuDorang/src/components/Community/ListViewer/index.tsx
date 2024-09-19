@@ -1,8 +1,9 @@
 import { postComment } from '@apis/community';
 import { DetailQuestion, comments } from '@type/question';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useAuthStore } from '@states/useAuthStore';
 import Comment from '../Comment';
+import { MAX_LIST_LENGTH } from '@constants/maxTextLength';
 
 interface Props {
   question: DetailQuestion;
@@ -15,6 +16,13 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
   const [localComments, setLocalComments] = useState<comments[]>(
     question.comments,
   );
+
+  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const input = e.target.value;
+    if (input.length <= MAX_LIST_LENGTH) {
+      setNewComment(input);
+    }
+  };
 
   const handleCommentSubmit = async () => {
     if (newComment.trim() === '') {
@@ -54,44 +62,54 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
           </button>
         </div>
       </div>
-      <div className="flex-grow overflow-y-auto px-4">
-        <div className="bg-gray-lg p-6 shadow-md mt-4">
+      <div className="flex-grow overflow-y-auto">
+        <div className="p-6 mt-4 bg-gray-dg bg-opacity-15">
           <div className="flex flex-col mb-[20px]">
-            <h2 className="text-[15px] font-semibold break-words">
+            <h2 className="text-[14px] font-semibold break-words">
               Q. &nbsp;{question.title}
             </h2>
-            <span className="text-sm text-gray-600 mt-2">
+            <span className="text-[14px] text-blue mt-2">
               {question.author}
             </span>
           </div>
-          <p className="text-gray-700 whitespace-pre-wrap">
+          <p className="text-[15px] text-gray-700 whitespace-pre-wrap">
             {question.content}
           </p>
         </div>
         <div className="mt-6">
-          <h3 className="text-lg font-semibold mb-4">댓글</h3>
-          <div className="space-y-4">
+          <h3 className="text-[14px] font-semibold mb-1 mx-[30px]">댓글</h3>
+          <div className="space-y-2">
             {localComments.map((comment, index) => (
-              <Comment key={index} comment={comment} />
+              <Fragment key={index}>
+                <Comment comment={comment} />
+                <hr />
+              </Fragment>
             ))}
           </div>
         </div>
       </div>
-      <div className="px-4 py-4 mt-[5px] border-t border-gray-200">
-        <textarea
-          className="w-full p-2 border rounded-md mb-2"
-          placeholder="댓글을 입력하세요"
-          rows={3}
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-        ></textarea>
-        <div className="flex justify-end">
-          <button
-            className="px-4 py-2 bg-primary-orange rounded-md font-semibold hover:text-white"
-            onClick={handleCommentSubmit}
-          >
-            댓글 작성
-          </button>
+      <div className="mx-4 py-4 mt-[25px] rounded-md border-gray-lg border-[1px]">
+        <div className="bg-white p-2 rounded-md">
+          <textarea
+            className="w-full p-2 border rounded-md mb-2 resize-none"
+            placeholder="댓글을 입력하세요"
+            rows={4}
+            value={newComment}
+            onChange={handleCommentChange}
+          ></textarea>
+          <div className="flex flex-col">
+            <span className="text-[12px] text-gray-500 self-end">
+              {newComment.length} / {MAX_LIST_LENGTH}
+            </span>
+            <div className="flex justify-end">
+              <button
+                className="px-4 py-2 bg-primary-orange rounded-md font-semibold hover:text-white"
+                onClick={handleCommentSubmit}
+              >
+                댓글 작성
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

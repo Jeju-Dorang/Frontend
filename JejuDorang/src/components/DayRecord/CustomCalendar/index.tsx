@@ -56,18 +56,20 @@ const CustomCalendar = () => {
   };
 
   return (
-    <Calendar
-      tileContent={tileContent}
-      formatDay={() => ''}
-      calendarType="gregory"
-      view="month"
-      prev2Label={null}
-      next2Label={null}
-      showNeighboringMonth={false}
-      className="custom-calendar mb-[30px] "
-      tileDisabled={() => true}
-      onActiveStartDateChange={onActiveStartDateChange}
-    />
+    <div className="px-4 flex justify-center">
+      <Calendar
+        tileContent={tileContent}
+        formatDay={() => ''}
+        calendarType="gregory"
+        view="month"
+        prev2Label={null}
+        next2Label={null}
+        showNeighboringMonth={false}
+        className="custom-calendar"
+        tileDisabled={() => true}
+        onActiveStartDateChange={onActiveStartDateChange}
+      />
+    </div>
   );
 };
 

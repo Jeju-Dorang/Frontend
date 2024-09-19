@@ -71,7 +71,7 @@ const Community = () => {
   return (
     <Fragment>
       {!selectedQuestion ? (
-        <>
+        <div className="mx-[49px]">
           <h1 className="text-[24px] font-bold mb-4">속닥속닥 게시글들</h1>
           <div className="mb-[28px] relative">
             <input
@@ -123,7 +123,7 @@ const Community = () => {
           <div className="flex flex-col items-center gap-[4px]">
             {renderList()}
           </div>
-        </>
+        </div>
       ) : (
         <ListViewer
           question={selectedQuestion}

@@ -27,7 +27,7 @@ const Comment = ({ comment }: Props) => {
   };
 
   return (
-    <div className="bg-gray-lg p-4 rounded-md">
+    <div className="p-6 rounded-md">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center space-x-2">
           <img

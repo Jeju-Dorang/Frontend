@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import Main from './Main/page';
+import NotFound from './NotFound/page';
 import SettingDorang from './SettingDorang/page';
 import Activity from './Activity/page';
 import Login from './Login/page';
 import Dorang from './Dorang/page';
 import Footer from '@components/Footer';
-import { useState } from 'react';
 import Stay from './Stay/page';
 import Record from './Record/page';
 import KakaoCallback from './KakaoCallback/page';
@@ -36,7 +37,7 @@ function App() {
               <Route path="/mypage" element={<MyPage />} />
               <Route path="/mypage/edit" element={<EditMyPage />} />
               <Route path="/allDiaries" element={<AllDiaries />} />
-              {/* <Route path="*" element={<NotFound />} /> */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
           {isNavVisible && <Footer />}

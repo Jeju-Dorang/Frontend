@@ -1,4 +1,4 @@
-import {maxProfileDetailLength} from '@constants/maxProfileDetailLength'
+import {MAX_PROFILE_DETAIL_LENGTH} from '@constants/maxTextLength'
 import { useState } from 'react';
 
 const Message = () => {
@@ -8,7 +8,7 @@ const Message = () => {
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;
         
-        if (inputValue.length > maxProfileDetailLength){
+        if (inputValue.length > MAX_PROFILE_DETAIL_LENGTH){
             alert("최대글자수를 초과하였습니다.")
             return
         }
@@ -32,7 +32,7 @@ const Message = () => {
                 />
                 <div className='flex flex-row text-[13px] font-semibold justify-end mt-1'>
                     <p className='text-black'>{messageLength}</p>
-                    <p className='text-gray-dg'>/{maxProfileDetailLength}</p>
+                    <p className='text-gray-dg'>/{MAX_PROFILE_DETAIL_LENGTH}</p>
                 </div>
             </div>
             <hr />

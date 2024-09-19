@@ -3,7 +3,7 @@ import { DetailQuestion, comments } from '@type/question';
 import { Fragment, useState } from 'react';
 import { useAuthStore } from '@states/useAuthStore';
 import Comment from '../Comment';
-import { MAX_LIST_LENGTH } from '@constants/maxTextLength';
+import { MAX_POST_COMMENT_LENGTH } from '@constants/maxTextLength';
 
 interface Props {
   question: DetailQuestion;
@@ -19,7 +19,7 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
-    if (input.length <= MAX_LIST_LENGTH) {
+    if (input.length <= MAX_POST_COMMENT_LENGTH) {
       setNewComment(input);
     }
   };
@@ -99,7 +99,7 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
           ></textarea>
           <div className="flex flex-col">
             <span className="text-[12px] text-gray-500 self-end">
-              {newComment.length} / {MAX_LIST_LENGTH}
+              {newComment.length} / {MAX_POST_COMMENT_LENGTH}
             </span>
             <div className="flex justify-end">
               <button

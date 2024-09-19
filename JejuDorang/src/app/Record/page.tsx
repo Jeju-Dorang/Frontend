@@ -10,8 +10,8 @@ const Record = () => {
   };
 
   return (
-    <div className="mt-[42px] mx-[49px]">
-      <div className="flex gap-[22px] mb-[58px]">
+    <div className="mt-[42px]">
+      <div className="flex gap-[22px] mb-[58px] mx-[49px]">
         <span
           className={`cursor-pointer ${
             category === 'record' ? 'text-primary-orange' : 'text-gray-dg'

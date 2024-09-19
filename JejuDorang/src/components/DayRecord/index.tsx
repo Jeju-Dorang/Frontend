@@ -66,17 +66,17 @@ const DayRecord = () => {
 
   return (
     <div>
-      <div className="relative">
+      <div className="relative mx-[49px]">
         <div
           ref={scrollContainerRef}
-          className="flex flex-row gap-[12px] mb-[51px] ml-[45px] overflow-x-auto scrollbar-hide"
+          className="flex flex-row gap-[12px] mb-[51px] overflow-x-auto scrollbar-hide"
           style={{ scrollBehavior: 'smooth', maxWidth: '280px' }}
         >
           {renderStory()}
         </div>
       </div>
-      <h1 className="text-[14px] mb-[8px] ml-[45px] font-semibold">내 일기</h1>
-      <div className="flex w-[280px] mb-[17px] ml-[45px] justify-between">
+      <h1 className="text-[14px] mb-[8px] font-semibold mx-[49px]">내 일기</h1>
+      <div className="flex w-[280px] mb-[17px] justify-between mx-[49px]">
         <span className="text-[11px] font-semibold text-gray-lg">
           한달 동안의 추억을 기록해보세요
         </span>
@@ -88,7 +88,7 @@ const DayRecord = () => {
         </button>
       </div>
       <CustomCalendar />
-      <div className="flex justify-center mt-[40px] right-[20px] mb-[30px]">
+      <div className="flex justify-center mt-[40px] mb-[30px] mx-[49px]">
         <button
           className="bg-primary-orange rounded-[3px] px-[56px] py-[14px] font-semibold text-[10px]"
           onClick={() => setIsWriteDiary(true)}

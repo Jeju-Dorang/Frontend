@@ -13,13 +13,12 @@ import MyPage from './MyPage/page';
 import EditMyPage from './EditMyPage/page';
 import AllDiaries from './AllDiaries/page';
 
-
 function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
 
   return (
     <div className="flex justify-center items-center w-full h-full bg-background">
-      <div className="w-full h-full max-w-[402px] max-h-[874px] overflow-y-auto bg-white rounded-[20px] shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+      <div className="w-full h-full max-w-[402px] max-h-[874px] overflow-y-auto bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] custom:rounded-[20px]">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Main />} />

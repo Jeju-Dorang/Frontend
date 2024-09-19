@@ -1,4 +1,3 @@
-// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -16,6 +15,9 @@ export default {
         background: '#f1c4a380',
         blue: '#5F88FE',
         'darkest-gray': '#646464',
+      },
+      screens: {
+        custom: '403px',
       },
     },
   },

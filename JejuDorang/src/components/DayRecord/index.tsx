@@ -1,42 +1,40 @@
-import { useEffect, useState } from 'react';
-import Story from '@components/Story';
+import { useEffect, useState, useRef } from 'react';
+import CustomCalendar from './CustomCalendar';
+import Story from './Story';
+import WriteDiary from './WriteDiary';
+import StoryViewer from './StoryViewer';
 import { StoryItem } from '@type/storyItem';
-import CustomCalendar from '@components/CustomCalendar';
+import { getStories } from '@apis/diary';
 
 const DayRecord = () => {
   const [storyList, setStoryList] = useState<StoryItem[]>([]);
+  const [isWriteDiary, setIsWriteDiary] = useState<boolean>(false);
+  const [selectedDiaryIndex, setSelectedDiaryIndex] = useState<number | null>(
+    null,
+  );
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data: StoryItem[] = [
-        //삭제예정
-        {
-          diaryId: 4,
-          name: '서지',
-          image: 'url',
-          viewStatus: false,
-        },
-        {
-          diaryId: 5,
-          name: '성호',
-          image: 'url',
-          viewStatus: true,
-        },
-      ];
-      setStoryList(data);
-    };
+    fetchStoryList();
+  }, [isWriteDiary]);
 
-    fetchData();
-  }, []);
+  const fetchStoryList = async () => {
+    const data = await getStories();
+    if (data) {
+      setStoryList(data);
+    } else {
+      alert('Failed to fetch diary data');
+    }
+  };
 
   const renderStory = () => {
-    return storyList.map((story) => (
+    return storyList.map((story, index) => (
       <Story
         key={story.diaryId}
         imgSrc={story.image}
         userName={story.name}
-        diaryId={story.diaryId}
         viewStatus={story.viewStatus}
+        onClick={() => setSelectedDiaryIndex(index)}
       />
     ));
   };
@@ -45,17 +43,40 @@ const DayRecord = () => {
     console.log('전체보기');
   };
 
-  const writeTodayDiary = () => {
-    console.log('오늘 일기 쓰기');
+  const handleDiaryWritten = () => {
+    setIsWriteDiary(false);
+    fetchStoryList();
+  };
+
+  const handlePreviousStory = () => {
+    setSelectedDiaryIndex((prevIndex) =>
+      prevIndex !== null && prevIndex > 0
+        ? prevIndex - 1
+        : storyList.length - 1,
+    );
+  };
+
+  const handleNextStory = () => {
+    setSelectedDiaryIndex((prevIndex) =>
+      prevIndex !== null && prevIndex < storyList.length - 1
+        ? prevIndex + 1
+        : 0,
+    );
   };
 
   return (
     <div>
-      <div className="flex flex-row gap-[12px] mb-[51px] ml-[45px]">
-        {renderStory()}
+      <div className="relative mx-[49px]">
+        <div
+          ref={scrollContainerRef}
+          className="flex flex-row gap-[12px] mb-[51px] overflow-x-auto scrollbar-hide"
+          style={{ scrollBehavior: 'smooth', maxWidth: '280px' }}
+        >
+          {renderStory()}
+        </div>
       </div>
-      <h1 className="text-[14px] mb-[8px] ml-[45px] font-semibold">내 일기</h1>
-      <div className="flex w-[280px] mb-[17px] ml-[45px] justify-between">
+      <h1 className="text-[14px] mb-[8px] font-semibold mx-[49px]">내 일기</h1>
+      <div className="flex w-[280px] mb-[17px] justify-between mx-[49px]">
         <span className="text-[11px] font-semibold text-gray-lg">
           한달 동안의 추억을 기록해보세요
         </span>
@@ -67,14 +88,23 @@ const DayRecord = () => {
         </button>
       </div>
       <CustomCalendar />
-      <div className="flex justify-center mt-[40px] right-[20px] mb-[30px]">
+      <div className="flex justify-center mt-[40px] mb-[30px] mx-[49px]">
         <button
           className="bg-primary-orange rounded-[3px] px-[56px] py-[14px] font-semibold text-[10px]"
-          onClick={writeTodayDiary}
+          onClick={() => setIsWriteDiary(true)}
         >
           오늘 일기 쓰기
         </button>
+        {isWriteDiary && <WriteDiary setIsWriteDiary={handleDiaryWritten} />}
       </div>
+      {selectedDiaryIndex !== null && (
+        <StoryViewer
+          diaryId={storyList[selectedDiaryIndex].diaryId}
+          onClose={() => setSelectedDiaryIndex(null)}
+          onPrevious={handlePreviousStory}
+          onNext={handleNextStory}
+        />
+      )}
     </div>
   );
 };

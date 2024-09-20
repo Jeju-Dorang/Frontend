@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
     "target": "es2022",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "allowJs": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "types": ["kakao.maps.d.ts"],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "types": ["kakao.maps.d.ts", "vite/client"],
     "paths": {
       "@apis/*": ["./src/apis/*"],
       "@components/*": ["./src/components/*"],
@@ -20,7 +24,8 @@
       "@type/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
       "#img/*": ["./assets/img/*"]
-    }
+    },
+    "baseUrl": "."
   },
   "include": ["src", "**/*.tsx", "**/*.ts"]
 }

@@ -19,7 +19,7 @@ export const useAuthStore = createStore(
           memberImage: null,
           achievement: null,
           characterImage: null,
-          loading: { lat: 0, lng: 0 },
+          loding: { lat: 0, lng: 0 },
         }),
       memberName: null,
       setMemberName: (memberName: string) => set({ memberName: memberName }),
@@ -33,10 +33,10 @@ export const useAuthStore = createStore(
       setMemberImage: (memberImage: string) =>
         set({ memberImage: memberImage }),
       achievement: null,
-      setAchievement: (achievement: Achievement) =>
+      setAchievement: (achievement: Achievement[]) =>
         set({ achievement: achievement }),
-      loading: { lat: 0, lng: 0 },
-      setLoading: (loading: { lat: number; lng: number }) => set({ loading }),
+      loding: { lat: 0, lng: 0 },
+      setLoding: (loding: { lat: number; lng: number }) => set({ loding }),
     }),
     {
       name: 'userInfoStorage',

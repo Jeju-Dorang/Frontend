@@ -15,7 +15,7 @@ export type AuthStore = {
   setCharacterImage: (characterImage: string) => void;
   memberImage: string | null;
   setMemberImage: (memberImage: string) => void;
-  achievement: Achievement | null;
+  achievement: Achievement[] | null;
   setAchievement: (achievement: Achievement[]) => void;
   loding: {
     lat: number;

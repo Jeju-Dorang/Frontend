@@ -5,8 +5,10 @@ export type AuthStore = {
   login: () => void;
   logout: () => void;
 
-  token: string | null;
-  setToken: (token: string) => void;
+  accessToken: string | null;
+  setAccessToken: (accessToken: string) => void;
+  refreshToken: string | null;
+  setRefreshToken: (refreshToken: string) => void;
   memberName: string | null;
   setMemberName: (memberName: string) => void;
   email: string | null;

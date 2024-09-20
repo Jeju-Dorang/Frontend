@@ -6,19 +6,15 @@ import { Achievement } from '@type/achievement';
 export const useAuthStore = createStore(
   persist<AuthStore>(
     (set) => ({
-      isLoggedIn: false,
       accessToken: null,
       setAccessToken: (accessToken: string) =>
         set({ accessToken: accessToken }),
       refreshToken: null,
       setRefreshToken: (refreshToken: string) =>
         set({ refreshToken: refreshToken }),
-      login: () => set({ isLoggedIn: true }),
       logout: () =>
         set({
-          isLoggedIn: false,
           memberName: null,
-          email: null,
           memberComment: null,
           memberImage: null,
           achievement: null,
@@ -27,8 +23,6 @@ export const useAuthStore = createStore(
         }),
       memberName: null,
       setMemberName: (memberName: string) => set({ memberName: memberName }),
-      email: null,
-      setEmail: (email: string) => set({ email: email }),
       characterImage: null,
       setCharacterImage: (characterImage: string) =>
         set({ characterImage: characterImage }),

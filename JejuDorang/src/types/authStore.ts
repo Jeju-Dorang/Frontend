@@ -1,8 +1,6 @@
 import { Achievement } from '@type/achievement';
 
 export type AuthStore = {
-  isLoggedIn: boolean;
-  login: () => void;
   logout: () => void;
 
   accessToken: string | null;
@@ -11,8 +9,6 @@ export type AuthStore = {
   setRefreshToken: (refreshToken: string) => void;
   memberName: string | null;
   setMemberName: (memberName: string) => void;
-  email: string | null;
-  setEmail: (email: string) => void;
   memberComment: string | null;
   setMemberComment: (memberComment: string) => void;
   characterImage: string | null;
@@ -20,10 +16,10 @@ export type AuthStore = {
   memberImage: string | null;
   setMemberImage: (memberImage: string) => void;
   achievement: Achievement | null;
-  setAchievement: (achievement: Achievement) => void;
-  loading: {
+  setAchievement: (achievement: Achievement[]) => void;
+  loding: {
     lat: number;
     lng: number;
   };
-  setLoading: (loading: { lat: number; lng: number }) => void;
+  setLoding: (loding: { lat: number; lng: number }) => void;
 };

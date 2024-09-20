@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
-import CustomCalendar from './CustomCalendar';
-import Story from './Story';
+import CustomCalendar from '../CustomCalendar';
+import Story from '../Story';
 import WriteDiary from './WriteDiary';
 import StoryViewer from './StoryViewer';
 import { StoryItem } from '@type/storyItem';

@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full mt-[15px] h-[90px] bg-white items-center justify-center gap-[42px] shadow-[0_-8px_24px_rgba(0,0,0,0.15)]">
+    <div className="flex w-full mt-[15px] h-[90px] bg-white items-center justify-center gap-[42px] shadow-[0_-4px_14px_rgba(0,0,0,0.10)]">
       <button onClick={() => handleChange('activity')}>
         <img
           src={activity ? ClickActivity : Activity}

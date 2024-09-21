@@ -34,8 +34,10 @@ const MainModal = () => {
           <Fragment>
             <p className="text-[14px] font-semibold">내 숙소 주변 둘러보기</p>
             <ArroundKakaoMap
-              lat={useAuthStore.getState().loding.lat}
-              lng={useAuthStore.getState().loding.lng}
+              lat={33.55635}
+              lng={126.795841}
+              // lat={useAuthStore.getState().loding.lat}
+              // lng={useAuthStore.getState().loding.lng}
               css={'h-[500px] mt-4 mb-4'}
             />
           </Fragment>
@@ -48,7 +50,7 @@ const MainModal = () => {
       <button
         key={button.id}
         onClick={() => setIdx(button.id)}
-        className={`w-3.5 h-3.5 rounded-full ${
+        className={`w-3.5 h-3.5 rounded-full hover:shadow-md hover:bg-gray-dg ${
           idx === button.id ? 'bg-primary-orange' : 'bg-gray-lg'
         }`}
       />

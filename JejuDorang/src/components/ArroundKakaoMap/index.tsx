@@ -79,7 +79,7 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
           <button
             key={button.id}
             onClick={() => handleCategoryChange(button.id as CategoryCode)}
-            className={`rounded-[15px] w-[74px] h-[24px] mx-2 text-[10px] shadow-[0_1px_6px_0px_rgba(0,0,0,0.3)] ${
+            className={`rounded-[15px] w-[74px] h-[24px] mx-2 text-[10px] shadow-[0_1px_6px_0px_rgba(0,0,0,0.3)] hover:text-gray-lg ${
               category === button.id ? 'text-primary-orange' : 'text-gray-dg'
             }`}
           >

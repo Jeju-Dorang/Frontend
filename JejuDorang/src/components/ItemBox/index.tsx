@@ -3,7 +3,7 @@ import { ITEM_LIST } from '@constants/itemList';
 import { DORANG_CATEGORY } from '@constants/category';
 
 const buttonStyles = (isActive: boolean) =>
-  `w-[64px] h-[31px] text-[15px] leading-[140%] rounded-[50px] border whitespace-nowrap ${
+  `w-[64px] h-[31px] text-[15px] leading-[140%] rounded-[50px] border whitespace-nowrap hover:bg-primary-orange ${
     isActive ? 'bg-primary-orange text-white' : 'bg-white text-[#515356]'
   }`;
 
@@ -22,16 +22,16 @@ const ItemBox = ({
 
   const filteredItems = ITEM_LIST.filter((item) => item.type === category);
 
-  const handleItemClick = (url: string) => {
+  const handleItemClick = (url: string | null) => {
     switch (category) {
       case '아이템':
-        setItemImageUrl(url);
+        setItemImageUrl(url || '');
         break;
       case '펫':
-        setPetImageUrl(url);
+        setPetImageUrl(url || '');
         break;
       case '배경':
-        setBackgroundImageUrl(url);
+        setBackgroundImageUrl(url || '');
         break;
       default:
         break;
@@ -51,11 +51,15 @@ const ItemBox = ({
           </button>
         ))}
       </div>
-      <div className="flex flex-wrap items-center gap-[10px] ml-[10px]">
+      <div className="flex flex-wrap justify-start gap-[10px] px-[10px]">
+        <div
+          className="flex flex-row items-center w-[64px] h-[60px] border-2 rounded-[16px] justify-center cursor-pointer hover:bg-primary-orange hover:shadow-md"
+          onClick={() => handleItemClick(null)}
+        ></div>
         {filteredItems.map((item) => (
           <div
             key={item.url}
-            className="flex flex-row items-center w-[64px] h-[60px] border-2 rounded-[16px] justify-center cursor-pointer"
+            className="flex flex-row items-center w-[64px] h-[60px] border-2 rounded-[16px] justify-center cursor-pointer hover:bg-primary-orange hover:shadow-md"
             onClick={() => handleItemClick(item.url)}
           >
             <img src={item.url} alt="item" className="w-[40px] h-[40px]" />

@@ -30,8 +30,11 @@ export const useAuthStore = create(
       memberName: null,
       setMemberName: (memberName: string) => set({ memberName: memberName }),
       characterImage: null,
-      setCharacterImage: (characterImage: string) =>
-        set({ characterImage: characterImage }),
+      setCharacterImage: (characterImage: {
+        itemImage: string;
+        petImage: string;
+        backGroundImage: string;
+      }) => set({ characterImage: characterImage }),
       memberComment: null,
       setMemberComment: (memberComment: string) =>
         set({ memberComment: memberComment }),

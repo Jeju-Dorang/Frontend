@@ -1,8 +1,8 @@
 import mainDorang from '#img/dorang/defaultDorang.webp';
 
 interface CharacterProps {
-  itemImageUrl: string | undefined;
-  petImageUrl: string | undefined;
+  itemImageUrl: string | null;
+  petImageUrl: string | null;
 }
 
 const Character = ({ itemImageUrl, petImageUrl }: CharacterProps) => {
@@ -14,11 +14,11 @@ const Character = ({ itemImageUrl, petImageUrl }: CharacterProps) => {
         className="h-full w-full object-cover"
       />
       <img
-        src={itemImageUrl}
+        src={itemImageUrl ?? undefined}
         className="absolute left-[25px] bottom-3 h-[40px] w-auto"
       />
       <img
-        src={petImageUrl}
+        src={petImageUrl ?? undefined}
         className="absolute right-[-30px] bottom-[-5px] h-[90px] w-auto"
       />
     </div>

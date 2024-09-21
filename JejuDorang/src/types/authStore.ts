@@ -9,8 +9,16 @@ export interface AuthStore {
   isAuthenticated: () => boolean;
   memberName: string | null;
   setMemberName: (memberName: string) => void;
-  characterImage: string | null;
-  setCharacterImage: (characterImage: string) => void;
+  characterImage: {
+    itemImage: string;
+    petImage: string;
+    backGroundImage: string;
+  } | null;
+  setCharacterImage: (characterImage: {
+    itemImage: string;
+    petImage: string;
+    backGroundImage: string;
+  }) => void;
   memberComment: string | null;
   setMemberComment: (memberComment: string) => void;
   memberImage: string | null;

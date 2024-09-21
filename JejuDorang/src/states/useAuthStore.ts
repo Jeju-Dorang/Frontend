@@ -1,11 +1,11 @@
-import { createStore } from 'zustand';
+import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { AuthStore } from '@type/authStore';
 import { Achievement } from '@type/achievement';
 
-export const useAuthStore = createStore(
+export const useAuthStore = create(
   persist<AuthStore>(
-    (set) => ({
+    (set, get) => ({
       accessToken: null,
       setAccessToken: (accessToken: string) =>
         set({ accessToken: accessToken }),
@@ -14,6 +14,8 @@ export const useAuthStore = createStore(
         set({ refreshToken: refreshToken }),
       logout: () =>
         set({
+          accessToken: null,
+          refreshToken: null,
           memberName: null,
           memberComment: null,
           memberImage: null,
@@ -21,6 +23,10 @@ export const useAuthStore = createStore(
           characterImage: null,
           loding: { lat: 0, lng: 0 },
         }),
+      isAuthenticated: () => {
+        const state = get();
+        return !!state.accessToken || !!state.refreshToken;
+      },
       memberName: null,
       setMemberName: (memberName: string) => set({ memberName: memberName }),
       characterImage: null,

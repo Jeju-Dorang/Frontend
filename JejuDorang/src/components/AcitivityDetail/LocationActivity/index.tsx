@@ -34,11 +34,11 @@ const LocationAcitivity= () => {
 
             // 우선 제주도 주소로 더미 데이터 넣어놓기
             // 밑에 주석해제 하면 실제 위치로 넘어감
-            // mapX : longitude.toString(),
-            // mapY : latitude.toString()
+            mapX : longitude.toString(),
+            mapY : latitude.toString()
             
-            mapX : '126.786877',
-            mapY : '33.345535'
+            // mapX : '126.786877',
+            // mapY : '33.345535'
         };
         fetchLocationActivityData(location);
     }

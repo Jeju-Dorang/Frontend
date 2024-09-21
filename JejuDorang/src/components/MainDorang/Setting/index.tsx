@@ -8,7 +8,11 @@ const Setting = () => {
       to={'/settingDorang'}
     >
       <div className="w-[24px] h-[24px]">
-        <img src={setting} alt={'setting'} />
+        <img
+          src={setting}
+          alt={'imgToLinkSettingDorang'}
+          className="hover:invert"
+        />
       </div>
     </Link>
   );

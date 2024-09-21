@@ -1,18 +1,24 @@
+import { useAuthStore } from '@states/useAuthStore';
+import { Achievement } from '@type/achievement';
 import { useEffect, useState } from 'react';
 
-const Achievement = () => {
-  const [achievement, setAchievement] = useState([]);
+const CompleteAchievement = () => {
+  const [achievementData, setAchievementData] = useState<Achievement[] | null>(
+    null,
+  );
   useEffect(() => {
-    // api로 달성한 업적 가져오기
-    // const achievement = res.data.achievements;
-    // achievement.forEach((data) => {
-    // setAchievement(data.achievementIcon);
-    // });
+    const achievements: Achievement[] | null =
+      useAuthStore.getState().achievement;
+    setAchievementData(achievements);
   }, []);
+
   const renderAchievement = () => {
-    return achievement.map((data, index) => (
-      <div key={index} className="flex flex-col items-center">
-        <img src={data} alt="achievement" />
+    return achievementData?.map((data, index) => (
+      <div key={index} className="flex flex-row">
+        <img
+          src={data.achievementIcon ?? undefined}
+          alt={data.achievementName ?? ''}
+        />
       </div>
     ));
   };
@@ -27,4 +33,4 @@ const Achievement = () => {
   );
 };
 
-export default Achievement;
+export default CompleteAchievement;

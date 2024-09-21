@@ -1,23 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuthStore } from '@states/useAuthStore';
 import Setting from './Setting/index';
 import Character from './Character/index';
 import DorangChat from './DorangChat/index';
 import LinkToDorang from './LinkToDorang/index';
-import Achievement from './Achievement/index';
-//테스트이미지
-import alpaca from '#img/dorang/pet/alpaca.webp';
-import camera from '#img/dorang/item/camera.webp';
-import forest from '#img/dorang/background/forest.webp';
+import CompleteAchievement from './Achievement/index';
 
 const MainDorang = () => {
-  const [itemImageUrl, setItemImageUrl] = useState<string>(camera);
-  const [petImageUrl, setPetImageUrl] = useState<string>(alpaca);
-  const [backgroundImageUrl, setBackgroundImageUrl] = useState<string>(forest);
-  // useEffect(() => {
-  //   //api로 사용자의 도랑이 이미지를 받아서 저장
-  //  // const imageUrl = res.data.imageUrl;
-  //  // setImageUrl(imageUrl);
-  // }, []);
+  const [itemImageUrl, setItemImageUrl] = useState<string | null>(null);
+  const [petImageUrl, setPetImageUrl] = useState<string | null>(null);
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState<string | null>(
+    null,
+  );
+  useEffect(() => {
+    const imageUrl = useAuthStore.getState().characterImage;
+    if (imageUrl !== null) {
+      setItemImageUrl(imageUrl.itemImage);
+      setPetImageUrl(imageUrl.petImage);
+      setBackgroundImageUrl(imageUrl.backGroundImage);
+    }
+  }, []);
   return (
     <div className="flex flex-col h-screen">
       <div
@@ -35,7 +37,7 @@ const MainDorang = () => {
         <DorangChat />
       </div>
       <LinkToDorang />
-      <Achievement />
+      <CompleteAchievement />
     </div>
   );
 };

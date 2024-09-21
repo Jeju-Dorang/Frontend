@@ -27,8 +27,14 @@ const LocationAcitivity= () => {
     function handleLocation({ latitude, longitude }:Location) {
         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
         const location:LocationApiRequest = {
-            mapX : latitude.toString(),
-            mapY : longitude.toString()
+
+            // 우선 제주도 주소로 더미 데이터 넣어놓기
+            // 밑에 주석해제 하면 실제 위치로 넘어감
+            // mapX : latitude.toString(),
+            // mapY : longitude.toString()
+            
+            mapX : '33.345535',
+            mapY : '126.786877'
         };
         fetchLocationActivityData(location);
     }
@@ -39,6 +45,8 @@ const LocationAcitivity= () => {
             setActivityData(LocationAcitivityData);
         }
     }
+
+    console.log("activity data : ", activityData)
 
     return(
         <div className="flex ml-6 items-start gap-[8px] flex-col">

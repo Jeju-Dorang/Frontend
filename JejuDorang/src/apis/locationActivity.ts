@@ -9,6 +9,7 @@ const postLocationActivity = async (location: LocationApiRequest): Promise<StayA
             '/tourspot/recommendation',
             location
             );
+            console.log("postLocationActivity response: ", response);
         return response.data;
     } catch (error) {
         console.error('Failed to fetch location activity:', error);

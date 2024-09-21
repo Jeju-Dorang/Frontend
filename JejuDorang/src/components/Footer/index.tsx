@@ -11,7 +11,11 @@ import ClickChat from '#img/footer/Clicked/chat.webp';
 import ClickRecord from '#img/footer/Clicked/record.webp';
 import ClickUser from '#img/footer/Clicked/user.webp';
 
-const Footer: React.FC = () => {
+interface Props {
+  currentPage : string;
+}
+
+const Footer = ({currentPage}:Props) => {
   const [activity, setActivity] = useState<boolean>(false);
   const [home, setHome] = useState<boolean>(true);
   const [chat, setChat] = useState<boolean>(false);
@@ -21,16 +25,9 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect( () => {
-    const target : string = location.pathname;
-    const pathSegments = target.split('/');
-    const currentPage = pathSegments[1];
-    if (currentPage === '') {
-      handleChange('/')
-    } else {
-      handleChange(currentPage)
-    }
+    handleChange(currentPage)
     console.log("target : ", currentPage);
-  }, [])
+  }, [currentPage])
 
   const handleChange = (target:string) => {
     setActivity(target === 'activity');

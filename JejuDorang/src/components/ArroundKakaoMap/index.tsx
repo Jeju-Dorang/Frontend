@@ -1,9 +1,10 @@
 import { CategoryCode } from 'CategoryCodes';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Map } from 'react-kakao-maps-sdk';
-import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/index';
-import { Place, PlacesSearchResultItem } from '@type/place';
 import { MAP_CATEGORY } from '@constants/category';
+import { Place, PlacesSearchResultItem } from '@type/place';
+import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/index';
+import InvalidLocation from '@components/InvalidLocation/index';
 
 interface Props {
   lat: number;
@@ -19,6 +20,7 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
   const [infoWindow, setInfoWindow] = useState<kakao.maps.InfoWindow | null>(
     null,
   );
+  const isInvalidLocation = lat === 0 && lng === 0;
 
   useEffect(() => {
     if (!map) return;
@@ -90,19 +92,25 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
 
   return (
     <div className={`${css}`}>
-      {renderButtons()}
-      <Map
-        center={{ lat, lng }}
-        style={{ width: '100%', height: '460px' }}
-        onCreate={setMap}
-      >
-        <PlaceMarkers
-          places={places}
-          map={map}
-          infoWindow={infoWindow}
-          setInfoWindow={setInfoWindow}
-        />
-      </Map>
+      {isInvalidLocation ? (
+        <InvalidLocation />
+      ) : (
+        <Fragment>
+          {renderButtons()}
+          <Map
+            center={{ lat, lng }}
+            style={{ width: '100%', height: '460px' }}
+            onCreate={setMap}
+          >
+            <PlaceMarkers
+              places={places}
+              map={map}
+              infoWindow={infoWindow}
+              setInfoWindow={setInfoWindow}
+            />
+          </Map>
+        </Fragment>
+      )}
     </div>
   );
 };

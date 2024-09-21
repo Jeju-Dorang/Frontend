@@ -3,6 +3,7 @@ import { Fragment } from 'react/jsx-runtime';
 import KakaoMap from '@components/KakaoMap';
 import ArroundKakaoMap from '@components/ArroundKakaoMap';
 import MainDorang from '@components/MainDorang';
+import { useAuthStore } from '@states/useAuthStore';
 
 const buttons = [{ id: 0 }, { id: 1 }, { id: 2 }];
 
@@ -21,11 +22,9 @@ const MainModal = () => {
         return (
           <Fragment>
             <p className="text-[14px] font-semibold">내 숙소</p>
-            {/* 숙소설정을 안한경우 예외처리 필요 */}
-            {/* 좌표를 인자로 받아서 표기하도록 수정필요 */}
             <KakaoMap
-              lat={33.55635}
-              lng={126.795841}
+              lat={useAuthStore.getState().loding.lat}
+              lng={useAuthStore.getState().loding.lng}
               css={'h-[458px] mt-4 mb-4'}
             />
           </Fragment>
@@ -35,8 +34,8 @@ const MainModal = () => {
           <Fragment>
             <p className="text-[14px] font-semibold">내 숙소 주변 둘러보기</p>
             <ArroundKakaoMap
-              lat={33.55635}
-              lng={126.795841}
+              lat={useAuthStore.getState().loding.lat}
+              lng={useAuthStore.getState().loding.lng}
               css={'h-[500px] mt-4 mb-4'}
             />
           </Fragment>

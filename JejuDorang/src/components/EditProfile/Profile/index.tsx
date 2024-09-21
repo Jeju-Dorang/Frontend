@@ -1,9 +1,10 @@
-import profileImg from "#img/profile.webp";
+import defaultImage from "#img/profile.webp";
 
 interface Props {
     name : string;
+    profileImage? : string;
 }
-const Profile = ({name}:Props) => {
+const Profile = ({name, profileImage}:Props) => {
     return (
         <>
         <div className="flex flex-col mt-2 ml-7 mb-4">
@@ -11,7 +12,10 @@ const Profile = ({name}:Props) => {
                 프로필
             </h3>
             <div className='flex flex-row mt-4 items-center justify-between'>
-                <img src={profileImg} className="w-[87px] h-[87px]" />
+                {profileImage?
+                    <img src={profileImage} className="w-[87px] h-[87px]" />
+                    :<img src={defaultImage} className="w-[87px] h-[87px]" />
+                }
                 <div className="flex flex-col justify-start mr-12">
                     <h2 className="text-black font-semibold text-[20px]">
                         {name}

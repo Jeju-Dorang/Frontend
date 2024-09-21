@@ -6,7 +6,7 @@ export interface StayData {
 }
 
 export interface StayApiResponse {
-    name : string;
+    title : string;
 	image : string;
 	address : string
 }

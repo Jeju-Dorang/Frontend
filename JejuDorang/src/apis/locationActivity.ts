@@ -20,17 +20,3 @@ const postLocationActivity = async (location: LocationApiRequest): Promise<StayA
 export {
     postLocationActivity,
 }
-
-// const postCommentLike = async (commentId: number): Promise<boolean> => {
-//   try {
-//     await api.post<boolean, null>(
-//       true,
-//       `/posts/like/comment/${commentId}`,
-//       null,
-//     );
-//     return true;
-//   } catch (error) {
-//     console.error('Failed to like comment:', error);
-//     return false;
-//   }
-// };

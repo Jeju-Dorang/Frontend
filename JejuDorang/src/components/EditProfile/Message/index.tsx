@@ -1,7 +1,11 @@
 import {MAX_PROFILE_DETAIL_LENGTH} from '@constants/maxTextLength'
 import { useState } from 'react';
 
-const Message = () => {
+interface Props {
+    memberComment : string;
+}
+
+const Message = ({memberComment}:Props) => {
     const [message, setMessage] = useState<string>('');
     const [messageLength, setMessageLength] = useState<number>(0);
 
@@ -27,8 +31,10 @@ const Message = () => {
                     type="text"
                     value={message}
                     onChange={handleInputChange}
+                    placeholder={memberComment}
                     className="bg-gray-lg text-black rounded-[10px] mt-2
-                                p-3 justify-start items-center text-[14px]"
+                                p-3 justify-start items-center text-[14px]
+                                placeholder-gray-500"
                 />
                 <div className='flex flex-row text-[13px] font-semibold justify-end mt-1'>
                     <p className='text-black'>{messageLength}</p>

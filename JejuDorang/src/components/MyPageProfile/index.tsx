@@ -39,8 +39,8 @@ const MyPageProfile = ({
                 {lodgingAddress ?
                     <h2 className='mt-1 font-semibold text-[#7E7E7E] text-[16px]'>
                     {lodgingAddress}
-                    </h2>:
-                    <button onClick = {() => navigate('/stay')}
+                    </h2>
+                    :<button onClick = {() => navigate('/stay')}
                             className='mt-1 font-semibold text-[#7E7E7E] text-[16px]
                                         hover:text-primary-blue'>
                     숙소를 등록해주세요

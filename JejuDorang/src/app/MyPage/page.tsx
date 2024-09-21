@@ -14,7 +14,7 @@ const MyPage = () => {
 
     useEffect(() => {
         fetchMypageData();
-    }, [profile]);
+    }, []);
 
     const fetchMypageData = async () => {
         const mypageData = await getMypageData();

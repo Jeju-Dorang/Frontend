@@ -15,10 +15,14 @@ import { postLocationActivity } from "@apis/locationActivity";
 
 const LocationAcitivity= () => {
     const [activityData, setActivityData] = useState<StayApiResponse[]>([]);
+    const [latitude, setLatitude ] = useState<number>(0);
+    const [longitude, setLongitude ] = useState<number>(0);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords;
+            setLatitude(latitude);
+            setLongitude(longitude);
             handleLocation({ latitude, longitude });
         });
     }, []);
@@ -30,11 +34,11 @@ const LocationAcitivity= () => {
 
             // 우선 제주도 주소로 더미 데이터 넣어놓기
             // 밑에 주석해제 하면 실제 위치로 넘어감
-            // mapX : latitude.toString(),
-            // mapY : longitude.toString()
+            // mapX : longitude.toString(),
+            // mapY : latitude.toString()
             
-            mapX : '33.345535',
-            mapY : '126.786877'
+            mapX : '126.786877',
+            mapY : '33.345535'
         };
         fetchLocationActivityData(location);
     }
@@ -56,14 +60,14 @@ const LocationAcitivity= () => {
             <h3 className = "font-semibold text-[13px] text-gray-dg">
                 내 위치를 기반으로한 맞춤 추천
             </h3> 
-            <ActivityKakaoMap lat ={33.473654} lng={126.910741} css={'flex'} />
+            <ActivityKakaoMap lat ={latitude} lng={longitude} css={'flex'} />
             <div className='flex flex-col gap-2 justify-center items-center'>
                 {activityData.map((data, index) => (
                     <StayBox
                         key={index}
-                        name={data.name}
+                        name={data.title}
                         location={data.address}
-                        img = {data.name}
+                        img = {data.image}
                     />
                 ))}
             </div>

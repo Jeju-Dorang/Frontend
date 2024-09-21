@@ -4,6 +4,6 @@ export interface Location {
 }
 
 export interface LocationApiRequest {
-	mapX: stirng;      // 경도
-	mapY: string;     // 위도
+	mapX: stirng;      // 위도
+	mapY: string;     // 경도
 }

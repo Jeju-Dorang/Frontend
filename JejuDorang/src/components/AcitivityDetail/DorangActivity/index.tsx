@@ -1,23 +1,39 @@
 import dorangProfile from '#img/dorangProfile.webp';
 import info from '#img/info.svg';
 import refresh from '#img/refresh.webp';
+import { getDorangActivity } from '@apis/dorangActivity';
 import AchievementBox from '@components/AchievementBox';
-import { AchievementData } from '@type/achievement';
+import { useAuthStore } from '@states/useAuthStore';
+import { FullAchievementData } from '@type/achievement';
+import { useEffect, useState } from 'react';
 
 
 // api 연결할 때 바꿀 예정
-const userName:string = "김제주";
+const userName:string = useAuthStore.getInitialState.name;
+console.log("userName : ", useAuthStore.getInitialState.name);
 const achievements:number = 5;
 
-const achievementData: AchievementData[] = [
-    { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-    { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-    { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-    { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-];
+// const achievementData: AchievementData[] = [
+//     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
+//     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
+//     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
+//     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
+// ];
 //
 
 const DorangAcitivity= () => {
+    const [activementData, setActivementData] = useState<FullAchievementData[]>([]);
+
+    useEffect(() => {
+        fetchDorangActivityData();
+        }, []);
+
+    const fetchDorangActivityData = async () => {
+        const LocationAcitivityData = await getDorangActivity();
+        if (LocationAcitivityData) {
+            setActivementData(LocationAcitivityData);
+        }
+    };
 
     return(
         <>
@@ -57,12 +73,14 @@ const DorangAcitivity= () => {
                 </div>
 
                 <div className='flex flex-col gap-[5px] mt-3'>
-                    {achievementData.map((data, index) => (
+                    {activementData.map((data, index) => (
                         <AchievementBox
-                            key={index}
-                            achievement={data.achievement}
-                            content={data.content}
-                            title={data.title}
+                            key = {index}
+                            achievementName= {data.achievementName}
+                            achievementIcon= {data.achievementIcon}
+                            achievementComment= {data.achievementComment}
+                            achievementCnt={data.achievementCnt}
+                            maxAchieve={data.maxAchieve}
                         />
                     ))}
                 </div>

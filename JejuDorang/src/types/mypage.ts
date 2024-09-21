@@ -3,7 +3,7 @@ import { Diary } from './diary';
 
 export interface mypage {
     memberName: string;
-    email: string;
+    email?: string;
     memberComment: string;
     profileImage?: string;
     lodgingAddress: string;
@@ -13,7 +13,7 @@ export interface mypage {
 
 export interface mypageProfile {
     memberName: string;
-    email: string;
+    email?: string;
     memberComment: string;
     profileImage?: string;
     lodgingAddress: string;

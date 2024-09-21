@@ -34,22 +34,24 @@ const ChatDetail = ({ setIsNavVisible }: Props) => {
         if (!openOnboarding) {
             setIsNavVisible(false);
             setMessages([]);
+        } else {
+            setIsNavVisible(true);
         }
     }, [openOnboarding]);
     
-        
+    console.log("openOnboarding : ", openOnboarding);
 
 
     return (
         <>
         {openOnboarding ? <ChatMainHeader /> : <Header setOpenOnboarding={setOpenOnboarding} /> }
-        <div className="flex flex-col h-screen w-[100%] bg-gray-100">
+        <div className="flex flex-col bg-gray-100">
         {openOnboarding ?
             <Onboarding openOnboarding={handleCloseOnboarding}/> :
-            <>
+            <div className="flex flex-col h-screen w-[100%]">
                 <Chat interests={interests} messages={messages} />
                 <InputMessage sendMessage = {sendMessage} />
-            </>
+            </div>
         }
         </div>
         </>

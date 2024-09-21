@@ -14,7 +14,7 @@ const MyPage = () => {
 
     useEffect(() => {
         fetchMypageData();
-    }, []);
+    }, [profile]);
 
     const fetchMypageData = async () => {
         const mypageData = await getMypageData();
@@ -49,7 +49,9 @@ const MyPage = () => {
                     setMainMypage = {setMainMypage}
                     achievementData = {achievement} />
             </>
-            :<AchievementList setMainMypage = {setMainMypage} />
+            :<AchievementList 
+                setMainMypage = {setMainMypage}
+                achievementData = {achievement} />
         }
         </>
     );

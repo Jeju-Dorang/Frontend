@@ -2,20 +2,13 @@ import { ACHEIVEMENT_CATEGORY } from "@constants/category";
 import Header from "./Header";
 import { useState } from "react";
 import Info from '#img/info.svg'
-import { AchievementData } from "@type/achievement";
+import {FullAchievementData } from "@type/achievement";
 import AchievementBox from "@components/AchievementBox";
 
 interface Props {
     setMainMypage: (mainMypage : boolean) => void;
+    achievementData : FullAchievementData[]
 }
-
-// api 연결할 때 바꿀 예정
-const achievementData: AchievementData[] = [
-    { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-    { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-    { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-    { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-];
 
 
 const buttonStyles = (isActive: boolean) =>
@@ -23,7 +16,7 @@ const buttonStyles = (isActive: boolean) =>
         isActive ? 'bg-primary-orange text-white' : 'bg-white text-[#515356]'
     }`;
 
-const AchievementList = ({setMainMypage}:Props) => {
+const AchievementList = ({setMainMypage, achievementData}:Props) => {
     const [category, setCategory] = useState<string>('전체');
     const [showInfo, setShowInfo] = useState<boolean>(false);
 
@@ -59,15 +52,20 @@ const AchievementList = ({setMainMypage}:Props) => {
                     </div>
             </div>
             <div className='flex flex-col gap-[5px] items-center justify-center mb-4'>
-                {achievementData.map((data, index) => (
-                    <AchievementBox
-                        key={index}
-                        achievementName={data.achievement}
-                        achievementComment={data.content}
-                        maxAchieve = {10}
-                        achievementCnt={8}
-                    />
-                ))}
+                    {achievementData &&
+                        achievementData
+                            .filter(data => data.achievementStatus === "YET") // 업적 달성완료만 보여주기
+                            .map((data, index) => (
+                                <AchievementBox
+                                    key={index}
+                                    achievementIcon = {data.achievementIcon}
+                                    achievementName={data.achievementName}
+                                    achievementComment={data.achievementComment}
+                                    maxAchieve = {data.maxAchieve}
+                                    achievementCnt = {data.achievementCnt}
+                                    title="운동" //api 수정 후 변경
+                                />
+                    ))}
             </div>
 
             <hr />
@@ -76,15 +74,20 @@ const AchievementList = ({setMainMypage}:Props) => {
                 달성 업적
             </h1>
             <div className='flex flex-col gap-[5px] items-center justify-center mb-4'>
-                {achievementData.map((data, index) => (
-                    <AchievementBox
-                        key={index}
-                        achievementName={data.achievement}
-                        achievementComment={data.content}
-                        maxAchieve = {10}
-                        achievementCnt={5}
-                    />
-                ))}
+                    {achievementData &&
+                        achievementData
+                            .filter(data => data.achievementStatus === "DONE") // 업적 달성완료만 보여주기
+                            .map((data, index) => (
+                                <AchievementBox
+                                    key={index}
+                                    achievementIcon = {data.achievementIcon}
+                                    achievementName={data.achievementName}
+                                    achievementComment={data.achievementComment}
+                                    maxAchieve = {data.maxAchieve}
+                                    achievementCnt = {data.achievementCnt}
+                                    title="운동" //api 수정 후 변경
+                                />
+                    ))}
             </div>
         </>
 

@@ -1,38 +1,24 @@
+import { getAllDiaries } from "@apis/allDiaries";
 import DiaryPreviewBox from "@components/DiaryPreviewBox";
-import {DiaryPreview} from "@type/diaryPreview"
+import { Diary } from "@type/diary";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-//더미데이터
-const Dummy : DiaryPreview[]= [
-    {
-        title: '오늘은 축구를 했다',
-        content :'아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고 아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고',
-        status : 'Private'
-    },
-    {
-        title: '오늘은 축구를 했다2',
-        content :'아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고 아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고',
-        status : 'Public'
-    },
-    {
-        title: '오늘은 축구를 했다3',
-        content :'아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고 아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고',
-        status : 'Public'
-    },
-    {
-        title: '오늘은 축구를 했다4',
-        content :'아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고 아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고',
-        status : 'Private'
-    },
-    {
-        title: '오늘은 축구를 했다5',
-        content :'아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고 아침 6시에 우장산 축구장에서 축구를 했다 근데 졌다 어쩌고',
-        status : 'Private'
-    }
-]
-
 const AllDiaries = () => {
+    const [diaryList, setDiaryList] = useState<Diary[]>([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetchDiaryListData();
+    }, []);
+
+    const fetchDiaryListData = async () => {
+        const DiaryListData = await getAllDiaries();
+        if (DiaryListData) {
+            setDiaryList(DiaryListData);
+        }
+    }
+
 
     return(
         <div className="flex flex-col w-full h-screen mt-10">
@@ -47,12 +33,12 @@ const AllDiaries = () => {
                 </button>
             </div>
             <div className="flex flex-col justify-center items-center gap-2 mt-7">
-                {Dummy.map((diary, index) => (
+                {diaryList.map((diary, index) => (
                     <DiaryPreviewBox
                         key = {index}
                         title = {diary.title}
                         content = {diary.content}
-                        status = {diary.status}
+                        status = {diary.secret}
                     />
                 ))}
             </div>

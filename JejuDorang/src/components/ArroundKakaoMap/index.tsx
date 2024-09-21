@@ -1,6 +1,6 @@
 import { CategoryCode } from 'CategoryCodes';
 import { Fragment, useEffect, useState } from 'react';
-import { Map } from 'react-kakao-maps-sdk';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { MAP_CATEGORY } from '@constants/category';
 import { Place, PlacesSearchResultItem } from '@type/place';
 import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/index';
@@ -102,11 +102,21 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
             style={{ width: '100%', height: '460px' }}
             onCreate={setMap}
           >
+            <MapMarker
+              position={{ lat, lng }}
+              image={{
+                src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/red_b.png',
+                size: { width: 50, height: 50 },
+                options: { offset: { x: 25, y: 50 } },
+              }}
+            />
             <PlaceMarkers
               places={places}
               map={map}
               infoWindow={infoWindow}
               setInfoWindow={setInfoWindow}
+              myLat={lat}
+              myLng={lng}
             />
           </Map>
         </Fragment>

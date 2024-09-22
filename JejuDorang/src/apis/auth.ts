@@ -12,9 +12,6 @@ const getAccessToken = async (code: string): Promise<boolean> => {
     const refreshToken = response.headers['refresh-token'];
 
     if (accessToken && refreshToken) {
-      useAuthStore.getState().setAccessToken(accessToken);
-      useAuthStore.getState().setRefreshToken(refreshToken);
-    if (accessToken && refreshToken) {
       useAuthStore.getState().logout();
       useAuthStore.getState().setAccessToken(accessToken);
       useAuthStore.getState().setRefreshToken(refreshToken);

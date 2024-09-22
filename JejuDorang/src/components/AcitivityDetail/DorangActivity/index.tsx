@@ -13,13 +13,6 @@ const userName:string = useAuthStore.getInitialState.name;
 console.log("userName : ", useAuthStore.getInitialState.name);
 const achievements:number = 5;
 
-// const achievementData: AchievementData[] = [
-//     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-//     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-//     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-//     { achievement: '흑돼지', content: "제주의 명물, 흑돼지! 이정도 먹었으면 당신은 흑돼지 킬러", title: "운동" },
-// ];
-//
 
 const DorangAcitivity= () => {
     const [activementData, setActivementData] = useState<FullAchievementData[]>([]);

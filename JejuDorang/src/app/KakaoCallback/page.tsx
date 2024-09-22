@@ -1,6 +1,10 @@
 import { Fragment, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+<<<<<<< HEAD
 import { getToken } from '@apis/auth';
+=======
+import { getAccessToken } from '@apis/auth';
+>>>>>>> 2cf21a4fb447938483f77fad1a671e63834aebef
 import Spinner from '@components/Spinner';
 
 const KakaoCallback = () => {
@@ -10,7 +14,11 @@ const KakaoCallback = () => {
 
   const handleKakaoLogin = async (code: string) => {
     try {
+<<<<<<< HEAD
       const isSuccess = await getToken(code);
+=======
+      const isSuccess = await getAccessToken(code);
+>>>>>>> 2cf21a4fb447938483f77fad1a671e63834aebef
       if (!isSuccess) {
         console.error('Kakao login failed');
         navigate('/login');

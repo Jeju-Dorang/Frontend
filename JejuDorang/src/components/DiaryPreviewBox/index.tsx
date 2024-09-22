@@ -1,6 +1,5 @@
 import { DiaryPreview } from "@type/diaryPreview";
 
-
 const DiaryPreviewBox = ({title, content, status} : DiaryPreview) => {
     return(
         <button className="flex flex-col h-[75px] w-80 border border-gray-dg rounded-[10px]

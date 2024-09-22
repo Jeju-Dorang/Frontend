@@ -1,7 +1,26 @@
+import { getAuthWithdraw } from "@apis/editMypage";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Withdraw = () => {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+    const navigate = useNavigate();
+
+    const deleteCookie = () => {
+        const cookies = document.cookie.split("; ");
+        cookies.forEach(cookie => {
+            const cookieName = cookie.split("=")[0];
+            document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.kakao.com`;
+        });
+    }
+
+    const handleAuthWithdraw = async() => {
+        const response = await getAuthWithdraw()
+        if (response) {
+            deleteCookie();
+            navigate('/login');
+        }
+    }
 
 
     return (
@@ -35,7 +54,10 @@ const Withdraw = () => {
                                 >
                                     돌아가기
                                 </button>
-                                <button onClick = {() => setIsPopupOpen(false)}
+                                <button onClick = {() => {
+                                    handleAuthWithdraw()
+                                    setIsPopupOpen(false)
+                                }}
                                         className="text-gray-dg font-medium text-[16px] underline
                                                     cursor-pointer hover:text-primary-blue mt-3">
                                     탈퇴하기

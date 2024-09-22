@@ -14,6 +14,7 @@ import KakaoCallback from './KakaoCallback/page';
 import MyPage from './MyPage/page';
 import EditMyPage from './EditMyPage/page';
 import AllDiaries from './AllDiaries/page';
+import RecommendStay from './RecommendStay/page';
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -103,6 +104,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <AllDiaries />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/stay/recommend"
+                element={
+                  <PrivateRoute>
+                    <RecommendStay />
                   </PrivateRoute>
                 }
               />

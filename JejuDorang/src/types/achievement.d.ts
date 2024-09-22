@@ -1,3 +1,5 @@
+type achievementStatus = 'YET'|'DONE';
+
 export interface AchievementData {
   achievement: string;
   content: string;
@@ -7,4 +9,14 @@ export interface AchievementData {
 export interface Achievement {
   achievementIcon: string | null;
   achievementName: string | null;
+}
+
+export interface FullAchievementData {
+  achievementIcon?: string;
+  achievementName: string;
+  achievementComment: string;
+  maxAchieve : number;
+  achievementCnt : number;
+  achievementStatus? : achievementStatus;
+  title? : string;
 }

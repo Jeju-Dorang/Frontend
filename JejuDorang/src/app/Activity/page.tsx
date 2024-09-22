@@ -13,7 +13,7 @@ const Activity=() =>{
 
     return (
         <>
-            <header className = "w-[100%] h-[88px] pl-[27px] pr-[166px] gap-[22px] flex items-center">
+            <header className = "h-[88px] ml-[27px] mr-[166px] gap-[22px] flex items-center">
                 <button onClick={() => handleHeaderSwitch(false)}>
                     <p className = {`text-[14px] font-semibold ${
                         !selected ? 'text-primary-orange':'text-gray-dg'}`}>

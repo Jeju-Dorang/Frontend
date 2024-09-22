@@ -8,7 +8,7 @@ interface Props {
 
 const AcitivityDetail= ({status}:Props) => {
     return(
-        <div className="w-[100%] top-[88px]">
+        <div className="flex top-[88px]">
             {!status ? <LocationAcitivity /> : <DorangAcitivity />}
         </div>
     );

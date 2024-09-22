@@ -1,15 +1,5 @@
 import { api } from './index';
 import { Information } from '@type/information';
-<<<<<<< HEAD
-
-const getMain = async (): Promise<Information | null> => {
-  try {
-    const response = await api.get<Information>(true, `/`);
-    return response.data;
-  } catch (error) {
-    console.error('Failed to get main:', error);
-    return null;
-=======
 import { useAuthStore } from '@states/useAuthStore';
 
 const getMain = async (): Promise<boolean> => {
@@ -26,7 +16,6 @@ const getMain = async (): Promise<boolean> => {
   } catch (error) {
     console.error('Failed to get main:', error);
     return false;
->>>>>>> 2cf21a4fb447938483f77fad1a671e63834aebef
   }
 };
 

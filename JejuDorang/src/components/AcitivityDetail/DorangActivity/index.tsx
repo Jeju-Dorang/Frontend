@@ -8,14 +8,13 @@ import { FullAchievementData } from '@type/achievement';
 import { useEffect, useState } from 'react';
 
 
-// api 연결할 때 바꿀 예정
-const userName:string = useAuthStore.getInitialState.name;
-console.log("userName : ", useAuthStore.getInitialState.name);
-const achievements:number = 5;
-
-
 const DorangAcitivity= () => {
     const [activementData, setActivementData] = useState<FullAchievementData[]>([]);
+
+    // api 연결할 때 바꿀 예정
+    // const userName: string | null = useAuthStore.getState().memberName;
+    const userName: string = "김제주";
+    const achievements:number = 5;
 
     useEffect(() => {
         fetchDorangActivityData();
@@ -60,7 +59,7 @@ const DorangAcitivity= () => {
                             인증은, 스토리에 태그를 선택하셔서 글을 작성해주세요!
                         </p>
                     </div>
-                    <button>
+                    <button onClick={fetchDorangActivityData}>
                         <img src={refresh} alt="refresh" className='w-[20px] h-[29px]' />
                     </button>
                 </div>

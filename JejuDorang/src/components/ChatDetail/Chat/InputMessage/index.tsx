@@ -23,19 +23,36 @@ const InputMessage = ({interests, sendMessage, handleChatMessage}:Props) => {
     };
 
     const receiveMessage = async(message:string, interests:string[]) => {
-        const response = await postCreateMessage(message, interests)
+        const response = await postCreateMessage(message, interests);
         // delay가 있어야 데이터가 제대로 전달됨 -> 핀을 추가해야할듯
+        delay(1000);
         if (response) {
-            await delay(1000);
             const assistantResponse = await postRunAssistant();
             if (assistantResponse){
-                await delay(5000);
-                const chatResponse = await getThreadList()
+                // await delay(5000);
+                // const chatResponse = await getThreadList()
+                const chatResponse = await waitForAssistantResponse();
                 console.log("input message response 테스트 : ", chatResponse);
                 handleChatMessage({ type: 'bot', text: chatResponse});
             }
         }
     }
+
+    // Assistant의 응답을 기다리는 함수
+    const waitForAssistantResponse = async () => {
+        let hasAssistantMessage : boolean = false;
+
+        while (!hasAssistantMessage) {
+            await delay(2000); // 1.8초 대기 후
+            const chatMessages = await getThreadList();
+
+            // 첫 번째 메시지가 assistant인지 확인
+            if (chatMessages != false) {
+                hasAssistantMessage = true;
+                return chatMessages
+            }
+        }
+    };
     
 
     return(

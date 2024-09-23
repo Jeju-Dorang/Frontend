@@ -98,11 +98,15 @@ const getThreadList = async () =>{
             );
             console.log("getThreadList response : ", response)
             // "role": "assistant"인 데이터 필터링해서 가장 마지막 항목의 value만 가져오기
-            const assistantMessages = response.data.data[0].content[0].text.value
-
-            console.log("lastAssistantMessage response : ", assistantMessages)
-
-            return assistantMessages;
+            if (response.data.data[0].role !== "assistant" || response.data.data[0].content.length === 0) {
+                console.log("role : ", response.data.data[0].role)
+                return false
+            } else {
+                console.log("role : ", response.data.data[0].role)
+                const assistantMessages = response.data.data[0].content[0].text.value
+                console.log("lastAssistantMessage response : ", assistantMessages)
+                return assistantMessages;
+            }
     } catch (error) {
             console.error('Error fetch ThreadList :', error);
             return null;

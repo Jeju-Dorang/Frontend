@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import DorangMessage from "./DorangMessage";
 import UserMessage from "./UserMessage";
 import { CHAT } from "@type/chat";
+import { postCreateThread } from "@apis/chat";
 
 interface Props {
     interests : string[]
@@ -12,6 +14,12 @@ const Chat = ({interests, messages}:Props) => {
     
     {/* 디버깅코드 */}
     console.log("messages" , messages)
+
+    useEffect( () => {
+        postCreateThread();
+    }, []);
+
+
 
     return (
         <div className="w-[100%] h-full flex flex-col mt-[15px] overflow-y-auto">

@@ -21,11 +21,29 @@ const Withdraw = () => {
     //     console.log("_kau cookies deleted.");
     // };
 
+    const removeKakaoCookies = (): void => {
+            const cookies = document.cookie.split(';');
+            console.log("document : ", document);
+            console.log("cookies : ", document.cookie);
+        
+            for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf('=');
+            const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+        
+            if (name.startsWith('_ka')) {
+                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.kakao.com`;
+                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.kakao.co.kr`;
+            }
+            }
+        };
+
     const handleAuthWithdraw = async() => {
         setIsPopupOpen(false)
 
         const response = await getAuthWithdraw()
         if (response) {
+            removeKakaoCookies();
             // deleteCookie();
             navigate('/login');
         }

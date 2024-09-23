@@ -31,6 +31,7 @@ const ChatDetail = ({ setIsNavVisible }: Props) => {
     }
     
     useEffect(() => {
+        setMessages([]);
         if (!openOnboarding) {
             setIsNavVisible(false);
             setMessages([]);
@@ -50,7 +51,11 @@ const ChatDetail = ({ setIsNavVisible }: Props) => {
             <Onboarding openOnboarding={handleCloseOnboarding}/> :
             <div className="flex flex-col h-screen w-[100%]">
                 <Chat interests={interests} messages={messages} />
-                <InputMessage sendMessage = {sendMessage} />
+                <InputMessage 
+                    interests={interests}
+                    sendMessage = {sendMessage}
+                    handleChatMessage = {handleChatMessage}
+                />
             </div>
         }
         </div>

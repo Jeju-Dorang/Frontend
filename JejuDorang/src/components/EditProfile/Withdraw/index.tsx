@@ -6,45 +6,11 @@ const Withdraw = () => {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    // console.log("Current cookies: ", document.URL);
-
-    // const deleteCookie = () => {
-    //     const cookies = document.cookie.split("; ");
-    //     cookies.forEach(cookie => {
-    //         const cookieName = cookie.split("=")[0].trim();
-    //         if (cookieName.startsWith("_kau")) {
-    //             // 도메인에 따라 다르게 설정된 쿠키들을 모두 제거
-    //             document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.kakao.com`;
-    //             document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=kakao.com`;
-    //         }
-    //     });
-    //     console.log("_kau cookies deleted.");
-    // };
-
-    const removeKakaoCookies = (): void => {
-            const cookies = document.cookie.split(';');
-            console.log("document : ", document);
-            console.log("cookies : ", document.cookie);
-        
-            for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i];
-            const eqPos = cookie.indexOf('=');
-            const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
-        
-            if (name.startsWith('_ka')) {
-                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.kakao.com`;
-                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.kakao.co.kr`;
-            }
-            }
-        };
-
     const handleAuthWithdraw = async() => {
         setIsPopupOpen(false)
 
         const response = await getAuthWithdraw()
         if (response) {
-            removeKakaoCookies();
-            // deleteCookie();
             navigate('/login');
         }
     }

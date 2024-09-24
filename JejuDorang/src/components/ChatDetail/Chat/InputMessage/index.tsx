@@ -24,15 +24,12 @@ const InputMessage = ({interests, sendMessage, handleChatMessage}:Props) => {
 
     const receiveMessage = async(message:string, interests:string[]) => {
         const response = await postCreateMessage(message, interests);
-        // delay가 있어야 데이터가 제대로 전달됨 -> 핀을 추가해야할듯
+        // delay가 있어야 데이터가 제대로 전달됨
         delay(1000);
         if (response) {
             const assistantResponse = await postRunAssistant();
             if (assistantResponse){
-                // await delay(5000);
-                // const chatResponse = await getThreadList()
                 const chatResponse = await waitForAssistantResponse();
-                console.log("input message response 테스트 : ", chatResponse);
                 handleChatMessage({ type: 'bot', text: chatResponse});
             }
         }

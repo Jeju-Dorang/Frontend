@@ -1,8 +1,10 @@
 export interface Stays {
   name: string;
-  comment: string;
   image: string;
   address: string;
+  lodgingId: number;
   distance: string;
-  rate: number;
+  rating: number;
+  latitude: string;
+  longitude: string;
 }

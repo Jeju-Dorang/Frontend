@@ -85,7 +85,7 @@ const RecommendStay = () => {
             lat: Number(stayData[0].latitude),
             lng: Number(stayData[0].longitude),
           }}
-          className="w-full h-full"
+          className="h-full m-2 rounded-[20px]"
           level={3}
         >
           {stayData.map((stay, index) => (

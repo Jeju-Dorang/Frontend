@@ -21,6 +21,7 @@ function App() {
   const { accessToken, refreshToken } = useAuthStore();
 
   const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+    
     if (!accessToken && !refreshToken) {
       return <Navigate to="/login" replace />;
     }

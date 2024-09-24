@@ -56,7 +56,7 @@ const DorangAcitivity= () => {
                             alt="info" 
                             className='items-start w-[20px] h-[20px]' />
                         <p className='ml-1 mt-1 text-[8px] font-medium text-gray-dg'>
-                            인증은, 스토리에 태그를 선택하셔서 글을 작성해주세요!
+                            스토리를 작성하여 업적을 인증해주세요!
                         </p>
                     </div>
                     <button onClick={fetchDorangActivityData}>

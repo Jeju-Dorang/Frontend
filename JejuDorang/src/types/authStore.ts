@@ -27,4 +27,6 @@ export interface AuthStore {
   setAchievement: (achievement: Achievement[]) => void;
   loding: { lat: number; lng: number };
   setLoding: (loding: { lat: number; lng: number }) => void;
+  threadId: string | null;
+  setThreadId: (threadId : string) => void;
 }

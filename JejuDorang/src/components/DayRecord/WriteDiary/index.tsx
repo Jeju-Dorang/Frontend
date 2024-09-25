@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import { MAX_TEXT_LENGTH } from '@constants/maxTextLength';
+import {  MAX_DIARY_TITLE_LENGTH, MAX_DIARY_CONTENT_LENGTH } from '@constants/maxTextLength';
 import diaryDefault from '#img/diaryDefault.webp';
 import { postDiary } from '@apis/diary';
 
@@ -51,7 +51,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
-    if (input.length <= MAX_TEXT_LENGTH) {
+    if (input.length <= MAX_DIARY_CONTENT_LENGTH) {
       setDiaryContent(input);
     }
   };
@@ -81,7 +81,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
             type="text"
             className="text-[15px] font-bold text-primary-orange w-[100px] placeholder-primary-orange"
             placeholder="제목"
-            maxLength={20}
+            maxLength={MAX_DIARY_TITLE_LENGTH}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -102,6 +102,9 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
               {isPublic ? 'Public' : 'Private'}
             </span>
           </div>
+        </div>
+        <div className="text-[10px] text-gray-500">
+          {title.length} / MAX_DIARY_TITLE_LENGTH
         </div>
         <span className="text-[10px] font-semibold text-gray-dg">
           {todayDate}
@@ -138,13 +141,13 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
               padding: '0 8px',
               height: '160px',
             }}
-            maxLength={MAX_TEXT_LENGTH}
+            maxLength={MAX_DIARY_CONTENT_LENGTH}
           />
           <div className="text-right text-sm text-gray-500 mt-1">
-            {diaryContent.length} / {MAX_TEXT_LENGTH}
+            {diaryContent.length} / {MAX_DIARY_CONTENT_LENGTH}
           </div>
         </div>
-        <div className="w-full mb-[20px] flex gap-[12px]">
+        <div className="w-full mb-[MAX_DIARY_TITLE_LENGTHpx] flex gap-[12px]">
           {tags.map((tag, index) => (
             <input
               key={index}

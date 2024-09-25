@@ -1,37 +1,40 @@
-import { createStore } from 'zustand';
+import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { AuthStore } from '@type/authStore';
 import { Achievement } from '@type/achievement';
 
-export const useAuthStore = createStore(
+export const useAuthStore = create(
   persist<AuthStore>(
-    (set) => ({
-      isLoggedIn: false,
+    (set, get) => ({
       accessToken: null,
       setAccessToken: (accessToken: string) =>
         set({ accessToken: accessToken }),
       refreshToken: null,
       setRefreshToken: (refreshToken: string) =>
         set({ refreshToken: refreshToken }),
-      login: () => set({ isLoggedIn: true }),
       logout: () =>
         set({
-          isLoggedIn: false,
+          accessToken: null,
+          refreshToken: null,
           memberName: null,
-          email: null,
           memberComment: null,
           memberImage: null,
           achievement: null,
           characterImage: null,
-          loading: { lat: 0, lng: 0 },
+          loding: { lat: 0, lng: 0 },
         }),
+      isAuthenticated: () => {
+        const state = get();
+        return !!state.accessToken || !!state.refreshToken;
+      },
       memberName: null,
       setMemberName: (memberName: string) => set({ memberName: memberName }),
-      email: null,
-      setEmail: (email: string) => set({ email: email }),
       characterImage: null,
-      setCharacterImage: (characterImage: string) =>
-        set({ characterImage: characterImage }),
+      setCharacterImage: (characterImage: {
+        itemImage: string;
+        petImage: string;
+        backGroundImage: string;
+      }) => set({ characterImage: characterImage }),
       memberComment: null,
       setMemberComment: (memberComment: string) =>
         set({ memberComment: memberComment }),
@@ -39,10 +42,13 @@ export const useAuthStore = createStore(
       setMemberImage: (memberImage: string) =>
         set({ memberImage: memberImage }),
       achievement: null,
-      setAchievement: (achievement: Achievement) =>
+      setAchievement: (achievement: Achievement[]) =>
         set({ achievement: achievement }),
-      loading: { lat: 0, lng: 0 },
-      setLoading: (loading: { lat: number; lng: number }) => set({ loading }),
+      loding: { lat: 0, lng: 0 },
+      setLoding: (loding: { lat: number; lng: number }) => set({ loding }),
+      threadId: null,
+      setThreadId : (threadId : string) =>
+        set({threadId: threadId})
     }),
     {
       name: 'userInfoStorage',

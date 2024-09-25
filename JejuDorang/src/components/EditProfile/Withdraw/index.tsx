@@ -1,7 +1,19 @@
+import { getAuthWithdraw } from "@apis/editMypage";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Withdraw = () => {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+    const navigate = useNavigate();
+
+    const handleAuthWithdraw = async() => {
+        setIsPopupOpen(false)
+
+        const response = await getAuthWithdraw()
+        if (response) {
+            navigate('/login');
+        }
+    }
 
 
     return (
@@ -35,7 +47,7 @@ const Withdraw = () => {
                                 >
                                     돌아가기
                                 </button>
-                                <button onClick = {() => setIsPopupOpen(false)}
+                                <button onClick = {handleAuthWithdraw}
                                         className="text-gray-dg font-medium text-[16px] underline
                                                     cursor-pointer hover:text-primary-blue mt-3">
                                     탈퇴하기

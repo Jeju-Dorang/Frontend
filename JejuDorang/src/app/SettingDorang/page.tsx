@@ -1,23 +1,25 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useAuthStore } from '@states/useAuthStore';
 import Character from '@components/MainDorang/Character/index';
 import DorangChat from '@components/MainDorang/DorangChat/index';
 import ItemBox from '@components/ItemBox/index';
-//테스트용 이미지
-import alpaca from '#img/dorang/pet/alpaca.webp';
-import camera from '#img/dorang/item/camera.webp';
-import forest from '#img/dorang/background/forest.webp';
 
 const SettingDorang = () => {
-  const [itemImageUrl, setItemImageUrl] = useState<string>(camera);
-  const [petImageUrl, setPetImageUrl] = useState<string>(alpaca);
-  const [backgroundImageUrl, setBackgroundImageUrl] = useState<string>(forest);
+  const [itemImageUrl, setItemImageUrl] = useState<string | null>(null);
+  const [petImageUrl, setPetImageUrl] = useState<string | null>(null);
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState<string | null>(
+    null,
+  );
 
-  // useEffect(() => {
-  //   //api로 사용자의 도랑이 이미지를 받아서 저장
-  //  // const imageUrl = res.data.imageUrl;
-  //  // setImageUrl(imageUrl);
-  // }, []);
+  useEffect(() => {
+    const imageUrl = useAuthStore.getState().characterImage;
+    if (imageUrl !== null) {
+      setItemImageUrl(imageUrl.itemImage);
+      setPetImageUrl(imageUrl.petImage);
+      setBackgroundImageUrl(imageUrl?.backGroundImage);
+    }
+  }, []);
 
   // const postImageUrl = async () => {
   // 저장 버튼 누를 시 선택한 이미지 저장
@@ -34,6 +36,7 @@ const SettingDorang = () => {
           backgroundImage: backgroundImageUrl
             ? `url(${backgroundImageUrl})`
             : 'none',
+          backgroundColor: backgroundImageUrl ? 'transparent' : '#f1c4a380',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -47,7 +50,7 @@ const SettingDorang = () => {
         setBackgroundImageUrl={setBackgroundImageUrl}
       />
       <div className="flex justify-end">
-        <button className="w-[60px] h-[20px] mt-[9px] mr-[20px] border rounded-[3px] text-[10px] font-[700] bg-primary-orange">
+        <button className="w-[60px] h-[20px] mt-[9px] mr-[20px] border rounded-[3px] text-[10px] font-[700] bg-primary-orange hover:text-white hover:shadow-md">
           저장
         </button>
       </div>

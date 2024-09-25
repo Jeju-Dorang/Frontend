@@ -14,7 +14,7 @@ const Location = ({ className, selectMap, setSelectMap }: Props) => {
       <div key={index} className="flex flex-col items-center">
         <div
           onClick={() => setSelectMap(index)}
-          className={`w-[75px] h-[75px] rounded-[9px] cursor-pointer border-[3px] ${
+          className={`w-[75px] h-[75px] rounded-[9px] cursor-pointer border-[3px] hover:border-primary-orange ${
             isSelected ? 'border-primary-orange' : ''
           } bg-auto`}
           style={{

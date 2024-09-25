@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ITEM_LIST } from '@constants/itemList';
 import { DORANG_CATEGORY } from '@constants/category';
 
 const buttonStyles = (isActive: boolean) =>
-  `w-[64px] h-[31px] text-[15px] leading-[140%] rounded-[50px] border whitespace-nowrap ${
+  `w-[64px] h-[31px] text-[15px] leading-[140%] rounded-[50px] border whitespace-nowrap hover:bg-primary-orange ${
     isActive ? 'bg-primary-orange text-white' : 'bg-white text-[#515356]'
   }`;
 
@@ -19,19 +19,33 @@ const ItemBox = ({
   setBackgroundImageUrl,
 }: Props) => {
   const [category, setCategory] = useState<string>('아이템');
+  const [selectedItems, setSelectedItems] = useState({
+    아이템: 'default',
+    펫: 'default',
+    배경: 'default',
+  });
+
+  useEffect(() => {
+    // 초기 상태 설정
+    setItemImageUrl('');
+    setPetImageUrl('');
+    setBackgroundImageUrl('');
+  }, []);
 
   const filteredItems = ITEM_LIST.filter((item) => item.type === category);
 
-  const handleItemClick = (url: string) => {
+  const handleItemClick = (url: string | null) => {
+    const newUrl = url || 'default';
+    setSelectedItems((prev) => ({ ...prev, [category]: newUrl }));
     switch (category) {
       case '아이템':
-        setItemImageUrl(url);
+        setItemImageUrl(url || '');
         break;
       case '펫':
-        setPetImageUrl(url);
+        setPetImageUrl(url || '');
         break;
       case '배경':
-        setBackgroundImageUrl(url);
+        setBackgroundImageUrl(url || '');
         break;
       default:
         break;
@@ -51,14 +65,27 @@ const ItemBox = ({
           </button>
         ))}
       </div>
-      <div className="flex flex-wrap items-center gap-[10px] ml-[10px]">
+      <div className="flex flex-wrap justify-start gap-[10px] px-[10px]">
+        <div
+          className={`flex flex-row items-center w-[64px] h-[60px] border-2 rounded-[16px] justify-center cursor-pointer hover:bg-primary-orange hover:shadow-md ${
+            selectedItems[category as keyof typeof selectedItems] === 'default'
+              ? 'bg-gray-300'
+              : ''
+          }`}
+          onClick={() => handleItemClick(null)}
+        ></div>
         {filteredItems.map((item) => (
           <div
             key={item.url}
-            className="flex flex-row items-center w-[64px] h-[60px] border-2 rounded-[16px] justify-center cursor-pointer"
+            className={`relative flex flex-row items-center w-[64px] h-[60px] border-2 rounded-[16px] justify-center cursor-pointer hover:bg-primary-orange hover:shadow-md ${
+              selectedItems[category as keyof typeof selectedItems] === item.url
+                ? 'bg-gray-300'
+                : ''
+            }`}
             onClick={() => handleItemClick(item.url)}
           >
             <img src={item.url} alt="item" className="w-[40px] h-[40px]" />
+            {selectedItems[category as keyof typeof selectedItems] === item.url}
           </div>
         ))}
       </div>

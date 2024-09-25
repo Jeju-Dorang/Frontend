@@ -1,9 +1,10 @@
 import { CategoryCode } from 'CategoryCodes';
-import { useEffect, useState } from 'react';
-import { Map } from 'react-kakao-maps-sdk';
-import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/index';
-import { Place, PlacesSearchResultItem } from '@type/place';
+import { Fragment, useEffect, useState } from 'react';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { MAP_CATEGORY } from '@constants/category';
+import { Place, PlacesSearchResultItem } from '@type/place';
+import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/index';
+import InvalidLocation from '@components/InvalidLocation/index';
 
 interface Props {
   lat: number;
@@ -19,6 +20,7 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
   const [infoWindow, setInfoWindow] = useState<kakao.maps.InfoWindow | null>(
     null,
   );
+  const isInvalidLocation = lat === 0 && lng === 0;
 
   useEffect(() => {
     if (!map) return;
@@ -77,7 +79,7 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
           <button
             key={button.id}
             onClick={() => handleCategoryChange(button.id as CategoryCode)}
-            className={`rounded-[15px] w-[74px] h-[24px] mx-2 text-[10px] shadow-[0_1px_6px_0px_rgba(0,0,0,0.3)] ${
+            className={`rounded-[15px] w-[74px] h-[24px] mx-2 text-[10px] shadow-[0_1px_6px_0px_rgba(0,0,0,0.3)] hover:text-gray-lg ${
               category === button.id ? 'text-primary-orange' : 'text-gray-dg'
             }`}
           >
@@ -90,19 +92,35 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
 
   return (
     <div className={`${css}`}>
-      {renderButtons()}
-      <Map
-        center={{ lat, lng }}
-        style={{ width: '100%', height: '460px' }}
-        onCreate={setMap}
-      >
-        <PlaceMarkers
-          places={places}
-          map={map}
-          infoWindow={infoWindow}
-          setInfoWindow={setInfoWindow}
-        />
-      </Map>
+      {isInvalidLocation ? (
+        <InvalidLocation />
+      ) : (
+        <Fragment>
+          {renderButtons()}
+          <Map
+            center={{ lat, lng }}
+            style={{ width: '100%', height: '460px' }}
+            onCreate={setMap}
+          >
+            <MapMarker
+              position={{ lat, lng }}
+              image={{
+                src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/red_b.png',
+                size: { width: 50, height: 50 },
+                options: { offset: { x: 25, y: 50 } },
+              }}
+            />
+            <PlaceMarkers
+              places={places}
+              map={map}
+              infoWindow={infoWindow}
+              setInfoWindow={setInfoWindow}
+              myLat={lat}
+              myLng={lng}
+            />
+          </Map>
+        </Fragment>
+      )}
     </div>
   );
 };

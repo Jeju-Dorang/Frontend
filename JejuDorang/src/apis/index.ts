@@ -1,8 +1,14 @@
 import { useAuthStore } from '@states/useAuthStore';
 import { API_URL } from '@constants/url';
-import axios, { AxiosResponse } from 'axios';
+import axios, {
+  AxiosResponse,
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+} from 'axios';
+import { getRefreshToken } from './auth';
 
-const $axios = (requiredToken: boolean) => {
+const $axios = (requiredToken: boolean): AxiosInstance => {
   const client = axios.create({
     baseURL: API_URL,
     headers: {
@@ -19,6 +25,26 @@ const $axios = (requiredToken: boolean) => {
       return config;
     });
   }
+  // client.interceptors.response.use(
+  //   (response) => response,
+  //   async (error: AxiosError) => {
+  //     if (error.response?.status === 403) {
+  //       const newAccessToken = await getRefreshToken();
+  //       if (newAccessToken) {
+  //         useAuthStore.getState().setAccessToken(newAccessToken);
+  //         if (error.config) {
+  //           error.config.headers['Authorization'] = `Bearer ${newAccessToken}`;
+  //           return client(error.config);
+  //         }
+  //       } else {
+  //         useAuthStore.getState().logout();
+  //         window.location.href = '/login';
+  //         return Promise.reject(error);
+  //       }
+  //     }
+  //     return Promise.reject(error);
+  //   },
+  // );
 
   return client;
 };
@@ -35,8 +61,9 @@ const api = {
   get: async <T>(
     requiredToken: boolean,
     url: string,
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> => {
-    return $axios(requiredToken).get<T>(url);
+    return $axios(requiredToken).get<T, AxiosResponse<T>>(url, config);
   },
 
   patch: async <T, P>(

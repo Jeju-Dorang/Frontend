@@ -1,29 +1,32 @@
-import { Achievement } from '@type/achievement';
+import { Achievement } from './achievement';
 
-export type AuthStore = {
-  isLoggedIn: boolean;
-  login: () => void;
-  logout: () => void;
-
+export interface AuthStore {
   accessToken: string | null;
   setAccessToken: (accessToken: string) => void;
   refreshToken: string | null;
   setRefreshToken: (refreshToken: string) => void;
+  logout: () => void;
+  isAuthenticated: () => boolean;
   memberName: string | null;
   setMemberName: (memberName: string) => void;
-  email: string | null;
-  setEmail: (email: string) => void;
+  characterImage: {
+    itemImage: string;
+    petImage: string;
+    backGroundImage: string;
+  } | null;
+  setCharacterImage: (characterImage: {
+    itemImage: string;
+    petImage: string;
+    backGroundImage: string;
+  }) => void;
   memberComment: string | null;
   setMemberComment: (memberComment: string) => void;
-  characterImage: string | null;
-  setCharacterImage: (characterImage: string) => void;
   memberImage: string | null;
   setMemberImage: (memberImage: string) => void;
-  achievement: Achievement | null;
-  setAchievement: (achievement: Achievement) => void;
-  loading: {
-    lat: number;
-    lng: number;
-  };
-  setLoading: (loading: { lat: number; lng: number }) => void;
-};
+  achievement: Achievement[] | null;
+  setAchievement: (achievement: Achievement[]) => void;
+  loding: { lat: number; lng: number };
+  setLoding: (loding: { lat: number; lng: number }) => void;
+  threadId: string | null;
+  setThreadId: (threadId : string) => void;
+}

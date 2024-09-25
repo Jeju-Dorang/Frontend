@@ -1,6 +1,6 @@
 import { postQuestion } from '@apis/community';
 import { useState } from 'react';
-import { MAX_TITLE_LENGTH, MAX_LIST_LENGTH } from '@constants/maxTextLength';
+import { MAX_POST_TITLE_LENGTH, MAX_POST_COMMENT_LENGTH } from '@constants/maxTextLength';
 
 interface Props {
   handleModal: () => void;
@@ -33,25 +33,25 @@ const WriteList = ({ handleModal, fetchQuestions }: Props) => {
         <input
           type="text"
           value={title}
-          onChange={(e) => setTitle(e.target.value.slice(0, MAX_TITLE_LENGTH))}
+          onChange={(e) => setTitle(e.target.value.slice(0, MAX_POST_TITLE_LENGTH))}
           placeholder="제목을 입력하세요"
-          maxLength={MAX_TITLE_LENGTH}
+          maxLength={MAX_POST_TITLE_LENGTH}
           className="w-full p-2 border border-gray-300 rounded-md mb-2"
         />
         <div className="text-right text-sm text-gray-500 mb-4">
-          {title.length} / {MAX_TITLE_LENGTH}
+          {title.length} / {MAX_POST_TITLE_LENGTH}
         </div>
 
         <h2 className="text-lg font-semibold mb-2">내용</h2>
         <textarea
           value={content}
-          onChange={(e) => setContent(e.target.value.slice(0, MAX_LIST_LENGTH))}
+          onChange={(e) => setContent(e.target.value.slice(0, MAX_POST_COMMENT_LENGTH))}
           placeholder="내용을 입력하세요"
-          maxLength={MAX_LIST_LENGTH}
+          maxLength={MAX_POST_COMMENT_LENGTH}
           className="w-full p-2 border border-gray-300 rounded-md mb-2 h-40 resize-none"
         />
         <div className="text-right text-sm text-gray-500 mb-4">
-          {content.length} / {MAX_LIST_LENGTH}
+          {content.length} / {MAX_POST_COMMENT_LENGTH}
         </div>
 
         <div className="flex justify-end space-x-2">

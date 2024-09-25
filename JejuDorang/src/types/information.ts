@@ -2,10 +2,13 @@ import { Achievement } from './achievement';
 
 export interface Information {
   memberName: string;
-  email: string;
   memberComment: string;
   memberImage: string;
-  characterImage: string;
+  characterImage: {
+    itemImage: string;
+    petImage: string;
+    backGroundImage: string;
+  };
   achievement: Achievement[];
-  loding: [lat: number, lng: number];
+  loding: { lat: number; lng: number };
 }

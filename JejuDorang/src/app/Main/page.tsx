@@ -7,9 +7,10 @@ import MainModal from '@components/MainModal';
 
 const Main = () => {
   const navigate = useNavigate();
+  const { memberName, memberImage, memberComment } = useAuthStore();
 
   useEffect(() => {
-    // fetchMainData();
+    fetchMainData();
   }, []);
 
   const fetchMainData = async () => {
@@ -22,11 +23,7 @@ const Main = () => {
 
   return (
     <>
-      <Profile
-        name={useAuthStore.getState().memberName}
-        image={useAuthStore.getState().memberImage}
-        detail={useAuthStore.getState().memberComment}
-      />
+      <Profile name={memberName} image={memberImage} detail={memberComment} />
       <hr />
       <MainModal />
     </>

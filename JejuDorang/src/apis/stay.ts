@@ -18,4 +18,15 @@ const getStays = async (
   }
 };
 
+// TODO: 백엔드 리뷰 되는지 확인하고 더 작업예정
+const getStay = async (lodgingId: number): Promise<Stays | null> => {
+  try {
+    const response = await api.get<Stays>(true, `/lodging/${lodgingId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Kakao login failed:', error);
+    return null;
+  }
+};
+
 export { getStays };

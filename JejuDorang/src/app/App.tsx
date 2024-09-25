@@ -13,6 +13,7 @@ import KakaoCallback from './KakaoCallback/page';
 import MyPage from './MyPage/page';
 import EditMyPage from './EditMyPage/page';
 import AllDiaries from './AllDiaries/page';
+import RecommendStay from './RecommendStay/page';
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState<boolean>(true);
@@ -44,7 +45,7 @@ function App() {
     // <BrowserRouter>
       <div className="flex justify-center items-center w-full min-h-screen bg-background">
         <div className="w-full h-full min-h-screen max-w-[402px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] custom:rounded-[20px] flex flex-col">
-          <div className="flex-grow overflow-y-auto">
+          <div className="flex-grow overflow-y-auto ">
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/login" element={<Login />} />
@@ -54,12 +55,14 @@ function App() {
                 path="/dorang"
                 element={<Dorang setIsNavVisible={setIsNavVisible} />}
               />
-              <Route path="/activity" element={<Activity />} />
-              <Route path="/stay" element={<Stay />} />
-              <Route path="/record" element={<Record />} />
-              <Route path="/mypage" element={<MyPage />} />
-              <Route path="/mypage/edit" element={<EditMyPage />} />
-              <Route path="/mypage/allDiaries" element={<AllDiaries />} />
+              <Route
+                path="/stay/recommend"
+                element={
+                  <PrivateRoute>
+                    <RecommendStay />
+                  </PrivateRoute>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

@@ -1,3 +1,4 @@
+export const MAX_DIARY_TITLE_LENGTH = 20;
 export const MAX_DIARY_CONTENT_LENGTH = 60;
 export const MAX_POST_TITLE_LENGTH = 30;
 export const MAX_POST_COMMENT_LENGTH = 1000;

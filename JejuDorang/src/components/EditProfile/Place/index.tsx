@@ -19,15 +19,25 @@ const Place = ({place}:Props) => {
                 </h3>
                 <div className = "flex flex-row items-center mt-3 justify-between gap-20">
                     <div className='flex flex-row gap-1'>
-                        <h2 className='mt-1 font-semibold text-[#7E7E7E] text-[16px]'>
-                            {place}
-                        </h2>
-                        <button onClick={() => navigate('/stay')}
-                                className='mt-1 font-semibold text-gray-dg text-[16px] 
-                                            cursor-pointer hover:text-[#73BCE5]'
-                        >
-                            변경
-                        </button>
+                        {place?
+                            <>
+                                <h2 className='mt-1 font-semibold text-[#7E7E7E] text-[16px]'>
+                                    {place}
+                                </h2>
+                                <button onClick={() => navigate('/stay')}
+                                        className='mt-1 font-semibold text-gray-dg text-[16px] 
+                                                    cursor-pointer hover:text-[#73BCE5]'
+                                >
+                                    변경
+                                </button>
+                            </>
+                            :<button onClick = {() => navigate('/stay')}
+                                    className='mt-1 font-semibold text-[#7E7E7E] text-[16px]
+                                                hover:text-primary-blue'>
+                                숙소를 등록해주세요
+                            </button>
+
+                        }
 
                     </div>
                     <div className='flex flex-row gap-1 items-center'>

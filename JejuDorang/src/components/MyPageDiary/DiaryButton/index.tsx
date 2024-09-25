@@ -10,7 +10,7 @@ const DiaryButton= () => {
     return (
         <div className="flex flex-row items-center justify-center mt-3 gap-2">
             
-            <button onClick={() => navigate('/allDiaries') }
+            <button onClick={() => navigate('/mypage/allDiaries') }
                     className="flex flex-col gap-1 w-[79px] h-[74px] rounded-lg 
                             border-gray-lg border-2 shadow-current items-center justify-center
                             cursor-pointer hover:bg-gray-lg hover:border-primary-orange">

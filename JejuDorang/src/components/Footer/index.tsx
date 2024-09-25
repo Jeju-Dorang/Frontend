@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Activity from '#img/footer/notClicked/activity.webp';
 import Home from '#img/footer/notClicked/home.webp';
@@ -10,9 +10,12 @@ import ClickHome from '#img/footer/Clicked/home.webp';
 import ClickChat from '#img/footer/Clicked/chat.webp';
 import ClickRecord from '#img/footer/Clicked/record.webp';
 import ClickUser from '#img/footer/Clicked/user.webp';
-import { target } from '@type/footerTarget';
 
-const Footer: React.FC = () => {
+interface Props {
+  currentPage : string;
+}
+
+const Footer = ({currentPage}:Props) => {
   const [activity, setActivity] = useState<boolean>(false);
   const [home, setHome] = useState<boolean>(true);
   const [chat, setChat] = useState<boolean>(false);
@@ -21,19 +24,24 @@ const Footer: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleChange = (target: target) => {
+  useEffect( () => {
+    handleChange(currentPage)
+    console.log("target : ", currentPage);
+  }, [currentPage])
+
+  const handleChange = (target:string) => {
     setActivity(target === 'activity');
-    setHome(target === 'home');
-    setChat(target === 'chat');
+    setHome(target === '/');
+    setChat(target === 'dorang');
     setRecord(target === 'record');
-    setUser(target === 'user');
-    if (target === 'chat') {
+    setUser(target === 'mypage');
+    if (target === 'dorang') {
       navigate('/dorang');
     } else if (target === 'record') {
       navigate('/record');
-    } else if (target === 'user') {
+    } else if (target === 'mypage') {
       navigate('/mypage');
-    } else if (target === 'home') {
+    } else if (target === '/') {
       navigate('/');
     } else if (target === 'activity') {
       navigate('/activity');
@@ -41,7 +49,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full mt-[15px] h-[90px] bg-white items-center justify-center gap-[42px] shadow-[0_-8px_24px_rgba(0,0,0,0.15)]">
+    <div className="flex w-full mt-[15px] h-[90px] bg-white items-center justify-center gap-[42px] shadow-[0_-4px_14px_rgba(0,0,0,0.10)]">
       <button onClick={() => handleChange('activity')}>
         <img
           src={activity ? ClickActivity : Activity}
@@ -49,14 +57,14 @@ const Footer: React.FC = () => {
           className="w-[25px] h-[25px]"
         />
       </button>
-      <button onClick={() => handleChange('chat')}>
+      <button onClick={() => handleChange('dorang')}>
         <img
           src={chat ? ClickChat : Chat}
           alt="chat router"
           className="w-[25px] h-[25px]"
         />
       </button>
-      <button onClick={() => handleChange('home')}>
+      <button onClick={() => handleChange('/')}>
         <img
           src={home ? ClickHome : Home}
           alt="home router"
@@ -70,7 +78,7 @@ const Footer: React.FC = () => {
           className="w-[25px] h-[25px]"
         />
       </button>
-      <button onClick={() => handleChange('user')}>
+      <button onClick={() => handleChange('mypage')}>
         <img
           src={user ? ClickUser : User}
           alt="user router"

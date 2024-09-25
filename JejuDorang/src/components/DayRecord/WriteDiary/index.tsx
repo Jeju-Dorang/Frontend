@@ -1,8 +1,5 @@
 import { useState, ChangeEvent } from 'react';
-import {
-  MAX_DIARY_TITLE_LENGTH,
-  MAX_TEXT_LENGTH,
-} from '@constants/maxTextLength';
+import {  MAX_DIARY_TITLE_LENGTH, MAX_DIARY_CONTENT_LENGTH } from '@constants/maxTextLength';
 import diaryDefault from '#img/diaryDefault.webp';
 import { postDiary } from '@apis/diary';
 
@@ -54,7 +51,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
-    if (input.length <= MAX_TEXT_LENGTH) {
+    if (input.length <= MAX_DIARY_CONTENT_LENGTH) {
       setDiaryContent(input);
     }
   };
@@ -144,10 +141,10 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
               padding: '0 8px',
               height: '160px',
             }}
-            maxLength={MAX_TEXT_LENGTH}
+            maxLength={MAX_DIARY_CONTENT_LENGTH}
           />
           <div className="text-right text-sm text-gray-500 mt-1">
-            {diaryContent.length} / {MAX_TEXT_LENGTH}
+            {diaryContent.length} / {MAX_DIARY_CONTENT_LENGTH}
           </div>
         </div>
         <div className="w-full mb-[MAX_DIARY_TITLE_LENGTHpx] flex gap-[12px]">

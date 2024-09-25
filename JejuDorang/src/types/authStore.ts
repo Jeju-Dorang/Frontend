@@ -2,7 +2,7 @@ import { Achievement } from './achievement';
 
 export interface AuthStore {
   accessToken: string | null;
-  setAccessToken: (accessToken: string) => void;
+  setAccessToken: (accessToken: string | null) => void;
   refreshToken: string | null;
   setRefreshToken: (refreshToken: string) => void;
   logout: () => void;
@@ -28,5 +28,5 @@ export interface AuthStore {
   loding: { lat: number; lng: number };
   setLoding: (loding: { lat: number; lng: number }) => void;
   threadId: string | null;
-  setThreadId: (threadId : string) => void;
+  setThreadId: (threadId: string) => void;
 }

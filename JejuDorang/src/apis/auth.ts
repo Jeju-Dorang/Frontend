@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { api } from './index';
 import { useAuthStore } from '@states/useAuthStore';
+import { API_URL } from '@constants/url';
 
 const getAccessToken = async (code: string): Promise<boolean> => {
   try {
@@ -26,21 +28,17 @@ const getAccessToken = async (code: string): Promise<boolean> => {
   }
 };
 
-const getRefreshToken = async (): Promise<string> => {
+const getRefreshToken = async (): Promise<string | null> => {
   try {
     const refreshToken = useAuthStore.getState().refreshToken;
     if (!refreshToken) {
       throw new Error('Refresh token not found');
     }
-    const response = await api.get<{ accessToken: string }>(
-      false,
-      '/auth/token/refresh',
-      {
-        headers: {
-          'Refresh-Token': refreshToken,
-        },
+    const response = await axios.get(`${API_URL}/auth/token/refresh`, {
+      headers: {
+        'refreshToken': refreshToken,
       },
-    );
+    });
     const newAccessToken = response.data.accessToken;
     if (newAccessToken) {
       return newAccessToken;
@@ -49,7 +47,7 @@ const getRefreshToken = async (): Promise<string> => {
     }
   } catch (error) {
     console.error('Token refresh failed:', error);
-    return '';
+    return null;
   }
 };
 

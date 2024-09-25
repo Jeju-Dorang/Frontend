@@ -7,7 +7,7 @@ export const useAuthStore = create(
   persist<AuthStore>(
     (set, get) => ({
       accessToken: null,
-      setAccessToken: (accessToken: string) =>
+      setAccessToken: (accessToken: string | null) =>
         set({ accessToken: accessToken }),
       refreshToken: null,
       setRefreshToken: (refreshToken: string) =>
@@ -47,8 +47,7 @@ export const useAuthStore = create(
       loding: { lat: 0, lng: 0 },
       setLoding: (loding: { lat: number; lng: number }) => set({ loding }),
       threadId: null,
-      setThreadId : (threadId : string) =>
-        set({threadId: threadId})
+      setThreadId: (threadId: string) => set({ threadId: threadId }),
     }),
     {
       name: 'userInfoStorage',

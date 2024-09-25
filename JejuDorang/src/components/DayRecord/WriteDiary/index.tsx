@@ -1,17 +1,18 @@
 import { useState, ChangeEvent } from 'react';
-import {  MAX_DIARY_TITLE_LENGTH, MAX_DIARY_CONTENT_LENGTH } from '@constants/maxTextLength';
+import {
+  MAX_DIARY_TITLE_LENGTH,
+  MAX_DIARY_CONTENT_LENGTH,
+} from '@constants/maxTextLength';
 import diaryDefault from '#img/diaryDefault.webp';
 import { postDiary } from '@apis/diary';
+import { Tag } from '@type/diary';
 
 interface Props {
-  setIsWriteDiary: () => void;
+  setIsWriteDiary?: () => void;
+  achievementId?: number;
 }
 
-interface Tag {
-  tagName: string;
-}
-
-const WriteDiary = ({ setIsWriteDiary }: Props) => {
+const WriteDiary = ({ setIsWriteDiary, achievementId }: Props) => {
   const [title, setTitle] = useState<string>('');
   const [diaryContent, setDiaryContent] = useState<string>('');
   const [isPublic, setIsPublic] = useState<boolean>(false);
@@ -39,6 +40,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
       content: diaryContent,
       imageUrl: imagePreview || diaryDefault,
       secret: isPublic ? 'public' : 'private',
+      achievementId: achievementId,
       tagList: tagList,
     };
     const res = await postDiary(diaryData);
@@ -46,7 +48,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
       alert('일기 작성에 실패했습니다.');
       return;
     }
-    setIsWriteDiary();
+    setIsWriteDiary?.();
   };
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -104,7 +106,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
           </div>
         </div>
         <div className="text-[10px] text-gray-500">
-          {title.length} / MAX_DIARY_TITLE_LENGTH
+          {title.length} / {MAX_DIARY_TITLE_LENGTH}
         </div>
         <span className="text-[10px] font-semibold text-gray-dg">
           {todayDate}
@@ -164,7 +166,7 @@ const WriteDiary = ({ setIsWriteDiary }: Props) => {
           <button
             type="button"
             className="px-4 bg-gray-200 rounded w-[70px] h-[20px] text-[10px] hover:text-white"
-            onClick={() => setIsWriteDiary()}
+            onClick={() => setIsWriteDiary?.()}
           >
             취소
           </button>

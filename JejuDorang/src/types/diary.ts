@@ -5,7 +5,9 @@ export interface Tag {
 export interface Diary {
   title: string;
   content: string;
-  imageUrl: string;
+  imageUrl?: string;
+  achievementid?: number;
+  date?: string;
   secret: string;
   tagList: Tag[];
 }

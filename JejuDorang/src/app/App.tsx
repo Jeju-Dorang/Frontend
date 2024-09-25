@@ -21,7 +21,6 @@ function App() {
   const { accessToken, refreshToken } = useAuthStore();
 
   const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-    
     if (!accessToken && !refreshToken) {
       return <Navigate to="/login" replace />;
     }
@@ -32,7 +31,7 @@ function App() {
     <BrowserRouter>
       <div className="flex justify-center items-center w-full min-h-screen bg-background">
         <div className="w-full h-full min-h-screen max-w-[402px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] custom:rounded-[20px] flex flex-col">
-          <div className="flex-grow overflow-y-auto">
+          <div className="flex-grow overflow-y-auto ">
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/auth/kakao/callback" element={<KakaoCallback />} />

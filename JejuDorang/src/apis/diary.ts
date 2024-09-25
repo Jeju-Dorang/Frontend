@@ -2,6 +2,7 @@ import { api } from './index';
 import { DetailStory, StoryItem } from '@type/storyItem';
 import { Diary } from '@type/diary';
 import { Streak } from '@type/streak';
+import { convertToTwoDigits } from '@utils/index';
 
 const getStories = async (): Promise<StoryItem[] | null> => {
   try {
@@ -31,9 +32,10 @@ const getStreaks = async (
   month: number,
 ): Promise<Streak[] | null> => {
   try {
+    const paddedMonth = convertToTwoDigits(month);
     const response = await api.get<Streak[]>(
       true,
-      `/posts/streaks?year=${year}&month=${month}`,
+      `/posts/streaks?year=${year}&month=${paddedMonth}`,
     );
     return response.data;
   } catch (error) {

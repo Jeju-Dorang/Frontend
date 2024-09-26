@@ -21,7 +21,7 @@ const MainDorang = () => {
     }
   }, []);
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-fit">
       <div
         className="flex flex-col justify-start items-center h-[333px] rounded-[16px] bg-background mt-[11px]"
         style={{

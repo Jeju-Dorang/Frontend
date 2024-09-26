@@ -68,6 +68,7 @@ const DorangAcitivity= () => {
                     {activementData.map((data, index) => (
                         <AchievementBox
                             key = {index}
+                            achievementId = {data.achievementId}
                             achievementName= {data.achievementName}
                             achievementIcon= {data.achievementIcon}
                             achievementComment= {data.achievementComment}

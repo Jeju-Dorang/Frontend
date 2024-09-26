@@ -33,6 +33,7 @@ const MyPageAchievement= ({setMainMypage, achievementData}:Props) => {
                         .map((data, index) => (
                             <AchievementBox
                                 key={index}
+                                achievementId = {data.achievementId}
                                 achievementIcon={data.achievementIcon}
                                 achievementName={data.achievementName}
                                 achievementComment={data.achievementComment}

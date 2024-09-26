@@ -12,6 +12,7 @@ export interface Achievement {
 }
 
 export interface FullAchievementData {
+  achievementId : number;
   achievementIcon?: string;
   achievementName: string;
   achievementComment: string;

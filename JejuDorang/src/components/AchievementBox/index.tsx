@@ -1,7 +1,9 @@
+import WriteDiary from '@components/DayRecord/WriteDiary';
 import { FullAchievementData } from '@type/achievement';
-import React from 'react';
+import React, { useState } from 'react';
 
-const AchievementBox = ({ 
+const AchievementBox = ({
+            achievementId,
             achievementIcon,
             achievementName,
             achievementComment,
@@ -10,9 +12,15 @@ const AchievementBox = ({
     }: FullAchievementData) => {
 
         const progressPercentage = (achievementCnt / maxAchieve) * 100;
+        const [isClicked, setIsClicked] = useState<boolean>(false);
 
         return (
-            <div className="relative w-[342px] h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB]">
+            <>
+            {isClicked ?
+                <WriteDiary
+                    achievementId={achievementId} 
+                /> :
+                <div className="relative w-[342px] h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB]">
                 <img src={achievementIcon} alt="업적" className="absolute top-[9px] left-[10px] w-[65px] h-[65px] rounded-[10px] border-2 bg-white" style={{ borderColor: 'var(--gray_color, #BDBDBD)' }}/>
                 <p className="absolute top-[10px] left-[82px] text-black text-[15px] font-bold leading-[140%] tracking-[-0.3px]">
                     {achievementName}
@@ -31,10 +39,11 @@ const AchievementBox = ({
                     운동{/* {title} */}
                 </div>
                 <button
-                className="absolute top-[45px] right-[9px] flex justify-center items-center w-[57px] h-[24px] rounded-[10px] border text-[10px] bg-gray-dg font-semibold"
-                    style={{
-                        letterSpacing: '-0.2px'
-                    }}>
+                    onClick ={() => setIsClicked(!isClicked)}
+                    className="absolute top-[45px] right-[9px] flex justify-center items-center w-[57px] h-[24px] rounded-[10px] border text-[10px] bg-gray-dg font-semibold"
+                        style={{
+                            letterSpacing: '-0.2px'
+                        }}>
                     인증하기
                 </button>
                 < div className="absolute top-[60px] right-[73px] w-[187px] h-[12px] rounded-[5px] border border-gray-lg bg-gray-lg">
@@ -49,6 +58,8 @@ const AchievementBox = ({
                     </span>
                 </div>
             </div>
+            }
+            </>
         );
     }
 

@@ -1,4 +1,5 @@
 import defaultImage from "#img/profile.webp";
+import { useState } from "react";
 
 interface Props {
     name : string;
@@ -8,12 +9,16 @@ interface Props {
 
 const Profile = ({name, profileImage, setImageSrc}:Props) => {
 
+    const [profileImg, setProfileImg] = useState<string>(profileImage || defaultImage);
+
     const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = (e) => {
-                setImageSrc(e.target?.result as string);
+                const newImageSrc = e.target?.result as string;
+                setProfileImg(newImageSrc); // 업로드한 이미지로 상태 변경
+                setImageSrc(newImageSrc); // 부모 컴포넌트로 이미지 경로 전달
             };
             reader.readAsDataURL(file);
         }
@@ -26,16 +31,15 @@ const Profile = ({name, profileImage, setImageSrc}:Props) => {
                 프로필
             </h3>
             <div className='flex flex-row mt-4 items-center justify-between'>
-                {profileImage?
-                    <img src={profileImage} className="w-[87px] h-[87px]" />
-                    :<img src={defaultImage} className="w-[87px] h-[87px]" />
-                }
+                <label htmlFor="file-upload" className="cursor-pointer">
+                    <img src={profileImg} className="w-[87px] h-[87px] rounded-full object-cover" />
+                </label>
                 <input 
-                type="file" 
-                id="file-upload" 
-                accept="image/*" 
-                onChange={uploadImage} 
-                className="hidden" 
+                    type="file" 
+                    id="file-upload" 
+                    accept="image/*" 
+                    onChange={uploadImage} 
+                    className="hidden" 
                 />
                 <div className="flex flex-col justify-start mr-12">
                     <h2 className="text-black font-semibold text-[20px]">

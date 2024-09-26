@@ -134,7 +134,7 @@ function App() {
               }
             />
             <Route
-              path="/allDiaries"
+              path="/mypage/allDiaries"
               element={
                 <PrivateRoute>
                   <AllDiaries />

@@ -86,6 +86,13 @@ const LocationActivity = () => {
                                 img={data.image}
                             />
                         ))}
+
+                        {/* 놀거리가 없을 경우 */}
+                        {!activityData &&
+                            <div className= "justify-center items-center text-black text-15px">
+                                현재 위치에서 정보를 찾을 수 없습니다.
+                            </div>
+                        }
                     </div>
                 </>
             )}

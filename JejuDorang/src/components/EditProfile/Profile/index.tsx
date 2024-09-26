@@ -3,8 +3,22 @@ import defaultImage from "#img/profile.webp";
 interface Props {
     name : string;
     profileImage? : string;
+    setImageSrc : (imageSrc : string) => void;
 }
-const Profile = ({name, profileImage}:Props) => {
+
+const Profile = ({name, profileImage, setImageSrc}:Props) => {
+
+    const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setImageSrc(e.target?.result as string);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <>
         <div className="flex flex-col mt-2 ml-7 mb-4">
@@ -16,6 +30,13 @@ const Profile = ({name, profileImage}:Props) => {
                     <img src={profileImage} className="w-[87px] h-[87px]" />
                     :<img src={defaultImage} className="w-[87px] h-[87px]" />
                 }
+                <input 
+                type="file" 
+                id="file-upload" 
+                accept="image/*" 
+                onChange={uploadImage} 
+                className="hidden" 
+                />
                 <div className="flex flex-col justify-start mr-12">
                     <h2 className="text-black font-semibold text-[20px]">
                         {name}

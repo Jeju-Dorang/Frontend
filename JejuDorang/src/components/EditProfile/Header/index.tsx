@@ -1,9 +1,24 @@
 import Back from "#img/back.svg"
+import { patchMypageProfileContent, patchMypageProfileImage } from "@apis/editMypage";
 import { useNavigate } from "react-router-dom";
 
+interface Props {
+    imageSrc : string;
+    content : string;
+}
 
-const Header = () => {
+
+const Header = ({imageSrc, content}:Props) => {
     const navigate = useNavigate();
+
+    const handleChageProfile = async() => {
+        const patchImgResponse = await patchMypageProfileImage(imageSrc);
+        const patchContentResponse = await patchMypageProfileContent(content);
+
+        if(patchContentResponse && patchImgResponse) {
+            navigate('/mypage')
+        }
+    }
 
     return (
         <div className="mt-1 w-[100%] h-[41px] flex flex-row justify-between items-center">
@@ -17,7 +32,7 @@ const Header = () => {
                 </p>
             </div>
             {/* onClick시 api 요청 코드 추가 */}
-            <button onClick={() => navigate('/mypage')}
+            <button onClick={handleChageProfile}
                     className="mr-6 text-gray-dg font-semibold text-[18px]
                                 cursor-pointer hover:text-black">
                     완료

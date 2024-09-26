@@ -2,34 +2,26 @@ import { useEffect } from "react";
 import DorangMessage from "./DorangMessage";
 import UserMessage from "./UserMessage";
 import { CHAT } from "@type/chat";
-import { postCreateThread } from "@apis/chat";
 import SpinnerDorangMessage from "./SpinnerDorangMessage";
+import { useAuthStore } from "@states/useAuthStore";
 
 interface Props {
-    interests : string[]
-    messages : CHAT[]
+    messages : CHAT[];
 }
 
-const Chat = ({interests, messages}:Props) => {
-
-    
-    {/* 디버깅코드 */}
-    console.log("messages" , messages)
-
-    useEffect( () => {
-        postCreateThread();
-    }, []);
-
-
+const Chat = ({messages}:Props) => {
+    const interests = useAuthStore.getState().interest;
 
     return (
         <div className="w-[100%] h-full flex flex-col mt-[15px] overflow-y-auto">
             <div className="flex justify-center items-center">
                 <div className="flex justify-center items-center mt-[51px] h-[24px] rounded-[100px] 
                                 border border-gray-dg bg-white">
-                    <p className="flex text-primary-orange font-bold text-[13px] m-2">
+                    {interests &&
+                        <p className="flex text-primary-orange font-bold text-[13px] m-2">
                         여행키워드 : {interests.join(', ')}
-                    </p>
+                        </p>
+                    }
                 </div>
             </div>
             <div className="mt-[10px]">
@@ -42,8 +34,12 @@ const Chat = ({interests, messages}:Props) => {
                     msg.type === 'user' ? 
                         <UserMessage key={index} message={msg.text} /> :
                         <DorangMessage key={index} message={msg.text}/>
-                        // url={msg.url} 나중에 도랑이 메시지에 url도 넣을거임
                     ))}
+                {messages.length > 0 && messages[messages.length - 1].type === 'user' && (
+                    <div>
+                        <SpinnerDorangMessage />
+                    </div>
+                )}
                 
             </div>
         </div>

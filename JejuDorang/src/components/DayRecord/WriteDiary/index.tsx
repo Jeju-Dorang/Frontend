@@ -1,12 +1,8 @@
 import { useState, ChangeEvent } from 'react';
-<<<<<<< HEAD
-import {  MAX_DIARY_TITLE_LENGTH, MAX_DIARY_CONTENT_LENGTH } from '@constants/maxTextLength';
-=======
 import {
   MAX_DIARY_TITLE_LENGTH,
   MAX_TEXT_LENGTH,
 } from '@constants/maxTextLength';
->>>>>>> fb91f84 (✨ Feat: 숙소추천페이지 완성)
 import diaryDefault from '#img/diaryDefault.webp';
 import { postDiary } from '@apis/diary';
 

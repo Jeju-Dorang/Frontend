@@ -85,11 +85,7 @@ const RecommendStay = () => {
             lat: Number(stayData[0].latitude),
             lng: Number(stayData[0].longitude),
           }}
-<<<<<<< HEAD
-          className="h-full m-2 rounded-[20px]"
-=======
           className="w-full h-full"
->>>>>>> fb91f84 (✨ Feat: 숙소추천페이지 완성)
           level={3}
         >
           {stayData.map((stay, index) => (

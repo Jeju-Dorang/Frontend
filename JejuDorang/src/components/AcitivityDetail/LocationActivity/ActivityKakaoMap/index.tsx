@@ -4,15 +4,17 @@ import PlaceActivity from './PlaceActivity';
 import { useEffect, useState } from 'react';
 import { Place, PlacesSearchResultItem } from '@type/place';
 import { CategoryCode } from 'CategoryCodes';
+import { StayApiResponse } from '@type/stay';
 
 interface Props {
     lat: number;
     lng: number;
     css: string;
+    activityData : StayApiResponse[];
 }
 
 
-const ActivityKakaoMap = ({ lat, lng, css }: Props) => {
+const ActivityKakaoMap = ({ lat, lng, css, activityData }: Props) => {
     const category:CategoryCode = 'AT4';
     const [places, setPlaces] = useState<Place[]>([]);
     const [map, setMap] = useState<kakao.maps.Map | null>(null);
@@ -76,6 +78,17 @@ const ActivityKakaoMap = ({ lat, lng, css }: Props) => {
                     width: 70,
                     height: 70
                 }}}/>
+
+                {activityData.map((activity, index) => (
+                    <MapMarker
+                    key={index}
+                    position={{
+                        lat: Number(activity.mapY),
+                        lng: Number(activity.mapX),
+                    }}>
+                        <div className="p-1 text-black">{activity.title}</div>
+                    </MapMarker>
+                ))}
                 
                 <PlaceActivity
                 places={places}

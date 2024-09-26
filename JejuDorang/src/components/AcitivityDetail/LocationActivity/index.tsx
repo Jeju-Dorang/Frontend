@@ -5,14 +5,6 @@ import { Location, LocationApiRequest } from "@type/location";
 import { useEffect, useState } from "react";
 import { postLocationActivity } from "@apis/locationActivity";
 
-// 임시 더미 데이터 -> api 연결시 삭제
-// const ActivityData: StayData[] = [
-//     {name: '카세로지', distance: '530m', location: '제주특별자치도 서귀포시 표선면 가시로 383', description:'표선에 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능'},
-//     {name: '카세로지', distance: '530m', location: '제주특별자치도 서귀포시 표선면 가시로 383', description:'표선에 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능'},
-//     {name: '카세로지', distance: '530m', location: '제주특별자치도 서귀포시 표선면 가시로 383', description:'표선에 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능'},
-//     {name: '카세로지', distance: '530m', location: '제주특별자치도 서귀포시 표선면 가시로 383', description:'표선에 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능'},
-// ];
-
 const LocationAcitivity= () => {
     const [activityData, setActivityData] = useState<StayApiResponse[]>([]);
     const [latitude, setLatitude ] = useState<number>(0);
@@ -32,11 +24,11 @@ const LocationAcitivity= () => {
         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
         const location:LocationApiRequest = {
 
-            // 우선 제주도 주소로 더미 데이터 넣어놓기
-            // 밑에 주석해제 하면 실제 위치로 넘어감
+            // 실제 위치
             mapX : longitude.toString(),
             mapY : latitude.toString()
             
+            // 제주도 주소 더미 데이터
             // mapX : '126.786877',
             // mapY : '33.345535'
         };
@@ -60,7 +52,12 @@ const LocationAcitivity= () => {
             <h3 className = "font-semibold text-[13px] text-gray-dg">
                 내 위치를 기반으로한 맞춤 추천
             </h3> 
-            <ActivityKakaoMap lat ={latitude} lng={longitude} css={'flex'} />
+            <ActivityKakaoMap 
+                lat ={latitude}
+                lng={longitude}
+                css={'flex'}
+                activityData={activityData} 
+            />
             <div className='flex flex-col gap-2 justify-center items-center'>
                 {activityData.map((data, index) => (
                     <StayBox

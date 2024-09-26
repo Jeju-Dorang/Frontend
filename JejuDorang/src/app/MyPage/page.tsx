@@ -8,53 +8,55 @@ import { FullAchievementData } from '@type/achievement';
 import { mypageProfile } from '@type/mypage';
 
 const MyPage = () => {
-    const [mainMypage, setMainMypage] = useState<boolean>(true);
-    const [profile, setProfile] = useState<mypageProfile>();
-    const [achievement, setAchievement] = useState<FullAchievementData[]>([]);
+  const [mainMypage, setMainMypage] = useState<boolean>(true);
+  const [profile, setProfile] = useState<mypageProfile>();
+  const [achievement, setAchievement] = useState<FullAchievementData[]>([]);
 
-    useEffect(() => {
-        fetchMypageData();
-    }, []);
+  useEffect(() => {
+    fetchMypageData();
+  }, []);
 
-    const fetchMypageData = async () => {
-        const mypageData = await getMypageData();
-        if (mypageData) {
-            const profileData : mypageProfile = {
-                memberName: mypageData.memberName,
-                email: mypageData.email,
-                memberComment: mypageData.memberComment,
-                profileImage: mypageData.profileImage,
-                lodgingAddress: mypageData.lodgingAddress,
-            }
-            setProfile(profileData)
-            setAchievement(mypageData.achievements)
-        }
-    };
+  const fetchMypageData = async () => {
+    const mypageData = await getMypageData();
+    if (mypageData) {
+      const profileData: mypageProfile = {
+        memberName: mypageData.memberName,
+        memberComment: mypageData.memberComment,
+        profileImage: mypageData.profileImage,
+        lodgingAddress: mypageData.lodgingAddress,
+      };
+      setProfile(profileData);
+      setAchievement(mypageData.achievements);
+    }
+  };
 
-    console.log("profile data: ", profile);
-    console.log("achievement data:", achievement);
-    
-    return (
+  console.log('profile data: ', profile);
+  console.log('achievement data:', achievement);
+
+  return (
+    <>
+      {mainMypage && profile ? (
         <>
-        {mainMypage && profile ? 
-            <>
-                <MyPageProfile
-                    memberName={profile.memberName}
-                    email={profile.email}
-                    memberComment={profile.memberComment}
-                    lodgingAddress={profile.lodgingAddress}
-                />
-                <MyPageDiary />
-                <MyPageAchievement 
-                    setMainMypage = {setMainMypage}
-                    achievementData = {achievement} />
-            </>
-            :<AchievementList 
-                setMainMypage = {setMainMypage}
-                achievementData = {achievement} />
-        }
+          <MyPageProfile
+            memberName={profile.memberName}
+            memberComment={profile.memberComment}
+            profileImage={profile.profileImage}
+            lodgingAddress={profile.lodgingAddress}
+          />
+          <MyPageDiary />
+          <MyPageAchievement
+            setMainMypage={setMainMypage}
+            achievementData={achievement}
+          />
         </>
-    );
+      ) : (
+        <AchievementList
+          setMainMypage={setMainMypage}
+          achievementData={achievement}
+        />
+      )}
+    </>
+  );
 };
 
 export default MyPage;

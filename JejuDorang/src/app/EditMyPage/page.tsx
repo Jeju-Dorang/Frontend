@@ -22,13 +22,12 @@ const EditMyPage = () => {
             setProfile(profileData)
         }
     };
-    
+
     return(
         <>
         {profile &&
-            <EditProfile 
+            <EditProfile
                 memberName={profile.memberName}
-                email={profile.email}
                 profileImage={profile.profileImage}
                 memberComment={profile.memberComment}
                 lodgingAddress={profile.lodgingAddress}

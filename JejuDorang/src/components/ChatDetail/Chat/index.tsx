@@ -3,6 +3,7 @@ import DorangMessage from "./DorangMessage";
 import UserMessage from "./UserMessage";
 import { CHAT } from "@type/chat";
 import { postCreateThread } from "@apis/chat";
+import SpinnerDorangMessage from "./SpinnerDorangMessage";
 
 interface Props {
     interests : string[]

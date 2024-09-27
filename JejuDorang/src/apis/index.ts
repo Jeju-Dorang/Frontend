@@ -25,6 +25,26 @@ const $axios = (requiredToken: boolean): AxiosInstance => {
       return config;
     });
   }
+  return client;
+};
+
+const $imgAxios = (requiredToken: boolean): AxiosInstance => {
+  const client = axios.create({
+    baseURL: API_URL,
+    headers: {
+      // 'Content-Type': 'multipart/form-data',
+      },
+    });
+
+  if (requiredToken) {
+    client.interceptors.request.use((config) => {
+      const token = useAuthStore.getState().accessToken;
+      if (token) {
+        config.headers.accessToken = token;
+      }
+      return config;
+    });
+  }
   // client.interceptors.response.use(
   //   (response) => response,
   //   async (error: AxiosError) => {
@@ -56,6 +76,14 @@ const api = {
     data: P,
   ): Promise<AxiosResponse<T>> => {
     return $axios(requiredToken).post<T>(url, data);
+  },
+
+  imgPost: async <T, P>(
+    requiredToken: boolean,
+    url: string,
+    data: P,
+  ): Promise<AxiosResponse<T>> => {
+    return $imgAxios(requiredToken).post<T>(url, data);
   },
 
   get: async <T>(

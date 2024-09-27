@@ -1,3 +1,4 @@
+import { StayLocation } from "@type/location";
 import { api } from ".";
 
 const getAuthWithdraw = async (): Promise<boolean> => {
@@ -14,12 +15,25 @@ const getAuthWithdraw = async (): Promise<boolean> => {
     }
 };
 
-const patchMypageProfileImage = async (memberImage:string): Promise<boolean> => {
+const patchMypageProfileImage = async (memberImage:File) => {
+    if (!memberImage) {
+        console.error("memberImage is null or undefined");
+        return false;
+    }
+    
+    const formData = new FormData();
+    formData.append('file', memberImage);
+
     try {
-        const response = await api.patch<boolean, string>(
+        console.log("profileImage : ", memberImage);
+         // FormData 내용 출력
+        formData.forEach((value, key) => {
+            console.log(`Key: ${key}, Value: ${value}`);
+        });
+        const response = await api.imgPost<boolean, FormData>(
             true,
-            '/information/image',
-            memberImage
+            '/image/profile',
+            formData 
         );
         console.log("patchMypageProfileImage response : ", response);
         return true;
@@ -31,11 +45,13 @@ const patchMypageProfileImage = async (memberImage:string): Promise<boolean> => 
 
 const patchMypageProfileContent = async (memberContent:string): Promise<boolean> => {
     try {
+        console.log("profileImage : ", memberContent);
         const response = await api.patch<boolean, string>(
             true,
-            '/information/image',
+            '/information/content',
             memberContent
         );
+        console.log("patchMypageProfileContent response : ", response);
         return true;
     } catch (error) {
         console.error('editing profile content failed:', error);
@@ -43,8 +59,26 @@ const patchMypageProfileContent = async (memberContent:string): Promise<boolean>
     }
 }
 
+const postLodgingData = async (stay : StayLocation) : Promise<boolean> => {
+    try {
+        const response = await api.post<boolean, StayLocation>(
+            true,
+            '/information/lodging',
+            stay
+        );
+        console.log("postLodgingData response : ", response);
+        return true;
+    } catch (error) {
+        console.error('Failed posting lodgingData:', error);
+        return false;
+    }
+}
+
+
+
 export {
     getAuthWithdraw,
     patchMypageProfileContent,
-    patchMypageProfileImage
+    patchMypageProfileImage,
+    postLodgingData
 }

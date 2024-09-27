@@ -3,7 +3,7 @@ import { patchMypageProfileContent, patchMypageProfileImage } from "@apis/editMy
 import { useNavigate } from "react-router-dom";
 
 interface Props {
-    imageSrc : string;
+    imageSrc ?: File;
     content : string;
 }
 
@@ -11,15 +11,26 @@ interface Props {
 const Header = ({imageSrc, content}:Props) => {
     const navigate = useNavigate();
 
+    console.log("header imageSrc : ", imageSrc);
+
     const handleChangeProfile = async() => {
-        const patchImgResponse = await patchMypageProfileImage(imageSrc);
-        const patchContentResponse = await patchMypageProfileContent(content);
+        try {
+            if (imageSrc) {
+                const patchImgResponse = await patchMypageProfileImage(imageSrc);
+                console.log("Image updated: ", patchImgResponse);
+            }
 
-        if(patchContentResponse && patchImgResponse) {
-            navigate('/mypage')
+            // 프로필 내용 업데이트
+            const patchContentResponse = await patchMypageProfileContent(content);
+            console.log("Content updated: ", patchContentResponse);
+
+            // 업데이트 후 마이페이지로 이동
+            navigate('/mypage');
+        } catch (error) {
+            console.error("Error updating profile: ", error);
         }
-    }
-
+    };
+    
     return (
         <div className="mt-1 w-[100%] h-[41px] flex flex-row justify-between items-center">
             <div className="flex flex-row">

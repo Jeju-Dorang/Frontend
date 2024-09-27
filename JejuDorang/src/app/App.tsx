@@ -27,6 +27,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState<string>('');
   const location = useLocation();
   const { accessToken, refreshToken } = useAuthStore();
+  const hideFooterPaths = ['/login', '/auth/kakao/callback', '/dorang/chat'];
 
   useEffect(() => {
     const pathSegments: string[] = location.pathname.split('/');
@@ -152,7 +153,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-        {location.pathname !== '/dorang/chat' && <Footer currentPage={currentPage} />}
+        {!hideFooterPaths.includes(location.pathname) && <Footer currentPage={currentPage} />}
       </div>
     </div>
   );

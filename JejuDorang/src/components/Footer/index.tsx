@@ -51,7 +51,7 @@ const Footer = ({ currentPage }: Props) => {
   return (
     <div className="flex w-full h-[90px] max-w-[402px] bg-white rounded-b-[20px]
                     items-center justify-center gap-[42px] shadow-[0_-4px_14px_rgba(0,0,0,0.10)]
-                    fixed bottom-0 z-50">
+                    fixed bottom-0 z-10">
       <button onClick={() => handleChange('activity')}>
         <img
           src={activity ? ClickActivity : Activity}

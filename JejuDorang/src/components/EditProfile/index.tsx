@@ -8,14 +8,16 @@ import { useState } from "react";
 
 const EditProfile = ({memberName,profileImage,memberComment,lodgingAddress}
     :mypageProfile) => {
-        const [imageSrc, setImageSrc] = useState<string>('');
+        const [imageSrc, setImageSrc] = useState<File | null>(null);
         const [content, setContent] = useState<string>('');
+
+        const finalContent = content === '' ? memberComment : content;
 
         return (
             <>
             <Header 
-                imageSrc = {imageSrc}
-                content = {content}
+                {...(imageSrc && { imageSrc })}
+                content={finalContent}
             />
             <Profile
                 profileImage = {profileImage}

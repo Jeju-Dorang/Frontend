@@ -4,21 +4,26 @@ import { useState } from "react";
 interface Props {
     name : string;
     profileImage? : string;
-    setImageSrc : (imageSrc : string) => void;
+    setImageSrc : (imageSrc : File) => void;
 }
 
 const Profile = ({name, profileImage, setImageSrc}:Props) => {
 
     const [profileImg, setProfileImg] = useState<string>(profileImage || defaultImage);
+    const [selectFile, setSelectFile] = useState<File | null>(null);
+    
+    console.log("profileImg : ", profileImg);
 
     const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
+            setSelectFile(file);
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 const newImageSrc = e.target?.result as string;
                 setProfileImg(newImageSrc); // 업로드한 이미지로 상태 변경
-                setImageSrc(newImageSrc); // 부모 컴포넌트로 이미지 경로 전달
+                setImageSrc(file); // 부모 컴포넌트로 이미지 경로 전달
             };
             reader.readAsDataURL(file);
         }

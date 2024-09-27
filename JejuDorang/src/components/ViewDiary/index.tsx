@@ -35,7 +35,7 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
     secret: "",
     tagList: [],
   });
-  const [isPublic, setIsPublic] = useState<boolean>(diary.secret === "PUBLIC");
+  const [isPublic, setIsPublic] = useState<boolean>(diary.secret === "public");
   
   useEffect ( () => {
     fetchDiaryData(diaryId);
@@ -75,7 +75,7 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg h-[560px] w-[258px]">
         <div className="flex justify-between items-center mb-[6px]">
           <h1

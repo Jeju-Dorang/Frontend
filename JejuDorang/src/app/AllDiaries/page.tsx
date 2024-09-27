@@ -12,7 +12,7 @@ const dumy = {
     image: "photo_url",
     date: "2024-07-20",
     title : "이거 될려나",
-    secret: "PUBLIC", // 또는 "PRIVATE"
+    secret: "public", // 또는 "PRIVATE"
     tagList: [
         {
             name: "바다"

@@ -24,7 +24,7 @@ const CompleteAchievement = () => {
   };
 
   return (
-    <div className="h-[112px] w-full">
+    <div className="h-fit w-full">
       <span className="font-semibold text-[14px] mb-[11px]">달성한 업적</span>
       <div className="flex flex-col items-center justifty-start">
         {renderAchievement()}

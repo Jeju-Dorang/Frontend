@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Place, PlacesSearchResultItem } from '@type/place';
 import { CategoryCode } from 'CategoryCodes';
 import { StayApiResponse } from '@type/stay';
+import { log } from 'console';
 
 interface Props {
     lat: number;
@@ -67,7 +68,7 @@ const ActivityKakaoMap = ({ lat, lng, css, activityData }: Props) => {
         <div className={`${css}`}>
             <Map 
                 center={{ lat, lng }}
-                style={{ width: '330px', height: '185px' }} 
+                style={{ width: '100%', height: '185px' }} 
                 onCreate={setMap}
             >
                 <MapMarker 
@@ -75,10 +76,10 @@ const ActivityKakaoMap = ({ lat, lng, css, activityData }: Props) => {
                 image={{
                 src: DorangProfile,
                 size: {
-                    width: 70,
-                    height: 70
+                    width: 50,
+                    height: 50
                 }}}/>
-
+{/* 
                 {activityData.map((activity, index) => (
                     <MapMarker
                     key={index}
@@ -88,13 +89,15 @@ const ActivityKakaoMap = ({ lat, lng, css, activityData }: Props) => {
                     }}>
                         <div className="p-1 text-black">{activity.title}</div>
                     </MapMarker>
-                ))}
+                ))} */}
                 
                 <PlaceActivity
-                places={places}
-                map={map}
-                infoWindow={infoWindow}
-                setInfoWindow={setInfoWindow}
+                    places={activityData}
+                    map={map}
+                    infoWindow={infoWindow}
+                    setInfoWindow={setInfoWindow}
+                    myLat={lat}
+                    myLng={lng}
                 />
             </Map>
         </div>

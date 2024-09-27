@@ -21,6 +21,7 @@ const patchMypageProfileImage = async (memberImage:string): Promise<boolean> => 
             '/information/image',
             memberImage
         );
+        console.log("patchMypageProfileImage response : ", response);
         return true;
     } catch (error) {
         console.error('editing profile image failed:', error);

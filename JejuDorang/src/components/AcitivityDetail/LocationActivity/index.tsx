@@ -61,11 +61,11 @@ const LocationActivity = () => {
                     내 위치를 기반으로한 맞춤 추천
                 </h3>
             {isLoading ? (
-                <div className="flex flex-col items-center justify-center h-full w-full ml-11 mt-20">
-                    <p className="font-medium text-[17px] text-black mb-3">
+                <div className="flex flex-col items-center justify-center h-full w-full">
+                    <p className="font-medium text-[17px] text-black mb-3 mt-3">
                         위치정보를 가져오고 있습니다...
                     </p>
-                    <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-5 border-primary-orange" />
+                    <div className="animate-spin rounded-full h-28 w-28 border-t-2 border-b-4 border-primary-orange" />
                 </div>
             ) : (
                 <>

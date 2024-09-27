@@ -48,7 +48,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                 <div className={`flex mr-4
                                 ${showInfo ? 'opacity-100' : 'opacity-0 '} transition-opacity bg-gray-lg
                                 text-primary-blue text-[10px] rounded-lg px-2 py-1 z-10`}>
-                        스토리에 태그를 선택하셔서 글을 작성해주세요!
+                        업적 인증하기 버튼을 눌러 글을 작성해주세요!
                     </div>
             </div>
             <div className='flex flex-col gap-[5px] items-center justify-center mb-4'>

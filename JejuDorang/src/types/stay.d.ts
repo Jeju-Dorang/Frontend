@@ -9,6 +9,6 @@ export interface StayApiResponse {
     title : string;
 	image : string;
 	address : string;
-    mapX?: string;
-    mapY?: string;
+    mapX: string;
+    mapY: string;
 }

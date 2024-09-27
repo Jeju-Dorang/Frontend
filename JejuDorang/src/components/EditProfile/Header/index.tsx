@@ -11,7 +11,7 @@ interface Props {
 const Header = ({imageSrc, content}:Props) => {
     const navigate = useNavigate();
 
-    const handleChageProfile = async() => {
+    const handleChangeProfile = async() => {
         const patchImgResponse = await patchMypageProfileImage(imageSrc);
         const patchContentResponse = await patchMypageProfileContent(content);
 
@@ -32,7 +32,7 @@ const Header = ({imageSrc, content}:Props) => {
                 </p>
             </div>
             {/* onClick시 api 요청 코드 추가 */}
-            <button onClick={handleChageProfile}
+            <button onClick={handleChangeProfile}
                     className="mr-6 text-gray-dg font-semibold text-[18px]
                                 cursor-pointer hover:text-black">
                     완료

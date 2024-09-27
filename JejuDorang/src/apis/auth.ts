@@ -34,12 +34,12 @@ const getRefreshToken = async (): Promise<string | null> => {
     if (!refreshToken) {
       throw new Error('Refresh token not found');
     }
-    const response = await axios.get(`${API_URL}/auth/token/refresh`, {
+    const response = await axios.get(`${API_URL}auth/token/refresh`, {
       headers: {
-        'refreshToken': refreshToken,
+        refreshToken: refreshToken,
       },
     });
-    const newAccessToken = response.data.accessToken;
+    const newAccessToken = response.headers.get('access-token');
     if (newAccessToken) {
       return newAccessToken;
     } else {

@@ -5,6 +5,7 @@ import axios, {
   AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
+  InternalAxiosRequestConfig,
 } from 'axios';
 import { getRefreshToken } from './auth';
 
@@ -25,26 +26,32 @@ const $axios = (requiredToken: boolean): AxiosInstance => {
       return config;
     });
   }
-  // client.interceptors.response.use(
-  //   (response) => response,
-  //   async (error: AxiosError) => {
-  //     if (error.response?.status === 403) {
-  //       const newAccessToken = await getRefreshToken();
-  //       if (newAccessToken) {
-  //         useAuthStore.getState().setAccessToken(newAccessToken);
-  //         if (error.config) {
-  //           error.config.headers['Authorization'] = `Bearer ${newAccessToken}`;
-  //           return client(error.config);
-  //         }
-  //       } else {
-  //         useAuthStore.getState().logout();
-  //         window.location.href = '/login';
-  //         return Promise.reject(error);
-  //       }
-  //     }
-  //     return Promise.reject(error);
-  //   },
-  // );
+  client.interceptors.response.use(
+    (response) => response,
+    async (error: AxiosError) => {
+      const originalRequest = error.config as InternalAxiosRequestConfig & {
+        _retry?: boolean;
+      };
+      if (error.response?.status === 403 && !originalRequest._retry) {
+        originalRequest._retry = true;
+        try {
+          const newAccessToken = await getRefreshToken();
+          console.log(newAccessToken);
+          useAuthStore.getState().setAccessToken(newAccessToken);
+          if (originalRequest.headers) {
+            originalRequest.headers.accessToken = newAccessToken;
+          }
+          return client(originalRequest);
+        } catch (refreshError) {
+          alert('로그인 세션이 만료되었습니다.\n다시 로그인 하시길 바랍니다.');
+          useAuthStore.getState().logout();
+          window.location.href = '/login';
+          return Promise.reject(refreshError);
+        }
+      }
+      return Promise.reject(error);
+    },
+  );
 
   return client;
 };

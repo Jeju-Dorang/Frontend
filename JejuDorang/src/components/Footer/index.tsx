@@ -12,10 +12,10 @@ import ClickRecord from '#img/footer/Clicked/record.webp';
 import ClickUser from '#img/footer/Clicked/user.webp';
 
 interface Props {
-  currentPage : string;
+  currentPage: string;
 }
 
-const Footer = ({currentPage}:Props) => {
+const Footer = ({ currentPage }: Props) => {
   const [activity, setActivity] = useState<boolean>(false);
   const [home, setHome] = useState<boolean>(true);
   const [chat, setChat] = useState<boolean>(false);
@@ -24,12 +24,12 @@ const Footer = ({currentPage}:Props) => {
 
   const navigate = useNavigate();
 
-  useEffect( () => {
-    handleChange(currentPage)
-    console.log("target : ", currentPage);
-  }, [currentPage])
+  useEffect(() => {
+    handleChange(currentPage);
+    console.log('target : ', currentPage);
+  }, [currentPage]);
 
-  const handleChange = (target:string) => {
+  const handleChange = (target: string) => {
     setActivity(target === 'activity');
     setHome(target === '/');
     setChat(target === 'dorang');
@@ -49,7 +49,9 @@ const Footer = ({currentPage}:Props) => {
   };
 
   return (
-    <div className="flex w-full mt-[15px] h-[90px] bg-white items-center justify-center gap-[42px] shadow-[0_-4px_14px_rgba(0,0,0,0.10)]">
+    <div className="flex w-full h-[90px] max-w-[402px] bg-white rounded-b-[20px]
+                    items-center justify-center gap-[42px] shadow-[0_-4px_14px_rgba(0,0,0,0.10)]
+                    fixed bottom-0 z-50">
       <button onClick={() => handleChange('activity')}>
         <img
           src={activity ? ClickActivity : Activity}
@@ -90,3 +92,5 @@ const Footer = ({currentPage}:Props) => {
 };
 
 export default Footer;
+
+

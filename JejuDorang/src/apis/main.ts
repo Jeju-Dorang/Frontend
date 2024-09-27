@@ -1,29 +1,14 @@
 import { api } from './index';
 import { Information } from '@type/information';
-import { useAuthStore } from '@states/useAuthStore';
-import { dorangItem } from '@type/dorangItem';
+import { dorangEquipItem, dorangItem } from '@type/dorangItem';
 
-const getMain = async (): Promise<boolean> => {
+const getMain = async (): Promise<Information | null> => {
   try {
     const response = await api.get<Information>(true, `/`);
-    if (response.data) {
-      const {
-        setMemberName,
-        setMemberComment,
-        setMemberImage,
-        setCharacterImage,
-        setAchievement,
-      } = useAuthStore.getState();
-      setMemberName(response.data.memberName);
-      setMemberComment(response.data.memberComment);
-      setMemberImage(response.data.memberImage);
-      setCharacterImage(response.data.characterImage);
-      setAchievement(response.data.achievement);
-    }
-    return true;
+    return response.data;
   } catch (error) {
     console.error('Failed to get main:', error);
-    return false;
+    return null;
   }
 };
 
@@ -36,4 +21,13 @@ const getDorangItems = async (): Promise<dorangItem | null> => {
   }
 };
 
-export { getMain, getDorangItems };
+const postDorangItems = async (data: dorangEquipItem): Promise<boolean> => {
+  try {
+    await api.post(true, `/character/items`, data);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export { getMain, getDorangItems, postDorangItems };

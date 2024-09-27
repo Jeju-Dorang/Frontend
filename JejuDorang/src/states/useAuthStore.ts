@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { AuthStore } from '@type/authStore';
 import { Achievement } from '@type/achievement';
+import { Information } from '@type/information';
 
 export const useAuthStore = create(
   persist<AuthStore>(
@@ -12,6 +13,14 @@ export const useAuthStore = create(
       refreshToken: null,
       setRefreshToken: (refreshToken: string) =>
         set({ refreshToken: refreshToken }),
+      setMainData: (data: Information) =>
+        set({
+          memberName: data.memberName,
+          memberComment: data.memberComment,
+          memberImage: data.memberImage,
+          characterImage: data.characterImage,
+          achievement: data.achievement,
+        }),
       logout: () =>
         set({
           accessToken: null,
@@ -31,9 +40,9 @@ export const useAuthStore = create(
       setMemberName: (memberName: string) => set({ memberName: memberName }),
       characterImage: null,
       setCharacterImage: (characterImage: {
-        itemImage: string;
-        petImage: string;
-        backGroundImage: string;
+        itemImage: number;
+        petImage: number;
+        backgroundImage: number;
       }) => set({ characterImage: characterImage }),
       memberComment: null,
       setMemberComment: (memberComment: string) =>

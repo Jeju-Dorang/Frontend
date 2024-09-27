@@ -12,7 +12,7 @@ interface Props {
   achievementId?: number;
 }
 
-const WriteDiary = ({ setIsWriteDiary, achievementId }: Props) => {
+const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
   const [title, setTitle] = useState<string>('');
   const [diaryContent, setDiaryContent] = useState<string>('');
   const [isPublic, setIsPublic] = useState<boolean>(false);
@@ -43,6 +43,7 @@ const WriteDiary = ({ setIsWriteDiary, achievementId }: Props) => {
       achievementId: achievementId,
       tagList: tagList,
     };
+    console.log(diaryData);
     const res = await postDiary(diaryData);
     if (res === false) {
       alert('일기 작성에 실패했습니다.');

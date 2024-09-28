@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Activity from '#img/footer/notClicked/activity.webp';
 import Home from '#img/footer/notClicked/home.webp';
 import Chat from '#img/footer/notClicked/chat.webp';
@@ -11,11 +11,7 @@ import ClickChat from '#img/footer/Clicked/chat.webp';
 import ClickRecord from '#img/footer/Clicked/record.webp';
 import ClickUser from '#img/footer/Clicked/user.webp';
 
-interface Props {
-  currentPage: string;
-}
-
-const Footer = ({ currentPage }: Props) => {
+const Footer = () => {
   const [activity, setActivity] = useState<boolean>(false);
   const [home, setHome] = useState<boolean>(true);
   const [chat, setChat] = useState<boolean>(false);
@@ -23,11 +19,12 @@ const Footer = ({ currentPage }: Props) => {
   const [user, setUser] = useState<boolean>(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    handleChange(currentPage);
-    console.log('target : ', currentPage);
-  }, [currentPage]);
+    const currentPath = location.pathname;
+    handleChange(currentPath === '/' ? '/' : currentPath.slice(1));
+  }, [location]);
 
   const handleChange = (target: string) => {
     setActivity(target === 'activity');
@@ -35,16 +32,11 @@ const Footer = ({ currentPage }: Props) => {
     setChat(target === 'dorang');
     setRecord(target === 'record');
     setUser(target === 'mypage');
-    if (target === 'dorang') {
-      navigate('/dorang');
-    } else if (target === 'record') {
-      navigate('/record');
-    } else if (target === 'mypage') {
-      navigate('/mypage');
-    } else if (target === '/') {
+
+    if (target !== location.pathname.slice(1) && target !== '/') {
+      navigate(`/${target}`);
+    } else if (target === '/' && location.pathname !== '/') {
       navigate('/');
-    } else if (target === 'activity') {
-      navigate('/activity');
     }
   };
 

@@ -19,5 +19,5 @@ export interface FullAchievementData {
   maxAchieve : number;
   achievementCnt : number;
   achievementStatus? : achievementStatus;
-  title? : string;
+  achievementType? : string;
 }

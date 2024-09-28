@@ -20,7 +20,7 @@ const Place = ({place}:Props) => {
     const [address, setAddress] = useState<string>('');
     const [longitude, setLongitude] = useState<number>(0);
     const [latitude, setLatitude] = useState<number>(0);
-    const [lodgingName, setLodgingName] = useState<string>('');
+    const [lodgingName, setLodgingName] = useState<string>(place);
 
     const onChangeOpenPost = () => {
         setIsOpenPost(!isOpenPost);
@@ -51,12 +51,14 @@ const Place = ({place}:Props) => {
     const onFetchLatitudelongitude = async () => {
         try {
             const response = await getLocalAddress(address);
-            if (response && response.data && response.data.documents.length > 0) {
+            if (response && response.data) {
                 const road_address = response.data.documents[0].road_address;
     
                 setLongitude(road_address.x);
                 setLatitude(road_address.y);
                 setLodgingName(road_address.building_name);
+
+                console.log(longitude,latitude,lodgingName);
     
                 // 상태 업데이트 후 sendLodgingData 호출
                 const isSuccess = await sendLodgingData(road_address.x, road_address.y, road_address.building_name);
@@ -65,14 +67,15 @@ const Place = ({place}:Props) => {
                 } else {
                     console.error("숙소 데이터 전송에 실패했습니다.");
                 }
-                } else {
-                    alert('위치 정보를 찾을 수 없습니다.');
-                }
+            } else {
+                alert('위치 정보를 찾을 수 없습니다.');
+            }
         } catch (error) {
             console.error("주소 정보를 가져오는 중 오류 발생:", error);
             alert('주소 정보를 가져오는 데 실패했습니다.');
         }
     };
+
     
     const sendLodgingData = async (longitude:number, latitude:number, lodgingName:string) => {
         const request: StayLocation = {
@@ -107,10 +110,10 @@ const Place = ({place}:Props) => {
                 </h3>
                 <div className = "flex flex-row items-center mt-3 justify-between gap-20">
                     <div className='flex flex-row gap-1'>
-                        {place?
+                        {lodgingName?
                             <>
                                 <h2 className='mt-1 font-semibold text-[#7E7E7E] text-[16px]'>
-                                    {place}
+                                    {lodgingName}
                                 </h2>
                                 <button onClick={onChangeOpenPost}
                                         className='mt-1 font-semibold text-gray-dg text-[16px] 

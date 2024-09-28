@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
     imageSrc ?: File;
-    content : string;
+    content ?: string;
 }
 
 
@@ -21,8 +21,10 @@ const Header = ({imageSrc, content}:Props) => {
             }
 
             // 프로필 내용 업데이트
-            const patchContentResponse = await patchMypageProfileContent(content);
-            console.log("Content updated: ", patchContentResponse);
+            if (content) {
+                const patchContentResponse = await patchMypageProfileContent(content);
+                console.log("Content updated: ", patchContentResponse);
+            }
 
             // 업데이트 후 마이페이지로 이동
             navigate('/mypage');

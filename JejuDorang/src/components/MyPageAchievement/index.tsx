@@ -24,7 +24,7 @@ const MyPageAchievement= ({setMainMypage, achievementData}:Props) => {
                 자세히 보기
             </button>
         </div>
-        <div className='flex flex-col gap-2 mt-3 items-center'>
+        <div className='flex flex-col gap-2 mt-3 items-center mr-4 ml-4'>
                 {/* 4개만 출력 */}
                 {achievementData &&
                     achievementData
@@ -39,7 +39,7 @@ const MyPageAchievement= ({setMainMypage, achievementData}:Props) => {
                                 achievementComment={data.achievementComment}
                                 maxAchieve={data.maxAchieve}
                                 achievementCnt={data.achievementCnt}
-                                title="운동" // API 수정 후 변경
+                                achievementType= {data.achievementType}
                             />
                         ))
                 }

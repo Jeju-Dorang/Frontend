@@ -64,4 +64,31 @@ const postDiary = async (diary: Diary): Promise<boolean> => {
   }
 };
 
-export { getStories, getStory, getStreaks, postDiary, postStoryLike };
+const postDiaryImage = async (diaryId: number, diaryImg: File ): Promise<boolean> => {
+  const formData = new FormData();
+  formData.append('file', diaryImg);
+
+  try {
+    const request = {
+      image : formData,
+      diaryId : diaryId
+    }
+
+    // 우선 타입 생략 (리펙토링 시 타입 추가)
+    await api.imgPost(true, `/image/diary`, request);
+    return true;
+  } catch (error) {
+    console.error('Failed to post diaryImage :', error);
+    return false;
+  }
+};
+
+
+export { 
+  getStories, 
+  getStory, 
+  getStreaks, 
+  postDiary, 
+  postStoryLike,
+  postDiaryImage
+};

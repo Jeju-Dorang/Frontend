@@ -1,23 +1,25 @@
 import { Achievement } from './achievement';
+import { Information } from './information';
 
 export interface AuthStore {
   accessToken: string | null;
-  setAccessToken: (accessToken: string) => void;
+  setAccessToken: (accessToken: string | null) => void;
   refreshToken: string | null;
   setRefreshToken: (refreshToken: string) => void;
+  setMainData: (data: Information) => void;
   logout: () => void;
   isAuthenticated: () => boolean;
   memberName: string | null;
   setMemberName: (memberName: string) => void;
   characterImage: {
-    itemImage: string;
-    petImage: string;
-    backGroundImage: string;
+    itemImage: number;
+    petImage: number;
+    backgroundImage: number;
   } | null;
   setCharacterImage: (characterImage: {
-    itemImage: string;
-    petImage: string;
-    backGroundImage: string;
+    itemImage: number;
+    petImage: number;
+    backgroundImage: number;
   }) => void;
   memberComment: string | null;
   setMemberComment: (memberComment: string) => void;
@@ -28,5 +30,5 @@ export interface AuthStore {
   loding: { lat: number; lng: number };
   setLoding: (loding: { lat: number; lng: number }) => void;
   threadId: string | null;
-  setThreadId: (threadId : string) => void;
+  setThreadId: (threadId: string) => void;
 }

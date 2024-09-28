@@ -21,12 +21,12 @@ const Stay = () => {
   };
 
   const convertToDirection = (mapIndex: number): string => {
-    const directions = ['north', 'east', 'south', 'west'];
+    const directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
     return directions[mapIndex] || '';
   };
 
   const convertToType = (categoryIndex: number): string => {
-    const categories = ['hotel', 'lodge', 'pension', 'guestHouse'];
+    const categories = ['HOTEL', 'BB', 'PENSION', 'GUEST_HOUSE'];
     return categories[categoryIndex] || '';
   };
 

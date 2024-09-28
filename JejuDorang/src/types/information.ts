@@ -5,9 +5,9 @@ export interface Information {
   memberComment: string;
   memberImage: string;
   characterImage: {
-    itemImage: string;
-    petImage: string;
-    backGroundImage: string;
+    itemImage: number;
+    petImage: number;
+    backgroundImage: number;
   };
   achievement: Achievement[];
   loding: { lat: number; lng: number };

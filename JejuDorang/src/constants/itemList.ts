@@ -9,15 +9,15 @@ import forest from '#img/dorang/background/forest.webp';
 import market from '#img/dorang/background/market.webp';
 import museum from '#img/dorang/background/museum.webp';
 
-export const ITEM_LIST = [
-  { type: '아이템', url: camera },
-  { type: '아이템', url: boat },
-  { type: '아이템', url: orange },
-  { type: '아이템', url: shrimp },
-  { type: '아이템', url: teddyBear },
-  { type: '펫', url: alpaca },
-  { type: '펫', url: blackPig },
-  { type: '배경', url: forest },
-  { type: '배경', url: market },
-  { type: '배경', url: museum },
-];
+export const ITEM_LIST = {
+  아이템: [
+    { url: '' },
+    { url: camera },
+    { url: boat },
+    { url: orange },
+    { url: shrimp },
+    { url: teddyBear },
+  ],
+  펫: [{ url: '' }, { url: alpaca }, { url: blackPig }],
+  배경: [{ url: '' }, { url: forest }, { url: market }, { url: museum }],
+};

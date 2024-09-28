@@ -43,7 +43,6 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
       achievementId: achievementId,
       tagList: tagList,
     };
-    console.log(diaryData);
     const res = await postDiary(diaryData);
     if (res === false) {
       alert('일기 작성에 실패했습니다.');

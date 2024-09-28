@@ -36,7 +36,6 @@ const $axios = (requiredToken: boolean): AxiosInstance => {
         originalRequest._retry = true;
         try {
           const newAccessToken = await getRefreshToken();
-          console.log(newAccessToken);
           useAuthStore.getState().setAccessToken(newAccessToken);
           if (originalRequest.headers) {
             originalRequest.headers.accessToken = newAccessToken;

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { api } from './index';
 import { useAuthStore } from '@states/useAuthStore';
 import { API_URL } from '@constants/url';
+import { AxiosResponse } from 'axios';
 
 const getAccessToken = async (code: string): Promise<boolean> => {
   try {
@@ -39,7 +40,8 @@ const getRefreshToken = async (): Promise<string | null> => {
         refreshToken: refreshToken,
       },
     });
-    const newAccessToken = response.headers.get('access-token');
+    const newAccessToken =
+      (response as AxiosResponse).headers['access-token'] || '';
     if (newAccessToken) {
       return newAccessToken;
     } else {

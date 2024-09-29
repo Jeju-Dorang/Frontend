@@ -4,22 +4,6 @@ import diaryDefault from '#img/diaryDefault.webp';
 import { postDiary } from '@apis/diary';
 import { Diary, Tag } from '@type/diary';
 import { deleteDiary, getDiary, patchSecret } from '@apis/allDiaries';
-// const dumy = {
-//   diaryId: 1,
-//   content: "어쩌고 저쩌고",
-//   image: "photo_url",
-//   date: "2024-07-20",
-//   title : "이거 될려나",
-//   secret: "PUBLIC", // 또는 "PRIVATE"
-//   tagList: [
-//       {
-//           name: "바다"
-//       },
-//       {
-//           name: "제주도"
-//       }
-//       ]
-//   };
 
 interface Props {
   diaryId : number;
@@ -38,9 +22,6 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
   });
 
   const [isPublic, setIsPublic] = useState<boolean>(true);
-  
-  console.log("diary.secret : ", diary.secret);
-  console.log("isPublic : ", isPublic);
   
   useEffect ( () => {
     fetchDiaryData(diaryId);
@@ -63,7 +44,6 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
 
   const setIsDeleteDiary = async() => {
     const response = await deleteDiary(diaryId);
-    console.log("setIsDeleteDiary", response);
     if (response) {
       handleSubmit;
       return true

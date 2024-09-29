@@ -52,7 +52,6 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
     }
     
     const diaryId = postDiaryRes;
-    console.log("diaryId : ", diaryId);
 
     if(diaryImage) {
       const postDiaryImgRes = await postDiaryImage(diaryId, diaryImage);

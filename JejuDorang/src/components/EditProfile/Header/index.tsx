@@ -11,19 +11,15 @@ interface Props {
 const Header = ({imageSrc, content}:Props) => {
     const navigate = useNavigate();
 
-    console.log("header imageSrc : ", imageSrc);
-
     const handleChangeProfile = async() => {
         try {
             if (imageSrc) {
-                const patchImgResponse = await patchMypageProfileImage(imageSrc);
-                console.log("Image updated: ", patchImgResponse);
+                await patchMypageProfileImage(imageSrc);
             }
 
             // 프로필 내용 업데이트
             if (content) {
-                const patchContentResponse = await patchMypageProfileContent(content);
-                console.log("Content updated: ", patchContentResponse);
+                await patchMypageProfileContent(content);
             }
 
             // 업데이트 후 마이페이지로 이동

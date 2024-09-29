@@ -30,9 +30,6 @@ const MyPage = () => {
     }
   };
 
-  console.log('profile data: ', profile);
-  console.log('achievement data:', achievement);
-
   return (
     <>
       {mainMypage && profile ? (

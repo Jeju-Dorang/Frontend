@@ -53,8 +53,6 @@ const postCreateMessage = async (content : string, interest : string[]) => {
                     }
             }
             );
-            // response.data가 유효한 경우에만 postRunAssistant 호출
-            console.log("postCreateMessage response : ", response);
             return response;
     } catch (error) {
             console.error('Error create message :', error);
@@ -77,7 +75,6 @@ const postRunAssistant = async () =>{
                     }
             }
             );
-            console.log("postRunAssistant response : ", response)
             return response.data;
     } catch (error) {
             console.error('Error run Assistant :', error);
@@ -102,7 +99,6 @@ const getThreadList = async () =>{
                 return false
             } else {
                 const assistantMessages = response.data.data[0].content[0].text.value
-                console.log("lastAssistantMessage response : ", assistantMessages)
                 return assistantMessages;
             }
     } catch (error) {

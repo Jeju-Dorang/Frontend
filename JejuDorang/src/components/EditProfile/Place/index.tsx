@@ -68,7 +68,7 @@ const Place = ({place}:Props) => {
                     console.error("숙소 데이터 전송에 실패했습니다.");
                 }
             } else {
-                alert('위치 정보를 찾을 수 없습니다.');
+                alert('다른 숙소 위치를 선택해주세요.');
             }
         } catch (error) {
             console.error("주소 정보를 가져오는 중 오류 발생:", error);

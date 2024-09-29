@@ -12,7 +12,6 @@ const getLocalAddress = async (address : string) => {
                     },
             }
             );
-            console.log("getLocalAddress response : ", response);
             return response;
     } catch (error) {
             console.error('Error fetch localAddress :', error);

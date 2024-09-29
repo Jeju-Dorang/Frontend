@@ -7,7 +7,6 @@ const getAuthWithdraw = async (): Promise<boolean> => {
             true,
             '/auth/kakao/unlink',
             );
-        console.log("getDorangActivity response : ", response);
         return true;
     } catch (error) {
         console.error('Failed to AuthWithdraw :', error);
@@ -25,17 +24,11 @@ const patchMypageProfileImage = async (memberImage:File) => {
     formData.append('file', memberImage);
 
     try {
-        console.log("profileImage : ", memberImage);
-         // FormData 내용 출력
-        formData.forEach((value, key) => {
-            console.log(`Key: ${key}, Value: ${value}`);
-        });
         const response = await api.imgPost<boolean, FormData>(
             true,
             '/image/profile',
             formData 
         );
-        console.log("patchMypageProfileImage response : ", response);
         return true;
     } catch (error) {
         console.error('editing profile image failed:', error);
@@ -45,13 +38,11 @@ const patchMypageProfileImage = async (memberImage:File) => {
 
 const patchMypageProfileContent = async (memberContent:string): Promise<boolean> => {
     try {
-        console.log("profileImage : ", memberContent);
         const response = await api.patch<boolean, string>(
             true,
             '/information/content',
             memberContent
         );
-        console.log("patchMypageProfileContent response : ", response);
         return true;
     } catch (error) {
         console.error('editing profile content failed:', error);
@@ -66,7 +57,6 @@ const postLodgingData = async (stay : StayLocation) : Promise<boolean> => {
             '/information/lodging',
             stay
         );
-        console.log("postLodgingData response : ", response);
         return true;
     } catch (error) {
         console.error('Failed posting lodgingData:', error);

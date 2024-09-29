@@ -17,7 +17,6 @@ const Header = ({imageSrc, content}:Props) => {
                 await patchMypageProfileImage(imageSrc);
             }
 
-            // 프로필 내용 업데이트
             if (content) {
                 await patchMypageProfileContent(content);
             }

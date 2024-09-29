@@ -58,7 +58,6 @@ const Place = ({place}:Props) => {
                 setLatitude(road_address.y);
                 setLodgingName(road_address.building_name);
 
-                console.log(longitude,latitude,lodgingName);
     
                 // 상태 업데이트 후 sendLodgingData 호출
                 const isSuccess = await sendLodgingData(road_address.x, road_address.y, road_address.building_name);
@@ -96,8 +95,6 @@ const Place = ({place}:Props) => {
         return false; // 전송 실패
     };
 
-    console.log("AddressCode : ", addressCode);
-    console.log("Address : ", address);
 
     return (
         <>

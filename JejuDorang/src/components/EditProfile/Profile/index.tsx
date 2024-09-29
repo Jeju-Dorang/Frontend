@@ -13,7 +13,6 @@ const Profile = ({name, profileImage, setImageSrc}:Props) => {
     const [profileImg, setProfileImg] = useState<string>(profileImage || defaultImage);
     const [selectFile, setSelectFile] = useState<File | null>(null);
     
-    console.log("profileImg : ", profileImg);
 
     const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];

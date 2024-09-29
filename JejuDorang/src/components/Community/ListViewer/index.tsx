@@ -41,7 +41,7 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
       commentContent: newComment,
       likeCount: 0,
       alreadyLike: false,
-      commentId: 0,
+      commentId: 1,
     };
 
     setLocalComments((prevComments) => [...prevComments, addedComment]);

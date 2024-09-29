@@ -4,6 +4,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import StayInfoCard from '@components/StayCard';
+import Spinner from '@components/Spinner';
 
 const RecommendStay = () => {
   const location = useLocation();
@@ -14,43 +15,20 @@ const RecommendStay = () => {
 
   useEffect(() => {
     const fetchStayData = async () => {
-      // const data = await getStays(direction, type, price);
-      // setStayData(data);
-
-      setStayData([
-        {
-          name: '카세로지',
-          image: 'url1',
-          address: '제주특별자치도 서귀포시 표선면 가시로 383',
-          distance: '530m',
-          lodgingId: 1,
-          rating: 4.5,
-          latitude: '33.55635',
-          longitude: '126.795841',
-        },
-        {
-          name: '카세로지2',
-          image: 'url1',
-          address: '제주특별자치도 서귀포시 표선면 가시로 383',
-          distance: '530m',
-          lodgingId: 2,
-          rating: 4.0,
-          latitude: '33.55635',
-          longitude: '126.7958',
-        },
-        {
-          name: '카세로지3',
-          image: 'url1',
-          address: '제주특별자치도 서귀포시 표선면 가시로 383',
-          distance: '530m',
-          lodgingId: 3,
-          rating: 4.3,
-          latitude: '33.55635',
-          longitude: '126.795',
-        },
-      ]);
+      const data = await getStays(direction, type, price);
+      if (data === null) {
+        navigate('/stay');
+      }
+      if (data.length === 0) {
+        alert('추천 숙소가 없습니다.');
+        navigate('/stay');
+      }
+      setStayData(data);
     };
     fetchStayData();
+    if (!direction || !type || !price) {
+      navigate('/stay');
+    }
   }, [direction, type, price]);
 
   const convertDirection = (dir: string) => {
@@ -63,18 +41,23 @@ const RecommendStay = () => {
     return directionMap[dir] || '';
   };
 
-  const convertType = (t: string) => {
+  const convertType = (type: string) => {
     const typeMap: { [key: string]: string } = {
       hotel: '호텔',
       lodge: '민박',
       pension: '펜션',
       guestHouse: '게스트 하우스',
     };
-    return typeMap[t] || '';
+    return typeMap[type] || '';
   };
 
-  if (!stayData) {
-    return <div className="text-center">Loading...</div>;
+  if (stayData === null) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <Spinner size={48} color="#F1C4A3" />
+        <p className="mt-4 text-lg font-semibold">데이터 불러오는 중...</p>
+      </div>
+    );
   }
 
   return (
@@ -111,8 +94,8 @@ const RecommendStay = () => {
             #{convertType(type)}
           </span>
         </div>
-        {stayData.map((stay, index) => (
-          <StayInfoCard key={index} stay={stay} />
+        {stayData.map((stay) => (
+          <StayInfoCard key={stay.lodgingId} stay={stay} />
         ))}
       </div>
     </Fragment>

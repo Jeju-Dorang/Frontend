@@ -51,7 +51,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                         업적 인증하기 버튼을 눌러 글을 작성해주세요!
                     </div>
             </div>
-            <div className='flex flex-col gap-[5px] items-center justify-center mb-4 mr-4 ml-4'>
+            <div className='flex flex-col gap-[5px] items-center justify-center mb-4 mx-4'>
                     {achievementData &&
                         achievementData
                             .filter(data => data.achievementStatus === "YET") // 업적 달성완료만 보여주기
@@ -74,7 +74,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
             <h1 className="font-semibold text-[20px] text-black ml-4 mt-3">
                 달성 업적
             </h1>
-            <div className='flex flex-col gap-[5px] items-center justify-center mb-4 mr-4 ml-4'>
+            <div className='flex flex-col gap-[5px] items-center justify-center mb-4 mx-4'>
                     {achievementData &&
                         achievementData
                             .filter(data => data.achievementStatus === "DONE") // 업적 달성완료만 보여주기

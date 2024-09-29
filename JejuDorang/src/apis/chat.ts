@@ -5,7 +5,7 @@ import axios from 'axios';
 const openaiKey = import.meta.env.VITE_OPENAI_SECRET_KEY;
 const assistantsId = import.meta.env.VITE_OPENAI_ASSISTANTS_ID;
 const threadId = import.meta.env.VITE_OPENAI_THREAD_ID;
-const openaiBaseUrl = import.meta.env.VITE_OPENAI_thread_BASE_URL;
+const openaiBaseUrl = import.meta.env.VITE_OPENAI_THREAD_BASE_URL;
 
 // const postCreateThread = async (): Promise<CreateThread[] | null> => {
 //     try {

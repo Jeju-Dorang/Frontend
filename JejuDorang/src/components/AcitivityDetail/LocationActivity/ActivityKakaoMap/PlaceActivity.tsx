@@ -34,10 +34,13 @@ const PlaceActivity = ({
 
     const newInfoWindow = new kakao.maps.InfoWindow({
         content: `
-        <div style="padding:5px;font-size:12px;text-align:center;min-width:150px;">
+        <div class="p-1 font-[12px] text-center min-w-[150px]">
             <div>${place.title}</div>
-            <button id="routeButton" style="margin-top:5px;padding:2px 5px;background-color:#FFA500;color:white;border:none;border-radius:3px;cursor:pointer;width:100%;">
-            길찾기
+            <button 
+                id="routeButton" 
+                class="mt-1 p-1 bg-primary-orange text-white 
+                border-none rounded cursor-pointer w-full">
+                길찾기
             </button>
         </div>
         `,

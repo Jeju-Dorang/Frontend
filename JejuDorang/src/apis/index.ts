@@ -9,12 +9,14 @@ import axios, {
 } from 'axios';
 import { getRefreshToken } from './auth';
 
-const $axios = (requiredToken: boolean): AxiosInstance => {
+const $axios = (requiredToken: boolean, isMultipart: boolean = false): AxiosInstance => {
+  const headers = {
+    'Content-Type': isMultipart ? '' : 'application/json',
+  };
+
   const client = axios.create({
     baseURL: API_URL,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
   });
 
   if (requiredToken) {
@@ -56,53 +58,6 @@ const $axios = (requiredToken: boolean): AxiosInstance => {
   return client;
 };
 
-const $imgAxios = (requiredToken: boolean): AxiosInstance => {
-  const client = axios.create({
-    baseURL: API_URL,
-    headers: {
-      // 'Content-Type': 'multipart/form-data',
-      },
-    });
-
-  if (requiredToken) {
-    client.interceptors.request.use((config) => {
-      const token = useAuthStore.getState().accessToken;
-      if (token) {
-        config.headers.accessToken = token;
-      }
-      return config;
-    });
-  }
-
-  client.interceptors.response.use(
-    (response) => response,
-    async (error: AxiosError) => {
-      const originalRequest = error.config as InternalAxiosRequestConfig & {
-        _retry?: boolean;
-      };
-      if (error.response?.status === 403 && !originalRequest._retry) {
-        originalRequest._retry = true;
-        try {
-          const newAccessToken = await getRefreshToken();
-          useAuthStore.getState().setAccessToken(newAccessToken);
-          if (originalRequest.headers) {
-            originalRequest.headers.accessToken = newAccessToken;
-          }
-          return client(originalRequest);
-        } catch (refreshError) {
-          alert('로그인 세션이 만료되었습니다.\n다시 로그인 하시길 바랍니다.');
-          useAuthStore.getState().logout();
-          window.location.href = '/login';
-          return Promise.reject(refreshError);
-        }
-      }
-      return Promise.reject(error);
-    },
-  );
-
-  return client;
-};
-
 const api = {
   post: async <T, P>(
     requiredToken: boolean,
@@ -117,7 +72,7 @@ const api = {
     url: string,
     data: P,
   ): Promise<AxiosResponse<T>> => {
-    return $imgAxios(requiredToken).post<T>(url, data);
+    return $axios(requiredToken, true).post<T>(url, data);
   },
 
   get: async <T>(

@@ -26,7 +26,7 @@ const patchSecret = async (diaryId: number, secret:string) : Promise<boolean> =>
     try {
         const response = await api.patch<boolean, null>(
             true,
-            `/information/diary/${diaryId}/?secret=${secret}`,
+            `/information/diary/${diaryId}?secret=${secret}`,
             null)
         return true
     } catch (error) {

@@ -1,6 +1,6 @@
 import { api } from './index';
 import { DetailStory, StoryItem } from '@type/storyItem';
-import { Diary } from '@type/diary';
+import { Diary, DiaryId } from '@type/diary';
 import { Streak } from '@type/streak';
 import { convertToTwoDigits } from '@utils/index';
 
@@ -54,28 +54,29 @@ const postStoryLike = async (diaryId: number): Promise<boolean> => {
   }
 };
 
-const postDiary = async (diary: Diary): Promise<boolean> => {
+const postDiary = async (diary: Diary): Promise<number|null> => {
   try {
-    await api.post<boolean, Diary>(true, `/posts/diary`, diary);
-    return true;
+    const response = await api.post<DiaryId, Diary>(
+      true,
+      `/posts/diary`,
+      diary);
+      return response.data.diaryId;
   } catch (error) {
     console.error('Failed to post diary:', error);
-    return false;
+    return null;
   }
 };
 
 const postDiaryImage = async (diaryId: number, diaryImg: File ): Promise<boolean> => {
   const formData = new FormData();
-  formData.append('file', diaryImg);
+  formData.append('image', diaryImg);
 
   try {
-    const request = {
-      image : formData,
-      diaryId : diaryId
-    }
-
-    // 우선 타입 생략 (리펙토링 시 타입 추가)
-    await api.imgPost(true, `/image/diary`, request);
+    await api.imgPost<null, FormData>(
+      true,
+      `/image/diary?diaryId=${diaryId}`,
+      formData
+    );
     return true;
   } catch (error) {
     console.error('Failed to post diaryImage :', error);

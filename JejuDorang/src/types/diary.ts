@@ -11,3 +11,7 @@ export interface Diary {
   secret: string;
   tagList: Tag[];
 }
+
+export interface DiaryId {
+  diaryId : number;
+}

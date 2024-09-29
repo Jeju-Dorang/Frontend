@@ -4,22 +4,23 @@ import diaryDefault from '#img/diaryDefault.webp';
 import { postDiary } from '@apis/diary';
 import { Diary, Tag } from '@type/diary';
 import { deleteDiary, getDiary, patchSecret } from '@apis/allDiaries';
-const dumy = {
-  diaryId: 1,
-  content: "어쩌고 저쩌고",
-  image: "photo_url",
-  date: "2024-07-20",
-  title : "이거 될려나",
-  secret: "PUBLIC", // 또는 "PRIVATE"
-  tagList: [
-      {
-          name: "바다"
-      },
-      {
-          name: "제주도"
-      }
-      ]
-  };
+// const dumy = {
+//   diaryId: 1,
+//   content: "어쩌고 저쩌고",
+//   image: "photo_url",
+//   date: "2024-07-20",
+//   title : "이거 될려나",
+//   secret: "PUBLIC", // 또는 "PRIVATE"
+//   tagList: [
+//       {
+//           name: "바다"
+//       },
+//       {
+//           name: "제주도"
+//       }
+//       ]
+//   };
+
 interface Props {
   diaryId : number;
   setIsViewDiary : (diaryId : number) => void;
@@ -35,7 +36,11 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
     secret: "",
     tagList: [],
   });
-  const [isPublic, setIsPublic] = useState<boolean>(diary.secret === "public");
+
+  const [isPublic, setIsPublic] = useState<boolean>(true);
+  
+  console.log("diary.secret : ", diary.secret);
+  console.log("isPublic : ", isPublic);
   
   useEffect ( () => {
     fetchDiaryData(diaryId);
@@ -44,7 +49,8 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
   const fetchDiaryData = async (diaryId:number) => {
         const response = await getDiary(diaryId);
         if (response) {
-            setDiary(response)
+            setDiary(response);
+            setIsPublic(diary.secret == "public");
         }
     }
 
@@ -57,9 +63,11 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
 
   const setIsDeleteDiary = async() => {
     const response = await deleteDiary(diaryId);
+    console.log("setIsDeleteDiary", response);
     if (response) {
+      handleSubmit;
       return true
-    };
+    }
   };
 
   const editSecret = async() => {
@@ -100,9 +108,9 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
             </span>
           </div>
         </div>
-        <div className="text-[10px] text-gray-500">
+        {/* <div className="text-[10px] text-gray-500">
           {diary.title.length} / MAX_DIARY_TITLE_LENGTH
-        </div>
+        </div> */}
         {diary.date &&
           <span className="text-[10px] font-semibold text-gray-dg">
             {diary.date}
@@ -134,9 +142,9 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
           >
             {diary.content}
           </p>
-          <div className="text-right text-sm text-gray-500 mt-1">
+          {/* <div className="text-right text-sm text-gray-500 mt-1">
             {diary.content.length} / {MAX_DIARY_CONTENT_LENGTH}
-          </div>
+          </div> */}
         </div>
         <div className="w-full mb-[MAX_DIARY_TITLE_LENGTHpx] flex gap-[12px]">
           {diary.tagList.map((tag, index) => (

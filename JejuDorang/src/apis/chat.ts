@@ -2,32 +2,34 @@ import { useAuthStore } from '@states/useAuthStore';
 import { CreateMessage, CreateThread } from '@type/chatApi';
 import axios from 'axios';
 
-const openai_key = import.meta.env.VITE_OPENAI_SECRET_KEY;
-const assistants_id = import.meta.env.VITE_OPENAI_ASSISTANTS_ID;
+const openaiKey = import.meta.env.VITE_OPENAI_SECRET_KEY;
+const assistantsId = import.meta.env.VITE_OPENAI_ASSISTANTS_ID;
+const threadId = import.meta.env.VITE_OPENAI_THREAD_ID;
+const openaiBaseUrl = import.meta.env.VITE_OPENAI_THREAD_BASE_URL;
 
-const postCreateThread = async (): Promise<CreateThread[] | null> => {
-    try {
-        const response = await axios.post(
-        'https://api.openai.com/v1/threads',
-        {},
-        {
-            headers: {
-                'Authorization': `Bearer ${openai_key}`, // 토큰이나 인증 헤더
-                'Content-Type': 'application/json',
-                'OpenAI-Beta': 'assistants=v2' 
-            }
-        }
-        );
-    console.log("postCreateThread response : ", response)
-    useAuthStore.getState().setThreadId(response.data.id)
-    console.log("ThreadId : ", useAuthStore.getState().threadId)
+// const postCreateThread = async (): Promise<CreateThread[] | null> => {
+//     try {
+//         const response = await axios.post(
+//         'https://api.openai.com/v1/threads',
+//         {},
+//         {
+//             headers: {
+//                 'Authorization': `Bearer ${openai_key}`, // 토큰이나 인증 헤더
+//                 'Content-Type': 'application/json',
+//                 'OpenAI-Beta': 'assistants=v2' 
+//             }
+//         }
+//         );
+//     console.log("postCreateThread response : ", response)
+//     useAuthStore.getState().setThreadId(response.data.id)
+//     console.log("ThreadId : ", useAuthStore.getState().threadId)
 
-    return response.data;
-    } catch (error) {
-        console.error('Error create thread :', error);
-        return null;
-    }
-};
+//     return response.data;
+//     } catch (error) {
+//         console.error('Error create thread :', error);
+//         return null;
+//     }
+// };
 
 // 타입으로 하기에 너무길어서 생략
 const postCreateMessage = async (content : string, interest : string[]) => {
@@ -41,18 +43,16 @@ const postCreateMessage = async (content : string, interest : string[]) => {
 
     try {
         const response = await axios.post(
-            `https://api.openai.com/v1/threads/${useAuthStore.getState().threadId}/messages`,
+            `${openaiBaseUrl}/${threadId}/messages`,
             sendMessage,
             {
                 headers: {
-                    'Authorization': `Bearer ${openai_key}`, // 토큰이나 인증 헤더
+                    'Authorization': `Bearer ${openaiKey}`, // 토큰이나 인증 헤더
                     'Content-Type': 'application/json',
                     'OpenAI-Beta': 'assistants=v2' 
                     }
             }
             );
-            // response.data가 유효한 경우에만 postRunAssistant 호출
-            console.log("postCreateMessage response : ", response);
             return response;
     } catch (error) {
             console.error('Error create message :', error);
@@ -63,19 +63,18 @@ const postCreateMessage = async (content : string, interest : string[]) => {
 const postRunAssistant = async () =>{
     try {
         const response = await axios.post(
-            `https://api.openai.com/v1/threads/${useAuthStore.getState().threadId}/runs`,
+            `${openaiBaseUrl}/${threadId}/runs`,
             {
-                "assistant_id": assistants_id
+                "assistant_id": assistantsId
             },
             {
                 headers: {
-                    'Authorization': `Bearer ${openai_key}`, // 토큰이나 인증 헤더
+                    'Authorization': `Bearer ${openaiKey}`, // 토큰이나 인증 헤더
                     'Content-Type': 'application/json',
                     'OpenAI-Beta': 'assistants=v2' 
                     }
             }
             );
-            console.log("postRunAssistant response : ", response)
             return response.data;
     } catch (error) {
             console.error('Error run Assistant :', error);
@@ -86,10 +85,10 @@ const postRunAssistant = async () =>{
 const getThreadList = async () =>{
     try {
         const response = await axios.get(
-            `https://api.openai.com/v1/threads/${useAuthStore.getState().threadId}/messages`,
+            `${openaiBaseUrl}/${threadId}/messages`,
             {
                 headers: {
-                    'Authorization': `Bearer ${openai_key}`, // 토큰이나 인증 헤더
+                    'Authorization': `Bearer ${openaiKey}`, // 토큰이나 인증 헤더
                     'Content-Type': 'application/json',
                     'OpenAI-Beta': 'assistants=v2' 
                     }
@@ -100,7 +99,6 @@ const getThreadList = async () =>{
                 return false
             } else {
                 const assistantMessages = response.data.data[0].content[0].text.value
-                console.log("lastAssistantMessage response : ", assistantMessages)
                 return assistantMessages;
             }
     } catch (error) {
@@ -110,7 +108,7 @@ const getThreadList = async () =>{
 }
 
 export {
-    postCreateThread,
+    // postCreateThread,
     postCreateMessage,
     postRunAssistant,
     getThreadList

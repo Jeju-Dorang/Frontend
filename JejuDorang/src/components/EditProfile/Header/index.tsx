@@ -1,10 +1,33 @@
 import Back from "#img/back.svg"
+import { patchMypageProfileContent, patchMypageProfileImage } from "@apis/editMypage";
 import { useNavigate } from "react-router-dom";
 
+interface Props {
+    imageSrc ?: File;
+    content ?: string;
+}
 
-const Header = () => {
+
+const Header = ({imageSrc, content}:Props) => {
     const navigate = useNavigate();
 
+    const handleChangeProfile = async() => {
+        try {
+            if (imageSrc) {
+                await patchMypageProfileImage(imageSrc);
+            }
+
+            if (content) {
+                await patchMypageProfileContent(content);
+            }
+
+            // 업데이트 후 마이페이지로 이동
+            navigate('/mypage');
+        } catch (error) {
+            console.error("Error updating profile: ", error);
+        }
+    };
+    
     return (
         <div className="mt-1 w-[100%] h-[41px] flex flex-row justify-between items-center">
             <div className="flex flex-row">
@@ -17,7 +40,7 @@ const Header = () => {
                 </p>
             </div>
             {/* onClick시 api 요청 코드 추가 */}
-            <button onClick={() => navigate('/mypage')}
+            <button onClick={handleChangeProfile}
                     className="mr-6 text-gray-dg font-semibold text-[18px]
                                 cursor-pointer hover:text-black">
                     완료

@@ -30,5 +30,7 @@ export interface AuthStore {
   loding: { lat: number; lng: number };
   setLoding: (loding: { lat: number; lng: number }) => void;
   threadId: string | null;
-  setThreadId: (threadId: string) => void;
+  setThreadId: (threadId : string) => void;
+  interest : string[];
+  setInterest : (interest : string[]) => void;
 }

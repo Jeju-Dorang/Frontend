@@ -7,7 +7,6 @@ const getDorangActivity = async (): Promise<FullAchievementData[] | null> => {
             true,
             '/tourspot/dorangRecommend',
             );
-        console.log("getDorangActivity response : ", response);
         return response.data;
     } catch (error) {
         console.error('Failed to fetch dorang activity:', error);

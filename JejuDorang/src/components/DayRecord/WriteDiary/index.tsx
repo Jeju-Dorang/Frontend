@@ -4,7 +4,7 @@ import {
   MAX_DIARY_CONTENT_LENGTH,
 } from '@constants/maxTextLength';
 import diaryDefault from '#img/diaryDefault.webp';
-import { postDiary } from '@apis/diary';
+import { postDiary, postDiaryImage } from '@apis/diary';
 import { Tag } from '@type/diary';
 
 interface Props {
@@ -16,7 +16,8 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
   const [title, setTitle] = useState<string>('');
   const [diaryContent, setDiaryContent] = useState<string>('');
   const [isPublic, setIsPublic] = useState<boolean>(false);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [diaryImage, setDiaryImage] = useState<File | null>(null);
+  const [diaryPreview, setDiaryPreview] = useState<string>('');
   const [tags, setTags] = useState<string[]>(['', '', '']);
 
   const todayDate = new Date().toLocaleDateString('ko-KR', {
@@ -38,16 +39,28 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
     const diaryData = {
       title: title,
       content: diaryContent,
-      imageUrl: imagePreview || diaryDefault,
+      // imageUrl: diaryImage || null,
       secret: isPublic ? 'public' : 'private',
       achievementId: achievementId,
       tagList: tagList,
     };
-    const res = await postDiary(diaryData);
-    if (res === false) {
+
+    const postDiaryRes = await postDiary(diaryData);
+    if (!postDiaryRes) {
       alert('일기 작성에 실패했습니다.');
       return;
     }
+    
+    const diaryId = postDiaryRes;
+
+    if(diaryImage) {
+      const postDiaryImgRes = await postDiaryImage(diaryId, diaryImage);
+      if (postDiaryImgRes === false) {
+        alert('일기 이미지 작성에 실패했습니다.');
+        return;
+      }
+    }
+    
     setIsWriteDiary?.();
   };
 
@@ -61,9 +74,11 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string);
+        setDiaryPreview(reader.result as string);
+        setDiaryImage(file);
       };
       reader.readAsDataURL(file);
     }
@@ -76,7 +91,7 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg h-[560px] w-[258px]">
         <div className="flex justify-between items-center mb-[6px]">
           <input
@@ -118,9 +133,9 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
             onChange={handleImageUpload}
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
           />
-          {imagePreview ? (
+          {diaryPreview ? (
             <img
-              src={imagePreview}
+              src={diaryPreview}
               alt="Preview"
               className="w-full h-full object-cover rounded"
             />

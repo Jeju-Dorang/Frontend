@@ -5,8 +5,13 @@ export interface Tag {
 export interface Diary {
   title: string;
   content: string;
-  imageUrl: string;
-  achievementId?: number;
+  imageUrl?: string;
+  achievementid?: number;
+  date?: string;
   secret: string;
   tagList: Tag[];
+}
+
+export interface DiaryId {
+  diaryId : number;
 }

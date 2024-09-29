@@ -21,7 +21,7 @@ const AchievementBox = ({
                 <WriteDiary
                     achievementId={achievementId} 
                 /> :
-                <div className="flex flex-row w-full h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB] justify-between gap-3">
+                <div className="flex flex-row w-full h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB] justify-between gap-3 flex-grow">
                     
                     <div className='flex flex-grow'>
                         <img 
@@ -34,7 +34,7 @@ const AchievementBox = ({
                             <p className="flex text-black text-[13px] font-bold">
                                 {achievementName}
                             </p>
-                            <p className="flex h-[25px] font-semibold text-gray-dg text-[12px] overflow-scroll">
+                            <p className="flex h-[40px] font-semibold text-gray-dg text-[11px] overflow-scroll">
                                 {achievementComment}
                             </p>
                             < div className="relative flex h-[12px] rounded-[5px] border border-gray-lg bg-gray-lg">

@@ -87,7 +87,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                                     achievementComment={data.achievementComment}
                                     maxAchieve = {data.maxAchieve}
                                     achievementCnt = {data.achievementCnt}
-                                    title="운동" //api 수정 후 변경
+                                    achievementType= {data.achievementType}
                                 />
                     ))}
             </div>

@@ -1,11 +1,5 @@
-import {
-  Routes,
-  Route,
-  useLocation,
-  BrowserRouter,
-  Navigate,
-} from 'react-router-dom';
-import { useEffect, useState, Fragment } from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useAuthStore } from '@states/useAuthStore';
 import Main from './Main/page';
 import NotFound from './NotFound/page';
@@ -24,19 +18,10 @@ import RecommendStay from './RecommendStay/page';
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState<string>('');
   const location = useLocation();
   const { accessToken, refreshToken } = useAuthStore();
 
   useEffect(() => {
-    const pathSegments: string[] = location.pathname.split('/');
-    const currentPagePath = pathSegments[1];
-    if (currentPagePath === '' || currentPagePath === 'settingDorang') {
-      setCurrentPage('/');
-    } else {
-      setCurrentPage(currentPagePath);
-    }
-
     if (
       location.pathname === '/login' ||
       location.pathname === '/auth/kakao/callback'
@@ -51,7 +36,7 @@ function App() {
     if (!accessToken && !refreshToken) {
       return <Navigate to="/login" replace />;
     }
-    return <Fragment>{children}</Fragment>;
+    return <>{children}</>;
   };
 
   return (
@@ -144,7 +129,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-        {isNavVisible && <Footer currentPage={currentPage} />}
+        {isNavVisible && <Footer />}
       </div>
     </div>
   );

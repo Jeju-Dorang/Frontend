@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getMain } from '@apis/main';
 import { useAuthStore } from '@states/useAuthStore';
@@ -7,26 +7,42 @@ import MainModal from '@components/MainModal';
 
 const Main = () => {
   const navigate = useNavigate();
+  const { memberName, memberImage, memberComment, setMainData } =
+    useAuthStore();
+  const dataFetchedRef = useRef(false);
+
+  const fetchMainData = useCallback(async () => {
+    if (dataFetchedRef.current) {
+      return;
+    }
+
+    const data = await getMain();
+    if (data) {
+      const hasChanges =
+        data.memberName !== memberName ||
+        data.memberImage !== memberImage ||
+        data.memberComment !== memberComment;
+
+      if (hasChanges) {
+        setMainData(data);
+      }
+    } else {
+      navigate('/login');
+    }
+
+    dataFetchedRef.current = true;
+  }, [navigate, setMainData, memberName, memberImage, memberComment]);
 
   useEffect(() => {
-    // fetchMainData();
-  }, []);
-
-  const fetchMainData = async () => {
-    const data = await getMain();
-    if (data === false) {
-      alert('데이터를 불러오는데 실패했습니다.');
-      navigate('/');
-    }
-  };
+    fetchMainData();
+    return () => {
+      dataFetchedRef.current = false;
+    };
+  }, [fetchMainData]);
 
   return (
     <>
-      <Profile
-        name={useAuthStore.getState().memberName}
-        image={useAuthStore.getState().memberImage}
-        detail={useAuthStore.getState().memberComment}
-      />
+      <Profile name={memberName} image={memberImage} detail={memberComment} />
       <hr />
       <MainModal />
     </>

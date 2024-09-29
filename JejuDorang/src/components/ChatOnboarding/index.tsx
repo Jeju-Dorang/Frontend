@@ -1,16 +1,13 @@
 import DorangProfile from '#img/dorangProfile.webp'
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import InterestBox from './InterestBox';
 import { INTERESTS } from '@constants/interests';
+import { useAuthStore } from '@states/useAuthStore';
+import { useNavigate } from 'react-router-dom';
 
-interface Props {
-    openOnboarding: (savedInterests:string[]) => void;
-}
-
-
-const Onboarding = ({openOnboarding}:Props) => {
+const ChatOnboarding = () => {
     const [interest, setInterest] = useState<string[]>([]);
-    const [isClicked, setIsClicked] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handleInterestChange = (selectedInterest: string, clicked: boolean) => {
         setInterest(prevState => {
@@ -26,15 +23,11 @@ const Onboarding = ({openOnboarding}:Props) => {
         });
     };
 
-    useEffect(() => {
-        if (isClicked) {
-            openOnboarding(interest)
-        }
-    }, [isClicked]);
+    const handleChatViewChange = () => {
+        useAuthStore.getState().setInterest(interest);
+        navigate('chat');
+    }
 
-
-    // interest 디버깅
-    console.log(interest)
 
     return (
         <div className="flex w-full h-[217px] mt-[15px] flex-col ">
@@ -64,7 +57,7 @@ const Onboarding = ({openOnboarding}:Props) => {
                 </div>
             </div>
 
-            <button onClick = {() =>setIsClicked(!isClicked)}
+            <button onClick = {handleChatViewChange }
                     className='flex mt-[15px] ml-[273px] w-[65px] h-[25px] justify-center items-center rounded-[10px]
                                 bg-primary-orange text-black disabled:bg-white disabled:text-gray-dg'
                     disabled={interest.length === 0}>
@@ -77,4 +70,4 @@ const Onboarding = ({openOnboarding}:Props) => {
 
 }
 
-export default Onboarding;
+export default ChatOnboarding;

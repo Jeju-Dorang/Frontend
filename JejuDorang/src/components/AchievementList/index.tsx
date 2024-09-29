@@ -48,22 +48,23 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                 <div className={`flex mr-4
                                 ${showInfo ? 'opacity-100' : 'opacity-0 '} transition-opacity bg-gray-lg
                                 text-primary-blue text-[10px] rounded-lg px-2 py-1 z-10`}>
-                        스토리에 태그를 선택하셔서 글을 작성해주세요!
+                        업적 인증하기 버튼을 눌러 글을 작성해주세요!
                     </div>
             </div>
-            <div className='flex flex-col gap-[5px] items-center justify-center mb-4'>
+            <div className='flex flex-col gap-[5px] items-center justify-center mb-4 mx-4'>
                     {achievementData &&
                         achievementData
                             .filter(data => data.achievementStatus === "YET") // 업적 달성완료만 보여주기
                             .map((data, index) => (
                                 <AchievementBox
                                     key={index}
+                                    achievementId = {data.achievementId}
                                     achievementIcon = {data.achievementIcon}
                                     achievementName={data.achievementName}
                                     achievementComment={data.achievementComment}
                                     maxAchieve = {data.maxAchieve}
                                     achievementCnt = {data.achievementCnt}
-                                    title="운동" //api 수정 후 변경
+                                    achievementType= {data.achievementType}
                                 />
                     ))}
             </div>
@@ -73,19 +74,20 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
             <h1 className="font-semibold text-[20px] text-black ml-4 mt-3">
                 달성 업적
             </h1>
-            <div className='flex flex-col gap-[5px] items-center justify-center mb-4'>
+            <div className='flex flex-col gap-[5px] items-center justify-center mb-4 mx-4'>
                     {achievementData &&
                         achievementData
                             .filter(data => data.achievementStatus === "DONE") // 업적 달성완료만 보여주기
                             .map((data, index) => (
                                 <AchievementBox
                                     key={index}
+                                    achievementId = {data.achievementId}
                                     achievementIcon = {data.achievementIcon}
                                     achievementName={data.achievementName}
                                     achievementComment={data.achievementComment}
                                     maxAchieve = {data.maxAchieve}
                                     achievementCnt = {data.achievementCnt}
-                                    title="운동" //api 수정 후 변경
+                                    achievementType= {data.achievementType}
                                 />
                     ))}
             </div>

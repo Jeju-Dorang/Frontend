@@ -1,13 +1,13 @@
-import ChatDetail from "@components/ChatDetail";
+import ChatOnboarding from "@components/ChatOnboarding";
+import ChatMainHeader from "@components/ChatMainHeader";
 
-interface Props {
-    setIsNavVisible: (visible: boolean) => void;
-}
-
-const Dorang =({ setIsNavVisible }: Props) =>{
+const Dorang =() =>{
     return (
         <>
-        <ChatDetail setIsNavVisible={setIsNavVisible}/>
+        <ChatMainHeader />
+        <div className="flex flex-col bg-gray-100">
+            <ChatOnboarding />
+        </div>
         </>
     );
     

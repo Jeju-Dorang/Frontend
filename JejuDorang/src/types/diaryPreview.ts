@@ -1,5 +1,6 @@
 export interface DiaryPreview {
+    diaryId : number;
     title: string;
     content: string;
-    status: string;
+    secret: string;
 }

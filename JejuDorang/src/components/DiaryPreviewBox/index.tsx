@@ -20,7 +20,7 @@ const DiaryPreviewBox = ({diaryId, title, content, secret, setIsViewDiary}:Props
                     제목 : {title}
                 </h2>
                 <p className={`ml-3 text-[11px] font-semibold 
-                                ${secret === 'Private' ? 
+                                ${secret === 'private' ? 
                                 'text-gray-dg' : 
                                 'text-primary-blue'}`}>
                     {secret}

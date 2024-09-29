@@ -45,7 +45,7 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
   const setIsDeleteDiary = async() => {
     const response = await deleteDiary(diaryId);
     if (response) {
-      handleSubmit;
+      setIsViewDiary(diaryId);
       return true
     }
   };

@@ -1,5 +1,5 @@
 import { api } from './index';
-import { Stays } from '@type/Stays';
+import { Lodging, Stays } from '@type/Stays';
 
 const getStays = async (
   direction: string,
@@ -13,20 +13,29 @@ const getStays = async (
     );
     return response.data;
   } catch (error) {
-    console.error('Kakao login failed:', error);
     return null;
   }
 };
 
-// TODO: 백엔드 리뷰 되는지 확인하고 더 작업예정
-const getStay = async (lodgingId: number): Promise<Stays | null> => {
+const getStay = async (lodgingId: number): Promise<Lodging | null> => {
   try {
-    const response = await api.get<Stays>(true, `/lodging/${lodgingId}`);
+    const response = await api.get<Lodging>(
+      true,
+      `/lodging/recommendation/${lodgingId}`,
+    );
     return response.data;
   } catch (error) {
-    console.error('Kakao login failed:', error);
     return null;
   }
 };
 
-export { getStays };
+const postSaveStay = async (lodgingId: number): Promise<boolean> => {
+  try {
+    await api.post(true, `/lodging/${lodgingId}`, null);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export { getStays, getStay, postSaveStay };

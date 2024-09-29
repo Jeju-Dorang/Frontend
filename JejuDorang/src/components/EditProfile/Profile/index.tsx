@@ -1,4 +1,5 @@
 import defaultImage from "#img/profile.webp";
+import Edit from "#img/footer/notClicked/record.webp";
 import { useState } from "react";
 
 interface Props {
@@ -36,8 +37,17 @@ const Profile = ({name, profileImage, setImageSrc}:Props) => {
                 프로필
             </h3>
             <div className='flex flex-row mt-4 items-center justify-between'>
-                <label htmlFor="file-upload" className="cursor-pointer">
-                    <img src={profileImg} className="w-[87px] h-[87px] rounded-full object-cover" />
+                <label htmlFor="file-upload" className="cursor-pointer relative inline-block">
+                    <img 
+                        src={profileImg} 
+                        className="w-[87px] h-[87px] object-cover rounded-full" 
+                        alt="Profile"
+                    />
+                    <img 
+                        src={Edit} 
+                        alt="Edit Icon" 
+                        className="w-6 h-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer" 
+                    />
                 </label>
                 <input 
                     type="file" 

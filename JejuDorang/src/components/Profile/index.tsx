@@ -18,7 +18,7 @@ const Profile = ({ name, image, detail }: Props) => {
         />
         <div>
           <h1 className="font-bold text-[20px]">{name}</h1>
-          <h3 className="mt-[3px] text-gray-lg">{detail || '상태메세지'}</h3>
+          <h3 className="mt-[3px] text-gray-dg font-semibold">{detail || '상태메세지'}</h3>
         </div>
       </div>
     </Fragment>

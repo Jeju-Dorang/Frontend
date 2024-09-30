@@ -34,7 +34,7 @@ const MyPageProfile = ({
             </h2>
           ) : (
             <button
-              onClick={() => navigate('/stay')}
+              onClick={() => navigate('edit')}
               className="mt-1 font-semibold text-[#7E7E7E] text-[16px]
                                         hover:text-primary-blue"
             >

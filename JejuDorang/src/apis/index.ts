@@ -9,12 +9,14 @@ import axios, {
 } from 'axios';
 import { getRefreshToken } from './auth';
 
-const $axios = (requiredToken: boolean): AxiosInstance => {
+const $axios = (requiredToken: boolean, isMultipart: boolean = false): AxiosInstance => {
+  const headers = {
+    'Content-Type': isMultipart ? '' : 'application/json',
+  };
+
   const client = axios.create({
     baseURL: API_URL,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
   });
 
   if (requiredToken) {
@@ -26,6 +28,7 @@ const $axios = (requiredToken: boolean): AxiosInstance => {
       return config;
     });
   }
+
   client.interceptors.response.use(
     (response) => response,
     async (error: AxiosError) => {
@@ -54,7 +57,7 @@ const $axios = (requiredToken: boolean): AxiosInstance => {
       return Promise.reject(error);
     },
   );
-
+  
   return client;
 };
 
@@ -65,6 +68,14 @@ const api = {
     data: P,
   ): Promise<AxiosResponse<T>> => {
     return $axios(requiredToken).post<T>(url, data);
+  },
+
+  imgPost: async <T, P>(
+    requiredToken: boolean,
+    url: string,
+    data: P,
+  ): Promise<AxiosResponse<T>> => {
+    return $axios(requiredToken, true).post<T>(url, data);
   },
 
   get: async <T>(

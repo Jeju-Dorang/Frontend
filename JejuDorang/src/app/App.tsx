@@ -15,11 +15,13 @@ import MyPage from './MyPage/page';
 import EditMyPage from './EditMyPage/page';
 import AllDiaries from './AllDiaries/page';
 import RecommendStay from './RecommendStay/page';
+import DorangChatPage from './DorangChatPage/page';
 
 function App() {
   const [isNavVisible, setIsNavVisible] = useState<boolean>(true);
   const location = useLocation();
   const { accessToken, refreshToken } = useAuthStore();
+  const hideFooterPaths = ['/login', '/auth/kakao/callback', '/dorang/chat'];
 
   useEffect(() => {
     if (
@@ -66,7 +68,15 @@ function App() {
               path="/dorang"
               element={
                 <PrivateRoute>
-                  <Dorang setIsNavVisible={setIsNavVisible} />
+                  <Dorang />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/dorang/chat"
+              element={
+                <PrivateRoute>
+                  <DorangChatPage />
                 </PrivateRoute>
               }
             />
@@ -111,7 +121,7 @@ function App() {
               }
             />
             <Route
-              path="/allDiaries"
+              path="/mypage/allDiaries"
               element={
                 <PrivateRoute>
                   <AllDiaries />
@@ -129,7 +139,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-        {isNavVisible && <Footer />}
+        {!hideFooterPaths.includes(location.pathname) && <Footer />}
       </div>
     </div>
   );

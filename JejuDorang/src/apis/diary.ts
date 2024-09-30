@@ -1,6 +1,6 @@
 import { api } from './index';
 import { DetailStory, StoryItem } from '@type/storyItem';
-import { Diary } from '@type/diary';
+import { Diary, DiaryId } from '@type/diary';
 import { Streak } from '@type/streak';
 import { convertToTwoDigits } from '@utils/index';
 
@@ -54,14 +54,42 @@ const postStoryLike = async (diaryId: number): Promise<boolean> => {
   }
 };
 
-const postDiary = async (diary: Diary): Promise<boolean> => {
+const postDiary = async (diary: Diary): Promise<number|null> => {
   try {
-    await api.post<boolean, Diary>(true, `/posts/diary`, diary);
-    return true;
+    const response = await api.post<DiaryId, Diary>(
+      true,
+      `/posts/diary`,
+      diary);
+      return response.data.diaryId;
   } catch (error) {
     console.error('Failed to post diary:', error);
+    return null;
+  }
+};
+
+const postDiaryImage = async (diaryId: number, diaryImg: File ): Promise<boolean> => {
+  const formData = new FormData();
+  formData.append('image', diaryImg);
+
+  try {
+    await api.imgPost<null, FormData>(
+      true,
+      `/image/diary?diaryId=${diaryId}`,
+      formData
+    );
+    return true;
+  } catch (error) {
+    console.error('Failed to post diaryImage :', error);
     return false;
   }
 };
 
-export { getStories, getStory, getStreaks, postDiary, postStoryLike };
+
+export { 
+  getStories, 
+  getStory, 
+  getStreaks, 
+  postDiary, 
+  postStoryLike,
+  postDiaryImage
+};

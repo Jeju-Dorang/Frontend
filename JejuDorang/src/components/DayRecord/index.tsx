@@ -86,7 +86,7 @@ const DayRecord = () => {
   };
 
   return (
-    <div className="max-w-[440px] mx-auto">
+    <div className="max-w-[440px] mx-auto mt-[40px]">
       <div className="relative px-[20px]">
         <div className="relative">
           <div

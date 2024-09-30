@@ -1,9 +1,8 @@
-import { postCreateThread } from "@apis/chat";
 import Chat from "@components/Chat";
 import ChatHeader from "@components/Chat/ChatHeader";
 import InputMessage from "@components/Chat/InputMessage";
 import { CHAT } from "@type/chat";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const DorangChatPage = () => {
     const [messages, setMessages] = useState<CHAT[]>([]);

@@ -3,7 +3,6 @@ import {
   MAX_DIARY_TITLE_LENGTH,
   MAX_DIARY_CONTENT_LENGTH,
 } from '@constants/maxTextLength';
-import diaryDefault from '#img/diaryDefault.webp';
 import { postDiary, postDiaryImage } from '@apis/diary';
 import { Tag } from '@type/diary';
 
@@ -39,7 +38,6 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
     const diaryData = {
       title: title,
       content: diaryContent,
-      // imageUrl: diaryImage || null,
       secret: isPublic ? 'public' : 'private',
       achievementId: achievementId,
       tagList: tagList,
@@ -50,17 +48,17 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
       alert('일기 작성에 실패했습니다.');
       return;
     }
-    
+
     const diaryId = postDiaryRes;
 
-    if(diaryImage) {
+    if (diaryImage) {
       const postDiaryImgRes = await postDiaryImage(diaryId, diaryImage);
       if (postDiaryImgRes === false) {
         alert('일기 이미지 작성에 실패했습니다.');
         return;
       }
     }
-    
+
     setIsWriteDiary?.();
   };
 
@@ -74,7 +72,6 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setDiaryPreview(reader.result as string);

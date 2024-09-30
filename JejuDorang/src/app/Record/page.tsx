@@ -23,7 +23,7 @@ const Record = () => {
         <span
           className={`cursor-pointer ${
             category === 'community' ? 'text-primary-orange' : 'text-gray-dg'
-          }`}
+          } hover:text-primary-orange`}
           onClick={() => handleTabClick('community')}
         >
           속닥속닥

@@ -9,8 +9,10 @@ const Story = ({ imgSrc, userName, viewStatus, onClick }: Props) => {
   return (
     <div className="flex flex-col items-center w-[70px]" onClick={onClick}>
       <div
-        className={`w-[58px] h-[58px] overflow-hidden rounded-full border-[3px] cursor-pointer ${
-          viewStatus ? 'border-gray-lg' : 'border-primary-orange'
+        className={`w-[58px] h-[58px] overflow-hidden rounded-full border-[3px] cursor-pointer  ${
+          viewStatus
+            ? 'border-gray-lg hover:shadow-xl'
+            : 'border-primary-orange hover:shadow-xl'
         }`}
       >
         <img

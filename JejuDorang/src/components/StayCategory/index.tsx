@@ -14,7 +14,7 @@ const StayCategory = ({
     const isSelected = selectCategory === item.id;
     return (
       <button
-        onClick={() => setSelectCategory(item.id - 1)}
+        onClick={() => setSelectCategory(item.id)}
         key={item.id}
         className={`w-[75px] h-[31px] text-[10px] font-semibold border-[1px] border-gray-dg rounded-[9px] p-[3px] hover:bg-primary-orange ${
           isSelected ? 'bg-primary-orange text-black' : 'text-gray-dg'

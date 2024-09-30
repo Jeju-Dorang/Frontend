@@ -56,7 +56,9 @@ export const useAuthStore = create(
       loding: { lat: 0, lng: 0 },
       setLoding: (loding: { lat: number; lng: number }) => set({ loding }),
       threadId: null,
-      setThreadId: (threadId: string) => set({ threadId: threadId }),
+      setThreadId : (threadId : string) => set({threadId: threadId}),
+      interest : [],
+      setInterest : (interest : string[]) => set({interest: interest })
     }),
     {
       name: 'userInfoStorage',

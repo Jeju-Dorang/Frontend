@@ -3,9 +3,10 @@ import { useState } from 'react';
 
 interface Props {
     memberComment : string;
+    setContent : (content:string) => void;
 }
 
-const Message = ({memberComment}:Props) => {
+const Message = ({memberComment, setContent}:Props) => {
     const [message, setMessage] = useState<string>('');
     const [messageLength, setMessageLength] = useState<number>(0);
 
@@ -19,6 +20,7 @@ const Message = ({memberComment}:Props) => {
 
         setMessage(inputValue);  // 메시지 업데이트
         setMessageLength(inputValue.length);  // 메시지 길이 업데이트
+        setContent(message);
     };
 
     return (

@@ -8,5 +8,7 @@ export interface StayData {
 export interface StayApiResponse {
     title : string;
 	image : string;
-	address : string
+	address : string;
+    mapX: string;
+    mapY: string;
 }

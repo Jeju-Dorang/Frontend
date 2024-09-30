@@ -1,21 +1,17 @@
 import { postComment } from '@apis/community';
-import { DetailQuestion, comments } from '@type/question';
+import { DetailQuestion } from '@type/question';
 import { Fragment, useState } from 'react';
-import { useAuthStore } from '@states/useAuthStore';
 import Comment from '../Comment';
 import { MAX_POST_COMMENT_LENGTH } from '@constants/maxTextLength';
 
 interface Props {
   question: DetailQuestion;
   onClose: () => void;
-  onCommentAdded: (newComment: comments) => void;
+  onCommentAdded: () => void;
 }
 
 const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
   const [newComment, setNewComment] = useState<string>('');
-  const [localComments, setLocalComments] = useState<comments[]>(
-    question.comments,
-  );
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
@@ -35,18 +31,8 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
       return;
     }
 
-    const addedComment: comments = {
-      commenter: useAuthStore.getState().memberName || '익명',
-      commenterImage: useAuthStore.getState().memberImage || '',
-      commentContent: newComment,
-      likeCount: 0,
-      alreadyLike: false,
-      commentId: 0,
-    };
-
-    setLocalComments((prevComments) => [...prevComments, addedComment]);
-    onCommentAdded(addedComment);
     setNewComment('');
+    onCommentAdded();
   };
 
   return (
@@ -79,7 +65,7 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
         <div className="mt-6">
           <h3 className="text-[14px] font-semibold mb-1 mx-[30px]">댓글</h3>
           <div className="space-y-2">
-            {localComments.map((comment, index) => (
+            {question.comments.map((comment, index) => (
               <Fragment key={index}>
                 <Comment comment={comment} />
                 <hr />

@@ -1,7 +1,8 @@
 import { Fragment, useState, useEffect } from 'react';
 import { getQuestions, getQuestion, getPost } from '@apis/community';
 import { Question } from '@type/question';
-import { DetailQuestion, comments } from '@type/question';
+import { DetailQuestion } from '@type/question';
+import SearchIcon from '#img/searchIcon.svg';
 import WriteList from './WriteList/index';
 import List from './List';
 import ListViewer from './ListViewer';
@@ -49,14 +50,14 @@ const Community = () => {
     }
   };
 
-  const handleCommentAdd = (newComment: comments) => {
-    setSelectedQuestion((prevQuestion) => {
-      if (prevQuestion === null) return null;
-      return {
-        ...prevQuestion,
-        comments: [...prevQuestion.comments, newComment],
-      } as DetailQuestion;
-    });
+  const handleCommentAdded = async (postId: number) => {
+    const updatedQuestionDetail = await getQuestion(postId);
+    if (updatedQuestionDetail) {
+      setSelectedQuestion({
+        ...updatedQuestionDetail,
+        postId: postId,
+      });
+    }
   };
 
   const renderList = () => {
@@ -87,29 +88,7 @@ const Community = () => {
               onClick={handleSearch}
               className="absolute right-2 top-1/2 transform -translate-y-1/2"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 16 14"
-                fill="none"
-              >
-                <circle
-                  cx="5.92105"
-                  cy="5.92105"
-                  r="5.42105"
-                  fill="white"
-                  stroke="#D9D9D9"
-                />
-                <line
-                  x1="9.56014"
-                  y1="9.1716"
-                  x2="15.0865"
-                  y2="12.9084"
-                  stroke="#D9D9D9"
-                  strokeWidth="2"
-                />
-              </svg>
+              <img src={SearchIcon} alt="Search" width="30" height="30" />
             </button>
           </div>
           <div className="flex justify-between items-center">
@@ -129,7 +108,7 @@ const Community = () => {
         <ListViewer
           question={selectedQuestion}
           onClose={() => setSelectedQuestion(null)}
-          onCommentAdded={handleCommentAdd}
+          onCommentAdded={() => handleCommentAdded(selectedQuestion.postId)}
         />
       )}
       {isWriteList && (

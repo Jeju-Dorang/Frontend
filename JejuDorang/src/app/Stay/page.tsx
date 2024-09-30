@@ -26,14 +26,13 @@ const Stay = () => {
   };
 
   const convertToType = (categoryIndex: number): string => {
-    const categories = ['HOTEL', 'BB', 'PENSION', 'GUEST_HOUSE'];
+    const categories = ['', 'HOTEL', 'BB', 'PENSION', 'GUEST_HOUSE'];
     return categories[categoryIndex] || '';
   };
 
   const handleRecommendation = () => {
     const direction = convertToDirection(selectMap);
     const type = convertToType(selectCategory);
-
     navigate('/stay/recommend', { state: { direction, type, price } });
   };
 

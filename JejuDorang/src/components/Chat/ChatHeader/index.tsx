@@ -1,13 +1,12 @@
 import Back from "#img/back.svg"
+import { useNavigate } from "react-router-dom";
 
-interface Props{
-    setOpenOnboarding : (Onboarding : boolean) => void;
-}
+const ChatHeader = () => {
+    const navigate = useNavigate();
 
-const Header = ({setOpenOnboarding}:Props) => {
     return (
         <div className="fixed w-[100%] h-[41px] flex flex-row justify-start items-center bg-white">
-            <button onClick ={() => setOpenOnboarding(true)}>
+            <button onClick ={() => navigate('/dorang')}>
                 <img src = {Back} alt="뒤로가기" 
                     className='mr-[6px] ml-[15px]' />
             </button>
@@ -19,4 +18,4 @@ const Header = ({setOpenOnboarding}:Props) => {
     );
 }
 
-export default Header;
+export default ChatHeader;

@@ -1,15 +1,16 @@
 import Send from '#img/chat/send.webp';
 import { getThreadList, postCreateMessage, postRunAssistant } from '@apis/chat';
+import { useAuthStore } from '@states/useAuthStore';
 import { CHAT } from '@type/chat';
 import { FormEvent, useState } from 'react';
 
 interface Props{
     sendMessage : (text:string) => void;
-    interests : string[];
     handleChatMessage : (message:CHAT) => void;
 }
 
-const InputMessage = ({interests, sendMessage, handleChatMessage}:Props) => {
+const InputMessage = ({sendMessage, handleChatMessage}:Props) => {
+    const interests = useAuthStore.getState().interest;
     const [message, setMessage] = useState<string>('');
     const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 

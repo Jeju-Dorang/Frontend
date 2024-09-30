@@ -97,8 +97,8 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
               <button onClick={toggleLike} className="ml-auto">
                 <Heart
                   size={32}
-                  className={`transition-all duration-300 ease-in-out hover:fill-red-300 ${
-                    isLiked ? 'text-red-500 fill-red-700' : 'text-gray-400'
+                  className={`transition-all duration-300 ease-in-out hover:fill-red-500 text-red-500 ${
+                    isLiked ? 'text-red-500 fill-red-500' : 'text-gray-400'
                   }`}
                 />
               </button>

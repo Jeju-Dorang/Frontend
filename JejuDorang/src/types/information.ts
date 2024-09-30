@@ -10,5 +10,5 @@ export interface Information {
     backgroundImage: number;
   };
   achievement: Achievement[];
-  loding: { lat: number; lng: number };
+  lodging: { lat: number; lng: number };
 }

@@ -32,8 +32,8 @@ const MainModal = () => {
               </Link>
             </div>
             <KakaoMap
-              lat={useAuthStore.getState().loding.lat}
-              lng={useAuthStore.getState().loding.lng}
+              lat={useAuthStore.getState().lodging.lat}
+              lng={useAuthStore.getState().lodging.lng}
               css={'h-[458px] mt-4 mb-4'}
             />
           </Fragment>
@@ -51,8 +51,8 @@ const MainModal = () => {
               </Link>
             </div>
             <ArroundKakaoMap
-              lat={useAuthStore.getState().loding.lat}
-              lng={useAuthStore.getState().loding.lng}
+              lat={useAuthStore.getState().lodging.lat}
+              lng={useAuthStore.getState().lodging.lng}
               css={'h-[458px] mt-4 mb-4'}
             />
           </Fragment>
@@ -73,12 +73,17 @@ const MainModal = () => {
   };
 
   return (
-    <Fragment>
-      <div className="flex flex-col h-auto mt-4 mx-5 p-5 border-solid border border-gray rounded-xl">
-        <div className="flex-grow">{renderContent()}</div>
-        <div className="flex justify-center space-x-2">{renderButtons()}</div>
+    <div className="flex flex-col h-auto mt-4 mx-5 border-solid border border-gray rounded-xl overflow-hidden">
+      <div
+        className="flex-grow overflow-auto"
+        style={{ maxHeight: 'calc(100vh - 200px)' }}
+      >
+        <div className="p-5">{renderContent()}</div>
       </div>
-    </Fragment>
+      <div className="flex justify-center space-x-2 p-2 border-t border-gray-200">
+        {renderButtons()}
+      </div>
+    </div>
   );
 };
 

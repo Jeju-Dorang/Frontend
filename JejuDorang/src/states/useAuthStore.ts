@@ -20,6 +20,7 @@ export const useAuthStore = create(
           memberImage: data.memberImage,
           characterImage: data.characterImage,
           achievement: data.achievement,
+          lodging: data.lodging,
         }),
       logout: () =>
         set({
@@ -30,7 +31,7 @@ export const useAuthStore = create(
           memberImage: null,
           achievement: null,
           characterImage: null,
-          loding: { lat: 0, lng: 0 },
+          lodging: { lat: 0, lng: 0 },
         }),
       isAuthenticated: () => {
         const state = get();
@@ -53,12 +54,12 @@ export const useAuthStore = create(
       achievement: null,
       setAchievement: (achievement: Achievement[]) =>
         set({ achievement: achievement }),
-      loding: { lat: 0, lng: 0 },
-      setLoding: (loding: { lat: number; lng: number }) => set({ loding }),
+      lodging: { lat: 0, lng: 0 },
+      setLodging: (lodging: { lat: number; lng: number }) => set({ lodging }),
       threadId: null,
-      setThreadId : (threadId : string) => set({threadId: threadId}),
-      interest : [],
-      setInterest : (interest : string[]) => set({interest: interest })
+      setThreadId: (threadId: string) => set({ threadId: threadId }),
+      interest: [],
+      setInterest: (interest: string[]) => set({ interest: interest }),
     }),
     {
       name: 'userInfoStorage',

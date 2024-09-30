@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, useRef, useEffect, ChangeEvent } from 'react';
 import {
   MAX_DIARY_TITLE_LENGTH,
   MAX_DIARY_CONTENT_LENGTH,
@@ -18,6 +18,13 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
   const [diaryImage, setDiaryImage] = useState<File | null>(null);
   const [diaryPreview, setDiaryPreview] = useState<string>('');
   const [tags, setTags] = useState<string[]>(['', '', '']);
+  const titleInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (titleInputRef.current) {
+      titleInputRef.current.focus();
+    }
+  }, []);
 
   const todayDate = new Date().toLocaleDateString('ko-KR', {
     year: 'numeric',
@@ -82,22 +89,30 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
   };
 
   const handleTagChange = (index: number, value: string) => {
+    let newValue = value;
+    if (newValue.startsWith('#')) {
+      newValue = newValue.substring(1);
+    }
+    if (newValue && !newValue.startsWith('#')) {
+      newValue = '#' + newValue;
+    }
     const newTags = [...tags];
-    newTags[index] = value;
+    newTags[index] = newValue;
     setTags(newTags);
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg h-[560px] w-[258px]">
+      <div className="bg-white p-6 rounded-lg h-[560px] w-11/12 max-w-[440px]">
         <div className="flex justify-between items-center mb-[6px]">
           <input
             type="text"
-            className="text-[15px] font-bold text-primary-orange w-[100px] placeholder-primary-orange"
+            className="text-[15px] font-bold text-primary-orange w-7/12 placeholder-primary-orange"
             placeholder="제목"
             maxLength={MAX_DIARY_TITLE_LENGTH}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            ref={titleInputRef}
           />
           <div className="flex items-center">
             <button
@@ -168,7 +183,7 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
               className="w-[60px] text-[10px] font-medium p-2"
               type="text"
               placeholder="#태그추가"
-              maxLength={10}
+              maxLength={11}
               value={tag}
               onChange={(e) => handleTagChange(index, e.target.value)}
             />

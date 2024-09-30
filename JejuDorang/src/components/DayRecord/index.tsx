@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { StoryItem } from '@type/storyItem';
+import { getStories } from '@apis/diary';
 import CustomCalendar from './CustomCalendar';
 import Story from './Story';
 import WriteDiary from './WriteDiary';
 import StoryViewer from './StoryViewer';
-import { StoryItem } from '@type/storyItem';
-import { getStories } from '@apis/diary';
 
 const DayRecord = () => {
   const [storyList, setStoryList] = useState<StoryItem[]>([]);
@@ -12,6 +13,7 @@ const DayRecord = () => {
   const [selectedDiaryIndex, setSelectedDiaryIndex] = useState<number | null>(
     null,
   );
+  const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const DayRecord = () => {
   };
 
   const handleViewAllDiary = () => {
-    console.log('전체보기');
+    navigate('/mypage/allDiaries');
   };
 
   const handleDiaryWritten = () => {

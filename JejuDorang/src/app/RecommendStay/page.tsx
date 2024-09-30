@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import StayInfoCard from '@components/StayCard';
 import Spinner from '@components/Spinner';
+import StayModal from '@components/StayModal';
 
 const RecommendStay = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ const RecommendStay = () => {
   const { direction, type, price } = location.state || {};
 
   const [stayData, setStayData] = useState<Stays[] | null>(null);
+  const [selectedStayId, setSelectedStayId] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchStayData = async () => {
@@ -19,7 +21,7 @@ const RecommendStay = () => {
       if (data === null) {
         navigate('/stay');
       }
-      if (data.length === 0) {
+      if (data?.length === 0) {
         alert('추천 숙소가 없습니다.');
         navigate('/stay');
       }
@@ -51,6 +53,14 @@ const RecommendStay = () => {
     return typeMap[type] || '';
   };
 
+  const handleStayClick = (lodgingId: number) => {
+    setSelectedStayId(lodgingId);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedStayId(null);
+  };
+
   if (stayData === null) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
@@ -65,13 +75,13 @@ const RecommendStay = () => {
       <div className="h-[458px] mb-4">
         <Map
           center={{
-            lat: Number(stayData[0].latitude),
-            lng: Number(stayData[0].longitude),
+            lat: Number(stayData?.[0].latitude),
+            lng: Number(stayData?.[0].longitude),
           }}
           className="h-full m-2 rounded-[20px]"
           level={3}
         >
-          {stayData.map((stay, index) => (
+          {stayData?.map((stay, index) => (
             <MapMarker
               key={index}
               position={{
@@ -94,10 +104,17 @@ const RecommendStay = () => {
             #{convertType(type)}
           </span>
         </div>
-        {stayData.map((stay) => (
-          <StayInfoCard key={stay.lodgingId} stay={stay} />
+        {stayData?.map((stay) => (
+          <StayInfoCard
+            key={stay.lodgingId}
+            stay={stay}
+            onClick={() => handleStayClick(stay.lodgingId)}
+          />
         ))}
       </div>
+      {selectedStayId && (
+        <StayModal lodgingId={selectedStayId} onClose={handleCloseModal} />
+      )}
     </Fragment>
   );
 };

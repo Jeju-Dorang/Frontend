@@ -33,7 +33,6 @@ const Stay = () => {
   const handleRecommendation = () => {
     const direction = convertToDirection(selectMap);
     const type = convertToType(selectCategory);
-    console.log(direction);
     navigate('/stay/recommend', { state: { direction, type, price } });
   };
 

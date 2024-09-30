@@ -13,7 +13,7 @@ interface Props {
 const StayModal = ({ lodgingId, onClose }: Props) => {
   const [stayDetail, setStayDetail] = useState<Lodging | null>(null);
   const [loading, setLoading] = useState(true);
-  const [showSaveNotification, setShowSaveNotification] = useState(false);
+  const [showSaveModal, setShowSaveModal] = useState(false);
 
   useEffect(() => {
     const fetchStayDetail = async () => {
@@ -37,9 +37,9 @@ const StayModal = ({ lodgingId, onClose }: Props) => {
         alert('숙소 저장에 실패했습니다.');
         return;
       }
-      setShowSaveNotification(true);
+      setShowSaveModal(true);
       setTimeout(() => {
-        setShowSaveNotification(false);
+        setShowSaveModal(false);
       }, 1500);
     } catch (error) {
       console.error('Failed to save stay:', error);
@@ -62,10 +62,12 @@ const StayModal = ({ lodgingId, onClose }: Props) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
-        {showSaveNotification && (
+        {showSaveModal && (
           <div className="absolute inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
-            <div className="bg-white p-4 rounded-lg shadow-lg">
-              <p className="text-lg font-semibold">숙소가 저장되었습니다.</p>
+            <div className="flex w-[260px] h-[170px] bg-white p-4 rounded-lg shadow-lg items-center justify-center">
+              <p className="font-semibold text-center">
+                숙소가 저장되었습니다.
+              </p>
             </div>
           </div>
         )}

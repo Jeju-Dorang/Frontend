@@ -51,7 +51,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                         업적 인증하기 버튼을 눌러 글을 작성해주세요!
                     </div>
             </div>
-            <div className="relative flex w-full h-60 mb-3 overflow-y-scroll">
+            <div className="relative flex w-full h-80 mb-3 overflow-y-scroll">
                 <div className='flex flex-col gap-[5px] items-center justify-start w-full mx-4'>
                 {achievementData &&
             (
@@ -95,7 +95,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
             <h1 className="flex font-semibold text-[20px] text-black ml-4 mt-3">
                 달성 업적
             </h1>
-            <div className="relative flex w-full h-32 mb-3 overflow-y-scroll">
+            <div className="relative flex w-full h-80 mb-3 overflow-y-scroll">
                 <div className='flex flex-col gap-[5px] items-center justify-start w-full mx-4'>
                 {achievementData &&
             (

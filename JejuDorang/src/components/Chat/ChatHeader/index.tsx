@@ -5,7 +5,7 @@ const ChatHeader = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="fixed w-full max-w-[402px] h-[41px] flex flex-row justify-start items-center bg-white">
+        <div className="fixed w-full max-w-[440px] h-[41px] flex flex-row justify-start items-center bg-white">
             <button onClick ={() => navigate('/dorang')}>
                 <img src = {Back} alt="뒤로가기" 
                     className='mr-[6px] ml-[15px]' />

@@ -37,16 +37,16 @@ const AchievementBox = ({
                             <p className="flex h-[40px] font-semibold text-gray-dg text-[11px] overflow-scroll">
                                 {achievementComment}
                             </p>
-                            < div className="relative flex h-[12px] rounded-[5px] border border-gray-lg bg-gray-lg">
+                            <div className="relative flex h-[12px] rounded-[5px] border border-gray-lg bg-gray-lg">
                                 <div
                                     className="h-full rounded-[5px] bg-primary-orange"
-                                    style={{ width: `${progressPercentage}%` }}
+                                    style={{ flexGrow: progressPercentage / 100 }}
                                 />
-                                    <span
-                                        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-semibold text-black"
-                                    >
-                                        {achievementCnt}/{maxAchieve}
-                                    </span>
+                                <span
+                                    className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-semibold text-black"
+                                >
+                                    {achievementCnt}/{maxAchieve}
+                                </span>
                             </div>
                         </div>
                     </div>

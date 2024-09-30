@@ -47,7 +47,7 @@ const CompleteAchievement = () => {
   return (
     <div className="h-fit w-full">
       <span className="font-semibold text-[14px] mb-[11px]">달성한 업적</span>
-      <div className="flex flex-wrap items-center justify-start gap-[5px] min-h-[55px]">
+      <div className="flex flex-wrap items-center justify-around gap-[5px] min-h-[55px]">
         {renderAchievement()}
       </div>
     </div>

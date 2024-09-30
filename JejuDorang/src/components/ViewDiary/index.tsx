@@ -88,9 +88,9 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
             </span>
           </div>
         </div>
-        {/* <div className="text-[10px] text-gray-500">
+        <div className="text-[10px] text-gray-500">
           {diary.title.length} / MAX_DIARY_TITLE_LENGTH
-        </div> */}
+        </div>
         {diary.date &&
           <span className="text-[10px] font-semibold text-gray-dg">
             {diary.date}
@@ -122,9 +122,9 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
           >
             {diary.content}
           </p>
-          {/* <div className="text-right text-sm text-gray-500 mt-1">
+          <div className="text-right text-sm text-gray-500 mt-1">
             {diary.content.length} / {MAX_DIARY_CONTENT_LENGTH}
-          </div> */}
+          </div>
         </div>
         <div className="w-full mb-[MAX_DIARY_TITLE_LENGTHpx] flex gap-[12px]">
           {diary.tagList.map((tag, index) => (

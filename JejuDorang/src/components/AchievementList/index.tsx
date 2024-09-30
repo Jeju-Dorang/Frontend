@@ -62,13 +62,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementId={data.achievementId}
-                            achievementIcon={data.achievementIcon}
-                            achievementName={data.achievementName}
-                            achievementComment={data.achievementComment}
-                            maxAchieve={data.maxAchieve}
-                            achievementCnt={data.achievementCnt}
-                            achievementType={data.achievementType}
+                            achivementData = {data}
                         />
                     ))
                 : achievementData
@@ -76,13 +70,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementId={data.achievementId}
-                            achievementIcon={data.achievementIcon}
-                            achievementName={data.achievementName}
-                            achievementComment={data.achievementComment}
-                            maxAchieve={data.maxAchieve}
-                            achievementCnt={data.achievementCnt}
-                            achievementType={data.achievementType}
+                            achivementData = {data}
                         />
                     ))
             )
@@ -106,13 +94,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementId={data.achievementId}
-                            achievementIcon={data.achievementIcon}
-                            achievementName={data.achievementName}
-                            achievementComment={data.achievementComment}
-                            maxAchieve={data.maxAchieve}
-                            achievementCnt={data.achievementCnt}
-                            achievementType={data.achievementType}
+                            achivementData = {data}
                         />
                     ))
                 : achievementData
@@ -120,13 +102,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementId={data.achievementId}
-                            achievementIcon={data.achievementIcon}
-                            achievementName={data.achievementName}
-                            achievementComment={data.achievementComment}
-                            maxAchieve={data.maxAchieve}
-                            achievementCnt={data.achievementCnt}
-                            achievementType={data.achievementType}
+                            achivementData = {data}
                         />
                     ))
             )

@@ -17,7 +17,7 @@ export default {
         'darkest-gray': '#646464',
       },
       screens: {
-        custom: '403px',
+        custom: '440px',
       },
     },
   },

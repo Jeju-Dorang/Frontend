@@ -1,44 +1,17 @@
 import { Stays } from '@type/Stays';
-import starIcon from '#img/star.svg';
+import { renderStars } from '@utils/render';
 
 interface Props {
   stay: Stays;
+  onClick: () => void;
 }
 
-const StayInfoCard = ({ stay }: Props) => {
-  const renderStars = (rating: number) => {
-    return (
-      <div className="flex items-center">
-        {[...Array(5)].map((_, index) => {
-          const fillPercentage = Math.max(
-            0,
-            Math.min(100, (rating - index) * 100),
-          );
-          return (
-            <div key={index} className="relative w-5 h-5">
-              <div
-                className="absolute inset-0 z-10"
-                style={{
-                  backgroundImage: `linear-gradient(to right, #FFD700 ${fillPercentage}%, transparent ${fillPercentage}%)`,
-                  WebkitMaskImage: `url(${starIcon})`,
-                  maskImage: `url(${starIcon})`,
-                }}
-              />
-              <img
-                src={starIcon}
-                alt="Star"
-                className="w-full h-full opacity-30"
-              />
-            </div>
-          );
-        })}
-        <span className="ml-2 text-sm text-gray-600">{rating.toFixed(1)}</span>
-      </div>
-    );
-  };
-
+const StayInfoCard = ({ stay, onClick }: Props) => {
   return (
-    <div className="bg-white rounded-[15px] border shadow-md p-4 mx-[10px] hover:shadow-2xl cursor-pointer">
+    <div
+      className="bg-white rounded-[15px] border shadow-md p-4 mx-[10px] hover:shadow-2xl cursor-pointer"
+      onClick={onClick}
+    >
       <div className="flex gap-2">
         <h2 className="text-xl font-bold">{stay.name}</h2>
         {renderStars(stay.rating)}

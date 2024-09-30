@@ -40,6 +40,9 @@ const $axios = (requiredToken: boolean, isMultipart: boolean = false): AxiosInst
         try {
           const newAccessToken = await getRefreshToken();
           useAuthStore.getState().setAccessToken(newAccessToken);
+          if (newAccessToken === null) {
+            throw new Error('Failed to refresh token');
+          }
           if (originalRequest.headers) {
             originalRequest.headers.accessToken = newAccessToken;
           }

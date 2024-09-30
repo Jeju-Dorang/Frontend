@@ -42,11 +42,7 @@ const getRefreshToken = async (): Promise<string | null> => {
     });
     const newAccessToken =
       (response as AxiosResponse).headers['access-token'] || '';
-    if (newAccessToken) {
-      return newAccessToken;
-    } else {
-      throw new Error('New access token not found in the response');
-    }
+    return newAccessToken;
   } catch (error) {
     console.error('Token refresh failed:', error);
     return null;

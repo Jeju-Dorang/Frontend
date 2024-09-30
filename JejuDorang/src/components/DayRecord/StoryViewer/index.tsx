@@ -61,7 +61,7 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
           <ChevronLeft size={32} className="hover:text-primary-orange" />
         </button>
         <div className="bg-white rounded-[32px] w-full relative">
-          <div className="p-4">
+          <div className="p-6">
             <div className="flex justify-between items-start mb-[11px]">
               <div>
                 <h2 className="text-[20px] text-primary-orange font-bold">
@@ -82,7 +82,7 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
               <img
                 src={diaryData.image}
                 alt="스토리 이미지"
-                className="w-full h-64 object-cover rounded-lg mb-4"
+                className="w-full h-64 object-cover rounded-lg mb-4 cursor-pointer"
               />
               {showContent && (
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 rounded-lg overflow-y-auto">
@@ -94,7 +94,7 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
             </div>
             <div className="flex flex-wrap gap-[20px] items-center">
               {renderTagList()}
-              <button onClick={toggleLike} className="ml-auto mr-[5px]">
+              <button onClick={toggleLike} className="ml-auto">
                 <Heart
                   size={32}
                   className={`transition-all duration-300 ease-in-out hover:fill-red-300 ${

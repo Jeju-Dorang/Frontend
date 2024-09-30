@@ -15,7 +15,7 @@ const Record = () => {
         <span
           className={`cursor-pointer ${
             category === 'record' ? 'text-primary-orange' : 'text-gray-dg'
-          }`}
+          } hover:text-primary-orange`}
           onClick={() => handleTabClick('record')}
         >
           하루 기록

@@ -105,6 +105,7 @@ const Place = ({place}:Props) => {
             {isPopupOpen && 
                 <SelectModal 
                     onChangeOpenPost = {onChangeOpenPost}
+                    setIsPopupOpen = {setIsPopupOpen}
                 />
             }
 
@@ -139,9 +140,10 @@ const Place = ({place}:Props) => {
 
                     </div>
                     {isOpenPost &&
-                    <div className='fixed flex inset-0 bg-black bg-opacity-50 items-center justify-center z-50'>
+                    <div className='fixed flex inset-0 bg-black bg-opacity-50 items-center justify-center z-50'
+                        onClick={() => setIsOpenPost(!isOpenPost)}>
                         <DaumPostcode 
-                            className="w-full h-8 mr-20 ml-20" 
+                            className="w-full h-8 mr-20 ml-20"
                             autoClose 
                             onComplete={onCompletePost}
                             animation ={true}

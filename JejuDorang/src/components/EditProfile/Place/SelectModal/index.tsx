@@ -2,17 +2,23 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
     onChangeOpenPost : () => void;
-    
+    setIsPopupOpen : (isPopup:boolean) => void;
 }
 
-const SelectModal = ({onChangeOpenPost}:Props) => {
+const SelectModal = ({onChangeOpenPost, setIsPopupOpen}:Props) => {
 
     const navigate = useNavigate();
 
     return (
             <>
-                <div className="fixed inset-0 bg-gray-dg bg-opacity-20 flex items-center justify-center">
-                    <div className="flex flex-col w-[300px] h-[300px] rounded-[8px] shadow-sm bg-white border border-gray-dg items-center justify-center">
+            <div
+                className="fixed inset-0 bg-gray-dg bg-opacity-20 flex items-center justify-center"
+                onClick={() => setIsPopupOpen(false)}
+            >
+                <div
+                    className="flex flex-col w-[300px] h-[300px] rounded-[8px] shadow-sm bg-white border border-gray-dg items-center justify-center"
+                    onClick={(e) => e.stopPropagation()}
+                >
                         <h2 className='font-semibold text-[28px] text-primary-orange text-center'>
                             숙소 설정 방식을 <br/>
                             선택해주세요

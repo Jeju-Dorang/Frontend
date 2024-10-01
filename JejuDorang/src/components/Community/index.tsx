@@ -75,7 +75,7 @@ const Community = () => {
       {!selectedQuestion ? (
         <div className="mx-[49px] mt-[40px]">
           <h1 className="text-[24px] font-bold">속닥속닥 게시글들</h1>
-          <span className="text-[11px] font-semibold text-gray-lg">
+          <span className="text-[11px] font-semibold text-gray-dg">
             한달 동안의 궁금한걸 물어보세요
           </span>
           <div className="mb-[28px] relative mt-2">

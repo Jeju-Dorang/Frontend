@@ -105,7 +105,7 @@ const DayRecord = () => {
       </div>
       <h1 className="text-[14px] mb-[8px] font-semibold ml-[40px]">내 일기</h1>
       <div className="flex w-full mb-[17px] justify-between px-[40px]">
-        <span className="text-[11px] font-semibold text-gray-lg">
+        <span className="text-[11px] font-semibold text-gray-dg">
           한달 동안의 추억을 기록해보세요
         </span>
         <button

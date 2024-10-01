@@ -2,8 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import locationMark from '#img/myPage/locationMark.webp';
 import { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
-import Cancel from '#img/myPage/cancel.svg';
-import { Address } from 'cluster';
 import { getLocalAddress } from '@apis/kakaoLocalApi';
 import { StayLocation } from '@type/location';
 import { postLodgingData } from '@apis/editMypage';
@@ -42,10 +40,9 @@ const Place = ({place}:Props) => {
         fullAddr += extraAddr !== '' ? ` (${extraAddr})` : '';
         }
     
-        setAddressCode(data.zonecode); // 우편번호 설정
-        setAddress(fullAddr); //검색한 주소
+        setAddressCode(data.zonecode);
+        setAddress(fullAddr);
         setIsOpenPost(false);
-        console.log("data : ", data);
         onFetchLatitudelongitude();
     
     };
@@ -116,22 +113,22 @@ const Place = ({place}:Props) => {
                 <h3 className="text-gray-dg font-semibold text-[14px]">
                     내 숙소 위치를 변경할 수 있습니다.
                 </h3>
-                <div className = "flex flex-row items-center mt-3 justify-between gap-20">
+                <div className = "flex flex-row items-center mt-3 justify-between">
                     <div className='flex flex-row gap-1'>
                         {lodgingName?
                             <>
-                                <h2 className='mt-1 font-semibold text-[#7E7E7E] text-[16px]'>
+                                <h2 className='mt-1 font-semibold text-[#7E7E7E] text-[14px] overflow-hidden'>
                                     {lodgingName}
                                 </h2>
                                 <button onClick={() => setIsPopupOpen(!isPopupOpen)}
-                                        className='mt-1 font-semibold text-gray-dg text-[16px] 
+                                        className='mt-1 font-semibold text-gray-dg text-[14px] 
                                                     cursor-pointer hover:text-[#73BCE5]'
                                 >
                                     변경
                                 </button>
                             </>
                             :<button onClick = {() => setIsPopupOpen(!isPopupOpen)}
-                                    className='mt-1 font-semibold text-[#7E7E7E] text-[16px]
+                                    className='mt-1 font-semibold text-[#7E7E7E] text-[14px]
                                                 hover:text-primary-blue'>
                                 숙소를 등록해주세요
                             </button>

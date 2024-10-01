@@ -10,19 +10,24 @@ import { useEffect, useState } from 'react';
 
 const DorangAcitivity= () => {
     const [activementData, setActivementData] = useState<FullAchievementData[]>([]);
+    const [isModalClosed, setIsModalClosed] = useState(false);
 
     // api 연결할 때 바꿀 예정
     const userName: string | null = useAuthStore.getState().memberName;
 
     useEffect(() => {
         fetchDorangActivityData();
-        }, []);
+        }, [isModalClosed]);
 
     const fetchDorangActivityData = async () => {
         const LocationAcitivityData = await getDorangActivity();
         if (LocationAcitivityData) {
             setActivementData(LocationAcitivityData);
         }
+    };
+
+    const triggerRerender = () => {
+        setIsModalClosed(!isModalClosed);
     };
 
     return(
@@ -66,7 +71,8 @@ const DorangAcitivity= () => {
                     {activementData.map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achivementData = {data}
+                            achievementData = {data}
+                            onModalClose={() => triggerRerender}
                         />
                     ))}
                 </div>

@@ -7,7 +7,8 @@ import AchievementBox from "@components/AchievementBox";
 
 interface Props {
     setMainMypage: (mainMypage : boolean) => void;
-    achievementData : FullAchievementData[]
+    achievementData : FullAchievementData[];
+    setIsModalClosed : () => void;
 }
 
 
@@ -16,7 +17,7 @@ const buttonStyles = (isActive: boolean) =>
         isActive ? 'bg-primary-orange text-white' : 'bg-white text-[#515356]'
     }`;
 
-const AchievementList = ({setMainMypage, achievementData}:Props) => {
+const AchievementList = ({setMainMypage, achievementData, setIsModalClosed}:Props) => {
     const [category, setCategory] = useState<string>('전체');
     const [showInfo, setShowInfo] = useState<boolean>(false);
 
@@ -61,7 +62,8 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achivementData = {data}
+                            achievementData = {data}
+                            onModalClose={setIsModalClosed}
                         />
                     ))
                 : achievementData
@@ -69,7 +71,8 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achivementData = {data}
+                            achievementData = {data}
+                            onModalClose={setIsModalClosed}
                         />
                     ))
             )
@@ -84,15 +87,16 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
             </h1>
             <div className="relative flex w-full h-52 mb-3 overflow-y-scroll">
                 <div className='flex flex-col gap-[5px] items-center justify-start w-full mx-4'>
-                {achievementData &&
-            (
+                {achievementData ?
+                (
                 category !== "전체" 
                 ? achievementData
                     .filter(data => data.achievementStatus === "DONE" && data.achievementType === category)
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achivementData = {data}
+                            achievementData = {data}
+                            onModalClose={setIsModalClosed}
                         />
                     ))
                 : achievementData
@@ -100,11 +104,17 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achivementData = {data}
+                            achievementData = {data}
+                            onModalClose={setIsModalClosed}
                         />
                     ))
-            )
-        }
+                ):
+                (
+                    <p className="text-gray-dg text-[14px] font-semibold mt-5">
+                        달성한 업적이 없습니다.
+                    </p>
+                )
+                }
                 </div>
             </div>
         </>

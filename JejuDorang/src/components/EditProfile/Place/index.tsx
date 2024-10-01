@@ -20,7 +20,7 @@ const Place = ({place}:Props) => {
     const [address, setAddress] = useState<string>('');
     const [longitude, setLongitude] = useState<number>(0);
     const [latitude, setLatitude] = useState<number>(0);
-    const [lodgingName, setLodgingName] = useState<string>(place);
+    const [lodgingName, setLodgingName] = useState<string>(place||'');
 
     const onChangeOpenPost = () => {
         setIsOpenPost(!isOpenPost);

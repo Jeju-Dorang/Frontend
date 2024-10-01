@@ -14,7 +14,6 @@ const AchievementBox = ({ achivementData }: { achivementData: FullAchievementDat
                     achievementId={achivementData.achievementId} 
                 /> :
                 <div className="flex flex-row w-full h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB] justify-between gap-3 flex-grow">
-                    
                     <div className='flex flex-grow'>
                         <img 
                             src={achivementData.achievementIcon} 
@@ -62,20 +61,9 @@ const AchievementBox = ({ achivementData }: { achivementData: FullAchievementDat
                         </button>
                     </div>
             </div>
-            <button
-              onClick={() => setIsClicked(!isClicked)}
-              className="flex mt-2 mr-2 justify-center items-center w-[57px] h-[24px] rounded-[10px] border text-[10px] bg-gray-dg font-semibold"
-              style={{
-                letterSpacing: '-0.2px',
-              }}
-            >
-              인증하기
-            </button>
-          </div>
-        </div>
-      )}
+    }
     </>
-  );
+    );
 };
 
 export default AchievementBox;

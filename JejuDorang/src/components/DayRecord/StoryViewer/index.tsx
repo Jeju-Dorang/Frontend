@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { DetailStory } from '@type/storyItem';
 import { getStory, postStoryLike } from '@apis/diary';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
@@ -39,13 +39,13 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
   const renderTagList = () => {
     if (!diaryData) return null;
     return (
-      <>
+      <Fragment>
         {diaryData.tagList.map((tag, index) => (
           <span key={index} className="text-[15px] font-medium">
-            #{tag.tagName}
+            {tag.tagName}
           </span>
         ))}
-      </>
+      </Fragment>
     );
   };
 
@@ -98,7 +98,10 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
                 onClick={toggleContent}
               />
               {showContent && (
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 rounded-lg overflow-y-auto">
+                <div
+                  className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 rounded-lg overflow-y-auto cursor-pointer"
+                  onClick={toggleContent}
+                >
                   <p className="text-white text-[18px] font-semibold underline whitespace-pre-wrap break-words w-full">
                     {diaryData.content}
                   </p>

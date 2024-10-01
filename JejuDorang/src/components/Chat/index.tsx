@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import DorangMessage from "./DorangMessage";
 import UserMessage from "./UserMessage";
 import { CHAT } from "@type/chat";
@@ -22,7 +22,7 @@ const Chat = ({messages}:Props) => {
     }, [messages]); // messages가 변경될 때마다 실행
 
     return (
-        <div className="w-[100%] flex flex-col mt-[15px] overflow-y-auto">
+        <div className="w-[100%] h-full flex flex-col mt-[15px] overflow-y-auto">
             <div className="flex justify-center items-center">
                 <div className="flex justify-center items-center mt-[51px] h-[24px] rounded-[100px] 
                                 border border-gray-dg bg-white">
@@ -49,7 +49,7 @@ const Chat = ({messages}:Props) => {
                         <SpinnerDorangMessage />
                     </div>
                 )}
-                <div ref={messagesEndRef} />
+                
             </div>
         </div>
 

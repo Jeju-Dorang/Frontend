@@ -15,19 +15,34 @@ const DiaryButton= () => {
     ];
 
     return (
-        <div className="flex flex-row items-center justify-center mt-3 gap-3 mx-7">
-            {buttonData.map((button, index) => (
-                <button
-                    key={index}
-                    onClick={button.path ? () => navigate(button.path) : undefined}
-                    className="flex flex-col gap-1 w-20 h-20 rounded-lg 
-                                border-gray-lg border-2 shadow-current items-center justify-center
-                                cursor-pointer hover:bg-gray-lg hover:border-primary-orange"
-                >
-                    <img src={button.icon} className="w-8 h-8" alt={button.label} />
-                    <p className="text-black font-medium text-[14px]">{button.label}</p>
-                </button>
-            ))}
+        <div className="flex flex-row items-center justify-center mt-3 gap-2">
+            
+            <button onClick={() => navigate('/mypage/allDiaries') }
+                    className="flex flex-col gap-1 w-[79px] h-[74px] rounded-lg 
+                            border-gray-lg border-2 shadow-current items-center justify-center
+                            cursor-pointer hover:bg-gray-lg hover:border-primary-orange">
+                <img src={allView} className="w-[30px] h-[30px]" />
+                <p className="text-black font-medium text-[14px">전체보기</p>
+            </button>
+            <button className="flex flex-col gap-1 w-[79px] h-[74px] rounded-lg 
+                            border-gray-lg border-2 shadow-current items-center justify-center
+                            cursor-pointer hover:bg-gray-lg hover:border-primary-orange">
+                <img src={like} className="w-[30px] h-[30px]" />
+                <p className="text-black font-medium text-[14px">TOP1</p>
+            </button>
+            <button className="flex flex-col gap-1 w-[79px] h-[74px] rounded-lg 
+                            border-gray-lg border-2 shadow-current items-center justify-center
+                            cursor-pointer hover:bg-gray-lg hover:border-primary-orange">
+                <img src={like} className="w-[30px] h-[30px]" />
+                <p className="text-black font-medium text-[14px">TOP2</p>
+            </button>
+            <button className="flex flex-col gap-1 w-[79px] h-[74px] rounded-lg 
+                            border-gray-lg border-2 shadow-current items-center justify-center
+                            cursor-pointer hover:bg-gray-lg hover:border-primary-orange">
+                <img src={like} className="w-[30px] h-[30px]" />
+                <p className="text-black font-medium text-[14px">TOP3</p>
+            </button>
+        
         </div>
     );
 };

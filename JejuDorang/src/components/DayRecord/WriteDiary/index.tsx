@@ -7,11 +7,11 @@ import { postDiary, postDiaryImage } from '@apis/diary';
 import { Tag } from '@type/diary';
 
 interface Props {
-  setIsWriteDiary?: () => void;
+  onClose?: () => void;
   achievementId?: number;
 }
 
-const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
+const WriteDiary = ({ onClose, achievementId = 0 }: Props) => {
   const [title, setTitle] = useState<string>('');
   const [diaryContent, setDiaryContent] = useState<string>('');
   const [isPublic, setIsPublic] = useState<boolean>(false);
@@ -66,7 +66,7 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
       }
     }
 
-    setIsWriteDiary?.();
+    onClose?.();
   };
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -193,7 +193,7 @@ const WriteDiary = ({ setIsWriteDiary, achievementId = 0 }: Props) => {
           <button
             type="button"
             className="px-4 bg-gray-200 rounded w-[70px] h-[20px] text-[10px] hover:text-white"
-            onClick={() => setIsWriteDiary?.()}
+            onClick={() => onClose?.()}
           >
             취소
           </button>

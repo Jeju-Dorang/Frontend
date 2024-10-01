@@ -123,7 +123,7 @@ const DayRecord = () => {
         >
           오늘 일기 쓰기
         </button>
-        {isWriteDiary && <WriteDiary setIsWriteDiary={handleDiaryWritten} />}
+        {isWriteDiary && <WriteDiary onClose={handleDiaryWritten} />}
       </div>
       {selectedDiaryIndex !== null && (
         <StoryViewer

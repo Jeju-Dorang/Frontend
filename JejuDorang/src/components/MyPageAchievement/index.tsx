@@ -32,7 +32,7 @@ const MyPageAchievement= ({setMainMypage, achievementData}:Props) => {
                         .map((data, index) => (
                             <AchievementBox
                                 key={index}
-                                achivementData = {data}
+                                achievementData = {data}
                             />
                         ))
                 }

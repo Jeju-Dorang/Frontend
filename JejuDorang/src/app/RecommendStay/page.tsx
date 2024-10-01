@@ -31,24 +31,24 @@ const RecommendStay = () => {
     if (!direction || !type || !price) {
       navigate('/stay');
     }
-  }, [direction, type, price]);
+  }, [direction, type, price, navigate]);
 
   const convertDirection = (dir: string) => {
     const directionMap: { [key: string]: string } = {
-      east: '동쪽',
-      west: '서쪽',
-      north: '북쪽',
-      south: '남쪽',
+      EAST: '동쪽',
+      WEST: '서쪽',
+      NORTH: '북쪽',
+      SOUTH: '남쪽',
     };
     return directionMap[dir] || '';
   };
 
   const convertType = (type: string) => {
     const typeMap: { [key: string]: string } = {
-      hotel: '호텔',
-      lodge: '민박',
-      pension: '펜션',
-      guestHouse: '게스트 하우스',
+      HOTEL: '호텔',
+      BB: '민박',
+      PENSION: '펜션',
+      GUEST_HOUSE: '게스트 하우스',
     };
     return typeMap[type] || '';
   };
@@ -58,6 +58,7 @@ const RecommendStay = () => {
   };
 
   const handleCloseModal = () => {
+    console.log('HERE');
     setSelectedStayId(null);
   };
 
@@ -94,8 +95,8 @@ const RecommendStay = () => {
           ))}
         </Map>
       </div>
-      <div className="flex flex-col gap-[7px] bg-[#A4D6EB]">
-        <div className="flex items-center mt-[10px] ml-[14px] gap-[10px]">
+      <div className="flex flex-col h-full gap-[7px] bg-white">
+        <div className="flex items-center my-[10px] ml-[14px] gap-[10px]">
           <h1 className="text-2xl font-bold">추천 숙소</h1>
           <span className="flex justify-center items-center font-bold rounded-[15px] w-[74px] h-[24px] text-[10px] shadow-[0_1px_6px_0px_rgba(0,0,0,0.3)] hover:text-gray-dg hover:border-gray-dg cursor-pointer">
             #{convertDirection(direction)}

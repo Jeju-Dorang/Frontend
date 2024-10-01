@@ -7,7 +7,6 @@ const DiaryButton= () => {
     useEffect(() => {}, []);
     const navigate = useNavigate();
 
-    // 버튼에 사용할 데이터를 배열로 관리
     const buttonData = [
         { label: '전체보기', icon: allView, path: '/mypage/allDiaries' },
         { label: 'TOP1', icon: like},

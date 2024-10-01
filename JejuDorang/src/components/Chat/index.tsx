@@ -12,7 +12,6 @@ interface Props {
 const Chat = ({messages}:Props) => {
     const interests = useAuthStore.getState().interest;
 
-    // 스크롤을 제어하기 위한 ref 생성
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     // 메시지가 변경될 때마다 스크롤을 맨 아래로 이동시키는 useEffect

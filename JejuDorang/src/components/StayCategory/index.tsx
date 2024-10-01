@@ -29,7 +29,9 @@ const StayCategory = ({
       <h1 className="text-[14px] font-semibold ml-[27px] mb-[7px]">
         숙박 유형
       </h1>
-      <div className="flex flex-row gap-[10px] ml-[25px]">{renderButton}</div>
+      <div className="flex flex-row gap-[10px] justify-evenly">
+        {renderButton}
+      </div>
     </div>
   );
 };

@@ -2,13 +2,21 @@ import { useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getMain } from '@apis/main';
 import { useAuthStore } from '@states/useAuthStore';
+import { isEqual } from 'lodash';
 import Profile from '@components/Profile/index';
 import MainModal from '@components/MainModal';
 
 const Main = () => {
   const navigate = useNavigate();
-  const { memberName, memberImage, memberComment, setMainData } =
-    useAuthStore();
+  const {
+    memberName,
+    memberImage,
+    memberComment,
+    achievement,
+    lodging,
+    characterImage,
+    setMainData,
+  } = useAuthStore();
   const dataFetchedRef = useRef(false);
 
   const fetchMainData = useCallback(async () => {
@@ -21,8 +29,10 @@ const Main = () => {
       const hasChanges =
         data.memberName !== memberName ||
         data.memberImage !== memberImage ||
-        data.memberComment !== memberComment;
-
+        data.memberComment !== memberComment ||
+        !isEqual(data.achievement, achievement) ||
+        !isEqual(data.lodging, lodging) ||
+        !isEqual(data.characterImage, characterImage);
       if (hasChanges) {
         setMainData(data);
       }
@@ -31,7 +41,16 @@ const Main = () => {
     }
 
     dataFetchedRef.current = true;
-  }, [navigate, setMainData, memberName, memberImage, memberComment]);
+  }, [
+    navigate,
+    setMainData,
+    memberName,
+    memberImage,
+    memberComment,
+    achievement,
+    lodging,
+    characterImage,
+  ]);
 
   useEffect(() => {
     fetchMainData();

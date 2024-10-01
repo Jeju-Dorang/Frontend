@@ -51,22 +51,30 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                         업적 인증하기 버튼을 눌러 글을 작성해주세요!
                     </div>
             </div>
-            <div className='flex flex-col gap-[5px] items-center justify-center mb-4 mx-4'>
-                    {achievementData &&
-                        achievementData
-                            .filter(data => data.achievementStatus === "YET") // 업적 달성완료만 보여주기
-                            .map((data, index) => (
-                                <AchievementBox
-                                    key={index}
-                                    achievementId = {data.achievementId}
-                                    achievementIcon = {data.achievementIcon}
-                                    achievementName={data.achievementName}
-                                    achievementComment={data.achievementComment}
-                                    maxAchieve = {data.maxAchieve}
-                                    achievementCnt = {data.achievementCnt}
-                                    achievementType= {data.achievementType}
-                                />
-                    ))}
+            <div className="relative flex w-full h-80 mb-3 overflow-y-scroll">
+                <div className='flex flex-col gap-[5px] items-center justify-start w-full mx-4'>
+                {achievementData &&
+            (
+                category !== "전체" 
+                ? achievementData
+                    .filter(data => data.achievementStatus === "YET" && data.achievementType === category)
+                    .map((data, index) => (
+                        <AchievementBox
+                            key={index}
+                            achievementData = {data}
+                        />
+                    ))
+                : achievementData
+                    .filter(data => data.achievementStatus === "YET")
+                    .map((data, index) => (
+                        <AchievementBox
+                            key={index}
+                            achievementData = {data}
+                        />
+                    ))
+            )
+        }
+                </div>
             </div>
 
             <hr />
@@ -74,22 +82,30 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
             <h1 className="font-semibold text-[20px] text-black ml-4 mt-3">
                 달성 업적
             </h1>
-            <div className='flex flex-col gap-[5px] items-center justify-center mb-4 mx-4'>
-                    {achievementData &&
-                        achievementData
-                            .filter(data => data.achievementStatus === "DONE") // 업적 달성완료만 보여주기
-                            .map((data, index) => (
-                                <AchievementBox
-                                    key={index}
-                                    achievementId = {data.achievementId}
-                                    achievementIcon = {data.achievementIcon}
-                                    achievementName={data.achievementName}
-                                    achievementComment={data.achievementComment}
-                                    maxAchieve = {data.maxAchieve}
-                                    achievementCnt = {data.achievementCnt}
-                                    achievementType= {data.achievementType}
-                                />
-                    ))}
+            <div className="relative flex w-full h-80 mb-3 overflow-y-scroll">
+                <div className='flex flex-col gap-[5px] items-center justify-start w-full mx-4'>
+                {achievementData &&
+            (
+                category !== "전체" 
+                ? achievementData
+                    .filter(data => data.achievementStatus === "DONE" && data.achievementType === category)
+                    .map((data, index) => (
+                        <AchievementBox
+                            key={index}
+                            achievementData = {data}
+                        />
+                    ))
+                : achievementData
+                    .filter(data => data.achievementStatus === "DONE")
+                    .map((data, index) => (
+                        <AchievementBox
+                            key={index}
+                            achievementData = {data}
+                        />
+                    ))
+            )
+        }
+                </div>
             </div>
         </>
 

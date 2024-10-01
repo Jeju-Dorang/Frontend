@@ -11,11 +11,11 @@ const Record = () => {
 
   return (
     <div className="mt-[42px]">
-      <div className="flex gap-[22px] mb-[58px] mx-[49px]">
+      <div className="flex gap-[22px] mx-[49px]">
         <span
           className={`cursor-pointer ${
             category === 'record' ? 'text-primary-orange' : 'text-gray-dg'
-          }`}
+          } hover:text-primary-orange`}
           onClick={() => handleTabClick('record')}
         >
           하루 기록
@@ -23,7 +23,7 @@ const Record = () => {
         <span
           className={`cursor-pointer ${
             category === 'community' ? 'text-primary-orange' : 'text-gray-dg'
-          }`}
+          } hover:text-primary-orange`}
           onClick={() => handleTabClick('community')}
         >
           속닥속닥

@@ -40,7 +40,7 @@ const WriteDiary = ({ onClose, achievementId = 0 }: Props) => {
     }
     const tagList: Tag[] = tags
       .filter((tag) => tag !== '')
-      .map((tag) => ({ tagName: tag }));
+      .map((tag) => ({ tagName: tag.startsWith('#') ? tag : `#${tag}` }));
 
     const diaryData = {
       title: title,
@@ -89,15 +89,16 @@ const WriteDiary = ({ onClose, achievementId = 0 }: Props) => {
   };
 
   const handleTagChange = (index: number, value: string) => {
-    let newValue = value;
-    if (newValue.startsWith('#')) {
-      newValue = newValue.substring(1);
-    }
-    if (newValue && !newValue.startsWith('#')) {
-      newValue = '#' + newValue;
-    }
     const newTags = [...tags];
-    newTags[index] = newValue;
+    newTags[index] = value.startsWith('#') ? value.slice(1) : value;
+    setTags(newTags);
+  };
+
+  const handleTagBlur = (index: number) => {
+    const newTags = [...tags];
+    if (newTags[index] && !newTags[index].startsWith('#')) {
+      newTags[index] = `#${newTags[index]}`;
+    }
     setTags(newTags);
   };
 
@@ -186,6 +187,7 @@ const WriteDiary = ({ onClose, achievementId = 0 }: Props) => {
               maxLength={11}
               value={tag}
               onChange={(e) => handleTagChange(index, e.target.value)}
+              onBlur={() => handleTagBlur(index)}
             />
           ))}
         </div>

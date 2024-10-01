@@ -31,7 +31,6 @@ const AllDiaries = () => {
         }
     };
 
-    console.log("diarylist : ", diaryList);
 
     return(
         <div className="flex flex-col w-full h-screen mt-10">

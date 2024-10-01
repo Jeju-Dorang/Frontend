@@ -37,23 +37,24 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="w-full px-4 py-4 border-b border-gray-200">
-        <div className="flex justify-between items-center">
-          <h1 className="text-[24px] font-bold">속닥속닥 질문</h1>
+      <div className="w-full px-4 py-4 border-gray-200">
+        <div className="flex justify-end pb-3 mb-3 border-b">
           <button
             onClick={onClose}
-            className="w-[88px] h-[20px] rounded-[3px] bg-primary-orange font-semibold text-[10px]"
+            className="w-[88px] h-[20px] rounded-[3px] bg-primary-orange font-semibold text-[10px] hover:text-white"
           >
             목록으로
           </button>
         </div>
+        <div className="flex justify-between items-center">
+          <h2 className="text-[24px] font-semibold break-words">
+            Q. &nbsp;{question.title}
+          </h2>
+        </div>
       </div>
       <div className="flex-grow overflow-y-auto">
-        <div className="p-6 mt-4 bg-gray-dg bg-opacity-15">
+        <div className="p-6 bg-gray-dg bg-opacity-15">
           <div className="flex flex-col mb-[20px]">
-            <h2 className="text-[14px] font-semibold break-words">
-              Q. &nbsp;{question.title}
-            </h2>
             <span className="text-[14px] text-blue mt-2">
               {question.author}
             </span>

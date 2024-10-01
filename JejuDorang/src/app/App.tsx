@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="flex justify-center items-center w-full min-h-screen bg-background">
       <div className="w-full h-full min-h-screen max-w-[440px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.1)] custom:rounded-[20px] flex flex-col">
-        <div className="flex-grow overflow-y-auto pb-[100px]">
+        <div className="flex-grow overflow-y-auto ">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/auth/kakao/callback" element={<KakaoCallback />} />

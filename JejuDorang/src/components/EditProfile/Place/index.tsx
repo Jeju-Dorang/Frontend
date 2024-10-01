@@ -7,7 +7,6 @@ import { Address } from 'cluster';
 import { getLocalAddress } from '@apis/kakaoLocalApi';
 import { StayLocation } from '@type/location';
 import { postLodgingData } from '@apis/editMypage';
-import SelectModal from './SelectModal';
 
 interface Props {
     place?:string;
@@ -21,8 +20,7 @@ const Place = ({place}:Props) => {
     const [address, setAddress] = useState<string>('');
     const [longitude, setLongitude] = useState<number>(0);
     const [latitude, setLatitude] = useState<number>(0);
-    const [lodgingName, setLodgingName] = useState<string>(place||'');
-    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+    const [lodgingName, setLodgingName] = useState<string>(place);
 
     const onChangeOpenPost = () => {
         setIsOpenPost(!isOpenPost);
@@ -75,8 +73,6 @@ const Place = ({place}:Props) => {
             console.error("주소 정보를 가져오는 중 오류 발생:", error);
             alert('주소 정보를 가져오는 데 실패했습니다.');
         }
-
-        setIsPopupOpen(!isOpenPost);
     };
 
     
@@ -102,13 +98,6 @@ const Place = ({place}:Props) => {
 
     return (
         <>
-            {isPopupOpen && 
-                <SelectModal 
-                    onChangeOpenPost = {onChangeOpenPost}
-                    setIsPopupOpen = {setIsPopupOpen}
-                />
-            }
-
             <div className="flex flex-col ml-7 mr-7 mb-4 mt-6">
                 <h3 className="text-black font-semibold text-[16px]">
                     플레이스
@@ -123,14 +112,14 @@ const Place = ({place}:Props) => {
                                 <h2 className='mt-1 font-semibold text-[#7E7E7E] text-[16px]'>
                                     {lodgingName}
                                 </h2>
-                                <button onClick={() => setIsPopupOpen(!isPopupOpen)}
+                                <button onClick={onChangeOpenPost}
                                         className='mt-1 font-semibold text-gray-dg text-[16px] 
                                                     cursor-pointer hover:text-[#73BCE5]'
                                 >
                                     변경
                                 </button>
                             </>
-                            :<button onClick = {() => setIsPopupOpen(!isPopupOpen)}
+                            :<button onClick = {onChangeOpenPost}
                                     className='mt-1 font-semibold text-[#7E7E7E] text-[16px]
                                                 hover:text-primary-blue'>
                                 숙소를 등록해주세요
@@ -140,10 +129,9 @@ const Place = ({place}:Props) => {
 
                     </div>
                     {isOpenPost &&
-                    <div className='fixed flex inset-0 bg-black bg-opacity-50 items-center justify-center z-50'
-                        onClick={() => setIsOpenPost(!isOpenPost)}>
+                    <div className='fixed flex inset-0 bg-black bg-opacity-50 items-center justify-center z-50'>
                         <DaumPostcode 
-                            className="w-full h-8 mr-20 ml-20"
+                            className="w-full h-8 mr-20 ml-20" 
                             autoClose 
                             onComplete={onCompletePost}
                             animation ={true}

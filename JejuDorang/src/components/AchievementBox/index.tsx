@@ -53,6 +53,7 @@ const AchievementBox = ({ achievementData }: { achievementData: FullAchievementD
               }}
             >
               {achievementData.achievementType}
+
             </div>
             <button
               onClick={() => setIsClicked(!isClicked)}

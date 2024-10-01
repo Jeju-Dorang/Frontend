@@ -21,6 +21,7 @@ const Chat = ({ messages }: Props) => {
     }
   }, [messages]); // messages가 변경될 때마다 실행
 
+  
     return (
         <div className="w-[100%] h-full flex flex-col mt-[15px] overflow-y-auto">
             <div className="flex justify-center items-center">
@@ -51,9 +52,10 @@ const Chat = ({ messages }: Props) => {
                 )}
 
             </div>
-        </div>
-
-    );
-}
+          )}
+      </div>
+    </div>
+  );
+};
 
 export default Chat;

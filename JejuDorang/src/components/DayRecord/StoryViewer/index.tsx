@@ -82,6 +82,9 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
                 <p className="text-[10px] text-gray-dg font-semibold">
                   {diaryData.date}
                 </p>
+                <span className="text-[10px] text-gray-dg font-semibold">
+                  이미지를 눌러 상세 내용을 확인하세요
+                </span>
               </div>
               <button
                 onClick={onClose}

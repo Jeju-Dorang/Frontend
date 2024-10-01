@@ -88,7 +88,7 @@ const Community = () => {
           <span className="text-[11px] font-semibold text-gray-dg">
             {isSearchResult
               ? `'${searchTerm}'에 대한 검색결과`
-              : '한달 동안의 궁금한걸 물어보세요'}
+              : '제주 한 달, 자유롭게 질문해보세요'}
           </span>
           <div className="mb-[28px] relative mt-2">
             <input

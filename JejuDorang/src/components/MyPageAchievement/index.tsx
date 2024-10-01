@@ -1,14 +1,14 @@
 import AchievementBox from "@components/AchievementBox";
 import { FullAchievementData } from "@type/achievement";
-import { useEffect } from "react";
 
 interface Props {
     setMainMypage: (mainMypage : boolean) => void;
-    achievementData : FullAchievementData[]
+    achievementData : FullAchievementData[];
+    setIsModalClosed : () => void;
 }
 
-const MyPageAchievement= ({setMainMypage, achievementData}:Props) => {
-    useEffect(() => {}, []);
+const MyPageAchievement= ({setMainMypage, achievementData, setIsModalClosed}:Props) => {
+
     return (
         <>
         <div className='flex flex-row justify-between items-center ml-7'>
@@ -32,7 +32,8 @@ const MyPageAchievement= ({setMainMypage, achievementData}:Props) => {
                         .map((data, index) => (
                             <AchievementBox
                                 key={index}
-                                achivementData = {data}
+                                achievementData = {data}
+                                onModalClose={setIsModalClosed}
                             />
                         ))
                 }

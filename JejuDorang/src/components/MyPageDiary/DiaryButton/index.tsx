@@ -7,6 +7,13 @@ const DiaryButton= () => {
     useEffect(() => {}, []);
     const navigate = useNavigate();
 
+    const buttonData = [
+        { label: '전체보기', icon: allView, path: '/mypage/allDiaries' },
+        { label: 'TOP1', icon: like},
+        { label: 'TOP2', icon: like},
+        { label: 'TOP3', icon: like},
+    ];
+
     return (
         <div className="flex flex-row items-center justify-center mt-3 gap-2">
             

@@ -61,7 +61,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementData = {data}
+                            achivementData = {data}
                         />
                     ))
                 : achievementData
@@ -69,7 +69,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementData = {data}
+                            achivementData = {data}
                         />
                     ))
             )
@@ -92,7 +92,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementData = {data}
+                            achivementData = {data}
                         />
                     ))
                 : achievementData
@@ -100,7 +100,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementData = {data}
+                            achivementData = {data}
                         />
                     ))
             )

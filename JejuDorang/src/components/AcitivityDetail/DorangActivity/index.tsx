@@ -66,7 +66,7 @@ const DorangAcitivity= () => {
                     {activementData.map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementData = {data}
+                            achivementData = {data}
                         />
                     ))}
                 </div>

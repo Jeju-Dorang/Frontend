@@ -27,8 +27,8 @@ export interface AuthStore {
   setMemberImage: (memberImage: string) => void;
   achievement: Achievement[] | null;
   setAchievement: (achievement: Achievement[]) => void;
-  loding: { lat: number; lng: number };
-  setLoding: (loding: { lat: number; lng: number }) => void;
+  lodging: { lat: number; lng: number };
+  setLodging: (lodging: { lat: number; lng: number }) => void;
   threadId: string | null;
   setThreadId: (threadId : string) => void;
   interest : string[];

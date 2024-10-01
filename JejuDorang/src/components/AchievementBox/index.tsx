@@ -62,9 +62,20 @@ const AchievementBox = ({ achivementData }: { achivementData: FullAchievementDat
                         </button>
                     </div>
             </div>
-            }
-            </>
-        );
-    }
+            <button
+              onClick={() => setIsClicked(!isClicked)}
+              className="flex mt-2 mr-2 justify-center items-center w-[57px] h-[24px] rounded-[10px] border text-[10px] bg-gray-dg font-semibold"
+              style={{
+                letterSpacing: '-0.2px',
+              }}
+            >
+              인증하기
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default AchievementBox;

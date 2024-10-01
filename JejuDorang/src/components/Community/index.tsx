@@ -73,9 +73,12 @@ const Community = () => {
   return (
     <Fragment>
       {!selectedQuestion ? (
-        <div className="mx-[49px]">
-          <h1 className="text-[24px] font-bold mb-4">속닥속닥 게시글들</h1>
-          <div className="mb-[28px] relative">
+        <div className="mx-[49px] mt-[40px]">
+          <h1 className="text-[24px] font-bold">속닥속닥 게시글들</h1>
+          <span className="text-[11px] font-semibold text-gray-lg">
+            한달 동안의 궁금한걸 물어보세요
+          </span>
+          <div className="mb-[28px] relative mt-2">
             <input
               type="text"
               value={searchTerm}
@@ -94,7 +97,7 @@ const Community = () => {
           <div className="flex justify-between items-center">
             <span className="text-[14px] font-semibold">질문</span>
             <button
-              className="w-[88px] h-[20px] my-[18px] rounded-[3px] bg-primary-orange font-semibold text-[10px]"
+              className="w-[88px] h-[20px] my-[18px] rounded-[3px] bg-primary-orange font-semibold text-[10px] hover:text-white"
               onClick={handleModal}
             >
               질문 글 쓰기

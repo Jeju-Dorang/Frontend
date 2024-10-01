@@ -25,18 +25,18 @@ const MyPageProfile = ({
         </Link>
       </div>
       <Profile name={memberName} image={profileImage} detail={memberComment} />
-      <div className="flex flex-col items-start justify-start mx-7 mb-5">
+      <div className="flex flex-col items-start justify-start ml-7 mb-5">
         <h1 className="mt-5 font-semibold text-black text-[21px]">플레이스</h1>
-        <div className="flex flex-row w-full items-center justify-between">
+        <div className="flex flex-row items-center justify-between gap-32">
           {lodgingAddress ? (
-            <h2 className="flex mt-1 font-semibold text-[#7E7E7E] text-[16px]">
+            <h2 className="mt-1 font-semibold text-[#7E7E7E] text-[16px]">
               {lodgingAddress}
             </h2>
           ) : (
             <button
               onClick={() => navigate('edit')}
               className="mt-1 font-semibold text-[#7E7E7E] text-[16px]
-                      flex hover:text-primary-blue"
+                                        hover:text-primary-blue"
             >
               숙소를 등록해주세요
             </button>
@@ -47,7 +47,7 @@ const MyPageProfile = ({
               alt="숙소 위치마크"
               className="w-[15px] h-[15px]"
             />
-            <p className="flex font-semibold text-[15px] text-[#73BCE5]">내 위치</p>
+            <p className="font-semibold text-[15px] text-[#73BCE5]">내 위치</p>
           </div>
         </div>
       </div>

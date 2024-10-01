@@ -31,10 +31,8 @@ const Withdraw = () => {
 
             {isPopupOpen && (
                 <>
-                    <div className="fixed inset-0 bg-gray-dg bg-opacity-20 flex items-center justify-center"
-                        onClick = {() => setIsPopupOpen(!isPopupOpen)}>
-                        <div className="flex flex-col w-[300px] h-[300px] rounded-[8px] shadow-sm bg-white border border-gray-dg items-center justify-center"
-                            onClick={(e) => e.stopPropagation()}>
+                    <div className="fixed inset-0 bg-gray-dg bg-opacity-20 flex items-center justify-center">
+                        <div className="flex flex-col w-[300px] h-[300px] rounded-[8px] shadow-sm bg-white border border-gray-dg items-center justify-center">
                             <h2 className='font-semibold text-[28px] text-primary-orange'>
                                 정말 탈퇴하시겠어요?
                             </h2>

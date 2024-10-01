@@ -47,7 +47,7 @@ const DorangAcitivity= () => {
                     </div>
                 </div>
                 
-                <div className='flex justify-between items-center gap-28'>
+                <div className='flex flex-row w-full justify-between items-center mr-2'>
                     <div className='flex flex-row'>
                         <img 
                             src={info} 
@@ -56,23 +56,17 @@ const DorangAcitivity= () => {
                         <p className='ml-1 mt-1 text-[8px] font-medium text-gray-dg'>
                             스토리를 작성하여 업적을 인증해주세요!
                         </p>
-                    </div>
+                        </div>
                     <button onClick={fetchDorangActivityData}>
                         <img src={refresh} alt="refresh" className='w-[20px] h-[29px]' />
                     </button>
                 </div>
 
-                <div className='flex flex-col gap-[5px] mt-3 '>
+                <div className='flex flex-col w-full gap-[5px] mt-3 flex-grow'>
                     {activementData.map((data, index) => (
                         <AchievementBox
-                            key = {index}
-                            achievementId = {data.achievementId}
-                            achievementName= {data.achievementName}
-                            achievementIcon= {data.achievementIcon}
-                            achievementComment= {data.achievementComment}
-                            achievementCnt={data.achievementCnt}
-                            maxAchieve={data.maxAchieve}
-                            achievementType={data.achievementType}
+                            key={index}
+                            achivementData = {data}
                         />
                     ))}
                 </div>

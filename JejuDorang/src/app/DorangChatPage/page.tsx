@@ -1,9 +1,8 @@
-import { postCreateThread } from "@apis/chat";
 import Chat from "@components/Chat";
 import ChatHeader from "@components/Chat/ChatHeader";
 import InputMessage from "@components/Chat/InputMessage";
 import { CHAT } from "@type/chat";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const DorangChatPage = () => {
     const [messages, setMessages] = useState<CHAT[]>([]);
@@ -17,6 +16,8 @@ const DorangChatPage = () => {
             return [...prevState, message];
         });
     };
+
+    
 
     // useEffect( () => {
     //     CreateThread();
@@ -32,8 +33,8 @@ const DorangChatPage = () => {
     return (
     <>
         <ChatHeader />
-        <div className="flex flex-col bg-gray-100">
-            <div className="flex flex-col h-screen w-[100%]">
+        <div className="flex flex-col">
+            <div className="flex flex-col w-[100%]">
                 <Chat messages={messages} />
                 <InputMessage 
                     sendMessage = {sendMessage}

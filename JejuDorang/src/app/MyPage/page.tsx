@@ -11,10 +11,16 @@ const MyPage = () => {
   const [mainMypage, setMainMypage] = useState<boolean>(true);
   const [profile, setProfile] = useState<mypageProfile>();
   const [achievement, setAchievement] = useState<FullAchievementData[]>([]);
+  const [isModalClosed, setIsModalClosed] = useState(false);
 
   useEffect(() => {
     fetchMypageData();
-  }, []);
+  }, [isModalClosed]);
+
+  const triggerRerender = () => {
+    setIsModalClosed(!isModalClosed);
+  }
+
 
   const fetchMypageData = async () => {
     const mypageData = await getMypageData();
@@ -44,12 +50,14 @@ const MyPage = () => {
           <MyPageAchievement
             setMainMypage={setMainMypage}
             achievementData={achievement}
+            setIsModalClosed = {triggerRerender}
           />
         </>
       ) : (
         <AchievementList
           setMainMypage={setMainMypage}
           achievementData={achievement}
+          setIsModalClosed = {triggerRerender}
         />
       )}
     </>

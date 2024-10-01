@@ -79,7 +79,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
 
             <hr />
 
-            <h1 className="font-semibold text-[20px] text-black ml-4 mt-3">
+            <h1 className="flex font-semibold text-[20px] text-black ml-4 mt-3">
                 달성 업적
             </h1>
             <div className="relative flex w-full h-80 mb-3 overflow-y-scroll">

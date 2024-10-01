@@ -54,7 +54,11 @@ const InputMessage = ({sendMessage, handleChatMessage}:Props) => {
     
 
     return(
-        <form  onSubmit={handleSubmit} className="flex flex-row w-[100%] h-[90px] justify-between items-center gap-2 bg-white mt-3">
+        <form 
+            onSubmit={handleSubmit} 
+            className="fixed bottom-0 z-10 flex flex-row w-[100%] h-[90px] 
+                        justify-between items-center gap-2 bg-white mt-3 
+                        overflow-hidden max-w-[440px] rounded-b-[20px]">
             <textarea 
                 className="ml-5 h-[48px] w-full rounded-[11px] items-center justify-start resize-none
                         text-black border border-gray-dg text-[18px] p-3 "

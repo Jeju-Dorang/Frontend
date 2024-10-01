@@ -17,6 +17,8 @@ const DorangChatPage = () => {
         });
     };
 
+    
+
     // useEffect( () => {
     //     CreateThread();
     // }, []);
@@ -31,8 +33,8 @@ const DorangChatPage = () => {
     return (
     <>
         <ChatHeader />
-        <div className="flex flex-col bg-gray-100">
-            <div className="flex flex-col h-screen w-[100%]">
+        <div className="flex flex-col">
+            <div className="flex flex-col w-[100%]">
                 <Chat messages={messages} />
                 <InputMessage 
                     sendMessage = {sendMessage}

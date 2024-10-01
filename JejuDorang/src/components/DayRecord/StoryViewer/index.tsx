@@ -49,11 +49,23 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
     );
   };
 
+  const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   if (!diaryData) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[1000]">
-      <div className="relative w-full max-w-[440px] mx-auto px-4">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[1000]"
+      onClick={handleOutsideClick}
+    >
+      <div
+        className="relative w-full max-w-[440px] mx-auto px-4"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           onClick={onPrevious}
           className="absolute left-2 md:left-[-48px] top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 rounded-full p-2 z-[1010]"
@@ -78,11 +90,12 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
                 &times;
               </button>
             </div>
-            <div className="relative" onClick={toggleContent}>
+            <div className="relative">
               <img
                 src={diaryData.image}
                 alt="스토리 이미지"
                 className="w-full h-64 object-cover rounded-lg mb-4 cursor-pointer"
+                onClick={toggleContent}
               />
               {showContent && (
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 rounded-lg overflow-y-auto">

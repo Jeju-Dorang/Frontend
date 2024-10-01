@@ -35,9 +35,9 @@ const DorangAcitivity= () => {
                     도랑이의 추천듣고 뱃지 받자
                 </h3>
 
-                <div className="mt-[21px] w-full h-[118px] mr-9 items-center justify-center flex flex-row bg-[#F3F3F3] rounded-[15px]">
+                <div className="mt-[21px] w-full h-[118px] items-center justify-center flex flex-row gap-2 bg-[#F3F3F3] rounded-[15px]">
                     <img src={dorangProfile} alt="도랑이 프로필" className = "w-[95px] h-[95px]" />
-                    <div className='flex flex-col ml-1'>
+                    <div className='flex flex-col ml-2'>
                         <p className='flex text-[12px] font-bold'>
                             <span className="text-primary-blue">{userName}</span> 님은 현재 여러 업적을 달성했어요!
                         </p>
@@ -47,7 +47,7 @@ const DorangAcitivity= () => {
                     </div>
                 </div>
                 
-                <div className='flex justify-between items-center gap-28'>
+                <div className='flex flex-row w-full justify-between items-center mr-2'>
                     <div className='flex flex-row'>
                         <img 
                             src={info} 
@@ -56,13 +56,13 @@ const DorangAcitivity= () => {
                         <p className='ml-1 mt-1 text-[8px] font-medium text-gray-dg'>
                             스토리를 작성하여 업적을 인증해주세요!
                         </p>
-                    </div>
+                        </div>
                     <button onClick={fetchDorangActivityData}>
                         <img src={refresh} alt="refresh" className='w-[20px] h-[29px]' />
                     </button>
                 </div>
 
-                <div className='flex flex-col gap-[5px] mt-3 '>
+                <div className='flex flex-col w-full gap-[5px] mt-3 flex-grow'>
                     {activementData.map((data, index) => (
                         <AchievementBox
                             key={index}

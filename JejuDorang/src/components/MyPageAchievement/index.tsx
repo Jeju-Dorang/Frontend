@@ -15,7 +15,6 @@ const MyPageAchievement= ({setMainMypage, achievementData}:Props) => {
             <h1 className='mt-5 font-semibold text-black text-[21px]'>
                 업적
             </h1>
-            {/* 페이지에서 useState로 관리할 부분 */}
             <button
                 onClick={() => {setMainMypage(false)}}
                 className="mt-5 mr-5 font-bold text-[15px] 
@@ -24,7 +23,7 @@ const MyPageAchievement= ({setMainMypage, achievementData}:Props) => {
                 자세히 보기
             </button>
         </div>
-        <div className='flex flex-col gap-2 mt-3 items-center mr-4 ml-4'>
+        <div className='flex flex-col gap-2 mt-3 items-center mx-7'>
                 {/* 4개만 출력 */}
                 {achievementData &&
                     achievementData

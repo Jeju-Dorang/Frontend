@@ -7,6 +7,12 @@ interface Props {
 }
 
 const StayInfoCard = ({ stay, onClick }: Props) => {
+  const convertDistance = (distance: number) => {
+    if (distance < 1000) {
+      return `${distance}m`;
+    }
+    return `${(distance / 1000).toFixed(1)}km`;
+  };
   return (
     <div
       className="bg-white rounded-[15px] border shadow-md p-4 mx-[10px] hover:shadow-2xl cursor-pointer"
@@ -17,14 +23,9 @@ const StayInfoCard = ({ stay, onClick }: Props) => {
         {renderStars(stay.rating)}
       </div>
       <p className="flex text-gray-600 text-sm mt-1 gap-2">
-        {stay.distance}
+        {convertDistance(parseInt(stay.distance))}
         <span className="text-blue font-semibold">{stay.address}</span>
       </p>
-      <div className="mt-2">
-        <p className="text-sm font-semibold">
-          포근한 위치한 럭셔리 호텔, 레스토랑 및 바/라운지 이용 가능
-        </p>
-      </div>
       <div className="mt-4">
         <img
           src={stay.image}

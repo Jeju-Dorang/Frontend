@@ -64,10 +64,10 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg h-[560px] w-[258px]">
+      <div className="bg-white p-6 rounded-lg h-[560px] w-11/12 max-w-[440px]">
         <div className="flex justify-between items-center mb-[6px]">
           <h1
-            className="text-[15px] font-bold text-primary-orange w-[100px] placeholder-primary-orange">
+            className="text-[15px] font-bold text-primary-orange w-7/12 placeholder-primary-orange">
               {diary.title}
           </h1>
           <div className="flex items-center">

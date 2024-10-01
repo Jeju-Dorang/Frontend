@@ -58,7 +58,6 @@ const RecommendStay = () => {
   };
 
   const handleCloseModal = () => {
-    console.log('HERE');
     setSelectedStayId(null);
   };
 

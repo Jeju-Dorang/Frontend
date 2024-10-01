@@ -13,6 +13,7 @@ const Community = () => {
   const [questionList, setQuestionList] = useState<Question[] | null>(null);
   const [selectedQuestion, setSelectedQuestion] =
     useState<DetailQuestion | null>(null);
+  const [isSearchResult, setIsSearchResult] = useState<boolean>(false);
 
   useEffect(() => {
     fetchQuestions();
@@ -23,11 +24,13 @@ const Community = () => {
     if (questions) {
       setQuestionList(questions);
     }
+    setIsSearchResult(false);
   };
 
   const handleSearch = async () => {
     const questions = await getPost(searchTerm);
     setQuestionList(questions);
+    setIsSearchResult(true);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -61,6 +64,13 @@ const Community = () => {
   };
 
   const renderList = () => {
+    if (isSearchResult && (!questionList || questionList.length === 0)) {
+      return (
+        <div className="text-center py-4 text-gray-500">
+          검색 결과가 없습니다.
+        </div>
+      );
+    }
     return questionList?.map((question) => (
       <List
         key={question.postId}
@@ -75,8 +85,10 @@ const Community = () => {
       {!selectedQuestion ? (
         <div className="mx-[49px] mt-[40px]">
           <h1 className="text-[24px] font-bold">속닥속닥 게시글들</h1>
-          <span className="text-[11px] font-semibold text-gray-lg">
-            한달 동안의 궁금한걸 물어보세요
+          <span className="text-[11px] font-semibold text-gray-dg">
+            {isSearchResult
+              ? `'${searchTerm}'에 대한 검색결과`
+              : '한달 동안의 궁금한걸 물어보세요'}
           </span>
           <div className="mb-[28px] relative mt-2">
             <input
@@ -97,10 +109,10 @@ const Community = () => {
           <div className="flex justify-between items-center">
             <span className="text-[14px] font-semibold">질문</span>
             <button
-              className="w-[88px] h-[20px] my-[18px] rounded-[3px] bg-primary-orange font-semibold text-[10px] hover:text-white"
-              onClick={handleModal}
+              className="w-[110px] h-[20px] my-[18px] rounded-[3px] bg-primary-orange font-semibold text-[10px] hover:text-white"
+              onClick={isSearchResult ? fetchQuestions : handleModal}
             >
-              질문 글 쓰기
+              {isSearchResult ? '전체 질문리스트 보기' : '질문 글 쓰기'}
             </button>
           </div>
           <div className="flex flex-col items-center gap-[4px]">

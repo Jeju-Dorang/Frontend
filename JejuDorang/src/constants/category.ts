@@ -33,6 +33,6 @@ export const STAY_CATEGORY = [
 export const ACHEIVEMENT_CATEGORY = [
   { id: 1, name: '전체' },
   { id: 2, name: '음식' },
-  { id: 3, name: '관광' },
-  { id: 4, name: '운동' },
+  { id: 3, name: '여행' },
+  { id: 4, name: '일반' },
 ];

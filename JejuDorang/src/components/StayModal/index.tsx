@@ -63,9 +63,9 @@ const StayModal = ({ lodgingId, onClose }: Props) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
         {showSaveModal && (
-          <div className="absolute inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
-            <div className="flex w-[260px] h-[170px] bg-white p-4 rounded-lg shadow-lg items-center justify-center">
-              <p className="font-semibold text-center">
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[60]">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-[300px] h-[200px] flex items-center justify-center">
+              <p className="font-semibold text-center text-xl">
                 숙소가 저장되었습니다.
               </p>
             </div>

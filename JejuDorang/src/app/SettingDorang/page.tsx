@@ -15,6 +15,7 @@ const SettingDorang = () => {
   const [itemImageIndex, setItemImageIndex] = useState<number>(0);
   const [petImageIndex, setPetImageIndex] = useState<number>(0);
   const [backgroundImageIndex, setBackgroundImageIndex] = useState<number>(0);
+  const [showSaveModal, setShowSaveModal] = useState(false);
 
   useEffect(() => {
     const imageUrl = useAuthStore.getState().characterImage;
@@ -32,16 +33,25 @@ const SettingDorang = () => {
   }, [itemImageIndex, petImageIndex, backgroundImageIndex]);
 
   const postImageUrl = async () => {
-    const dorangEquipItem: dorangEquipItem = {
-      backgroundItem: backgroundImageIndex,
-      stuffItem: itemImageIndex,
-      petItem: petImageIndex,
-    };
-    await postDorangItems(dorangEquipItem);
+    try {
+      const dorangEquipItem: dorangEquipItem = {
+        backgroundItem: backgroundImageIndex,
+        stuffItem: itemImageIndex,
+        petItem: petImageIndex,
+      };
+      await postDorangItems(dorangEquipItem);
+      setShowSaveModal(true);
+      setTimeout(() => {
+        setShowSaveModal(false);
+      }, 1500);
+    } catch (error) {
+      console.error('Failed to save Dorang items:', error);
+      alert('저장에 실패했습니다.');
+    }
   };
 
   return (
-    <div className="w-full px-[30px] pt-[25px]">
+    <div className="w-full px-[30px] pt-[25px] relative">
       <Link to={'/'} className="text-[16px] text-primary-orange pb-[15px]">
         &lt; 도랑이 설정
       </Link>
@@ -72,6 +82,13 @@ const SettingDorang = () => {
           저장
         </button>
       </div>
+      {showSaveModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[60]">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-[300px] h-[200px] flex items-center justify-center">
+            <p className="font-semibold text-center text-xl">저장되었습니다.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

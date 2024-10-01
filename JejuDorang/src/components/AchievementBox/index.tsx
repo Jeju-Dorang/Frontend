@@ -2,40 +2,33 @@ import WriteDiary from '@components/DayRecord/WriteDiary';
 import { FullAchievementData } from '@type/achievement';
 import React, { useState } from 'react';
 
-const AchievementBox = ({
-  achievementId,
-  achievementIcon,
-  achievementName,
-  achievementComment,
-  maxAchieve,
-  achievementCnt,
-  achievementType,
-}: FullAchievementData) => {
-  const progressPercentage = (achievementCnt / maxAchieve) * 100;
+const AchievementBox = ({ achievementData }: { achievementData: FullAchievementData }) => {
+
+  const progressPercentage = (achievementData.achievementCnt / achievementData.maxAchieve) * 100;
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
   return (
     <>
       {isClicked ? (
         <WriteDiary
-          achievementId={achievementId}
+          achievementId={achievementData.achievementId}
           setIsWriteDiary={() => setIsClicked(!isClicked)}
         />
       ) : (
         <div className="flex flex-row w-full h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB] justify-between gap-3 flex-grow">
           <div className="flex flex-grow">
             <img
-              src={achievementIcon}
+              src={achievementData.achievementIcon}
               alt="업적"
               className="flex mt-2 ml-3 w-[65px] h-[65px] rounded-[10px] border-2 border-gray-dg bg-white"
             />
 
             <div className="flex flex-col ml-2 justify-between pt-2 pb-2 flex-grow gap-1">
               <p className="flex text-black text-[13px] font-bold">
-                {achievementName}
+                {achievementData.achievementName}
               </p>
               <p className="flex h-[40px] font-semibold text-gray-dg text-[11px] overflow-scroll">
-                {achievementComment}
+                {achievementData.achievementComment}
               </p>
               <div className="relative flex h-[12px] rounded-[5px] border border-gray-lg bg-gray-lg">
                 <div
@@ -43,7 +36,7 @@ const AchievementBox = ({
                   style={{ flexGrow: progressPercentage / 100 }}
                 />
                 <span className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs font-semibold text-black">
-                  {achievementCnt}/{maxAchieve}
+                  {achievementData.achievementCnt}/{achievementData.maxAchieve}
                 </span>
               </div>
             </div>
@@ -59,7 +52,7 @@ const AchievementBox = ({
                   'var(--Miscellaneous-Floating-Tab---Text-Selected, #007AFF)',
               }}
             >
-              {achievementType}
+              {achievementData.achievementType}
             </div>
             <button
               onClick={() => setIsClicked(!isClicked)}

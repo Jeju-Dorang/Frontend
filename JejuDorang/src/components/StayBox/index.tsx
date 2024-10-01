@@ -28,10 +28,10 @@ const StayBox = ({name,distance,location,description,img}:Props) => {
             <h2 className = "flex mt-1 ml-6 text-black text-[10px] font-semibold">
                 {description}
             </h2>
-            <div className='flex justify-center items-center mr-6 ml-6'>
-                <div className='flex mt-1 mb-2 w-full h-20 rounded-[10px] gap-[3px] bg-gray-dg'>
-                    <img src={img} alt={`${name} 이미지 1`} className='w-1/2 h-full rounded-l-[10px]'/>
-                    <img src={img} alt={`${name} 이미지 2`} className='w-1/2 h-full rounded-r-[10px]'/>
+            <div className='flex w-[85%] justify-center items-center mx-6 flex-grow'>
+                <div className='flex mt-1 mb-2 w-full h-20 rounded-[10px] gap-[3px] bg-gray-dg flex-grow'>
+                    <img src={img} alt={`${name} 이미지 1`} className='object-cover rounded-l-[10px] flex-grow'/>
+                    <img src={img} alt={`${name} 이미지 2`} className='object-cover rounded-r-[10px] flex-grow'/>
                 </div>
             </div>
         </button>

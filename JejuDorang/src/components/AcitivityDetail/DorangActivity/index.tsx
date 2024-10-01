@@ -65,14 +65,8 @@ const DorangAcitivity= () => {
                 <div className='flex flex-col w-full gap-[5px] mt-3 flex-grow'>
                     {activementData.map((data, index) => (
                         <AchievementBox
-                            key = {index}
-                            achievementId = {data.achievementId}
-                            achievementName= {data.achievementName}
-                            achievementIcon= {data.achievementIcon}
-                            achievementComment= {data.achievementComment}
-                            achievementCnt={data.achievementCnt}
-                            maxAchieve={data.maxAchieve}
-                            achievementType={data.achievementType}
+                            key={index}
+                            achievementData = {data}
                         />
                     ))}
                 </div>

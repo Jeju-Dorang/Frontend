@@ -57,18 +57,11 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
             (
                 category !== "전체" 
                 ? achievementData
-                    .filter(data => data.achievementStatus === "YET")
-                    .filter(data => data.achievementType === category)
+                    .filter(data => data.achievementStatus === "YET" && data.achievementType === category)
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementId={data.achievementId}
-                            achievementIcon={data.achievementIcon}
-                            achievementName={data.achievementName}
-                            achievementComment={data.achievementComment}
-                            maxAchieve={data.maxAchieve}
-                            achievementCnt={data.achievementCnt}
-                            achievementType={data.achievementType}
+                            achievementData = {data}
                         />
                     ))
                 : achievementData
@@ -76,13 +69,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementId={data.achievementId}
-                            achievementIcon={data.achievementIcon}
-                            achievementName={data.achievementName}
-                            achievementComment={data.achievementComment}
-                            maxAchieve={data.maxAchieve}
-                            achievementCnt={data.achievementCnt}
-                            achievementType={data.achievementType}
+                            achievementData = {data}
                         />
                     ))
             )
@@ -101,18 +88,11 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
             (
                 category !== "전체" 
                 ? achievementData
-                    .filter(data => data.achievementStatus === "DONE")
-                    .filter(data => data.achievementType === category)
+                    .filter(data => data.achievementStatus === "DONE" && data.achievementType === category)
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementId={data.achievementId}
-                            achievementIcon={data.achievementIcon}
-                            achievementName={data.achievementName}
-                            achievementComment={data.achievementComment}
-                            maxAchieve={data.maxAchieve}
-                            achievementCnt={data.achievementCnt}
-                            achievementType={data.achievementType}
+                            achievementData = {data}
                         />
                     ))
                 : achievementData
@@ -120,13 +100,7 @@ const AchievementList = ({setMainMypage, achievementData}:Props) => {
                     .map((data, index) => (
                         <AchievementBox
                             key={index}
-                            achievementId={data.achievementId}
-                            achievementIcon={data.achievementIcon}
-                            achievementName={data.achievementName}
-                            achievementComment={data.achievementComment}
-                            maxAchieve={data.maxAchieve}
-                            achievementCnt={data.achievementCnt}
-                            achievementType={data.achievementType}
+                            achievementData = {data}
                         />
                     ))
             )

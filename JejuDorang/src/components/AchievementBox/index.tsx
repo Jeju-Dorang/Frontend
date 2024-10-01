@@ -19,7 +19,7 @@ const AchievementBox = ({
           onClose={() => setIsClicked(!isClicked)}
         />
       ) : (
-        <div className="flex flex-row w-full h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB] justify-between gap-3 flex-grow">
+        <div className="flex flex-row w-full h-[84px] rounded-[10px] border border-[#C3C9CD] bg-[#FBFBFB] justify-between gap-3">
           <div className="flex flex-grow">
             <img
               src={achivementData.achievementIcon}

@@ -35,9 +35,9 @@ const DorangAcitivity= () => {
                     도랑이의 추천듣고 뱃지 받자
                 </h3>
 
-                <div className="mt-[21px] w-full h-[118px] mr-9 items-center justify-center flex flex-row bg-[#F3F3F3] rounded-[15px]">
+                <div className="mt-[21px] w-full h-[118px] items-center justify-center flex flex-row gap-2 bg-[#F3F3F3] rounded-[15px]">
                     <img src={dorangProfile} alt="도랑이 프로필" className = "w-[95px] h-[95px]" />
-                    <div className='flex flex-col ml-1'>
+                    <div className='flex flex-col ml-2'>
                         <p className='flex text-[12px] font-bold'>
                             <span className="text-primary-blue">{userName}</span> 님은 현재 여러 업적을 달성했어요!
                         </p>

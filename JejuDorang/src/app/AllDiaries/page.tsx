@@ -56,7 +56,7 @@ const AllDiaries = () => {
                         일기 쓰러 가볼까요?
                     </p>
                     <button onClick={() => navigate('/record')}
-                            className="w-[80%] h-10 rounded-[10px] text-[15px] bg-primary-orange text-white font-semibold hover:text-black">
+                            className="w-[80%] h-10 rounded-[10px] text-[15px] bg-primary-orange  font-semibold hover:text-white">
                                 일기 작성하러 가기
                     </button>
                 </div>

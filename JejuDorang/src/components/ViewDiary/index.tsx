@@ -15,7 +15,7 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
   const [diary, setDiary] = useState<Diary>({
     title: "",
     content: "",
-    image: "",
+    imageUrl: "",
     date: "",
     secret: "",
     tagList: [],
@@ -25,13 +25,13 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
   
   useEffect ( () => {
     fetchDiaryData(diaryId);
-  }, [diary.secret]);
+  }, []);
 
   const fetchDiaryData = async (diaryId:number) => {
         const response = await getDiary(diaryId);
         if (response) {
             setDiary(response);
-            setIsPublic(diary.secret === "public");
+            setIsPublic(diary.secret == "public");
         }
     }
 
@@ -88,18 +88,18 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
             </span>
           </div>
         </div>
-        <div className="text-[10px] text-gray-500">
-          {diary.title.length} / {MAX_DIARY_TITLE_LENGTH}
-        </div>
+        {/* <div className="text-[10px] text-gray-500">
+          {diary.title.length} / MAX_DIARY_TITLE_LENGTH
+        </div> */}
         {diary.date &&
           <span className="text-[10px] font-semibold text-gray-dg">
             {diary.date}
           </span>
         }
         <div className="mb-[7px] w-full h-[150px] relative">
-          {diary.image ? (
+          {diary.imageUrl ? (
             <img
-              src={diary.image}
+              src={diary.imageUrl}
               alt="Preview"
               className="w-full h-full object-cover rounded"
             />
@@ -122,9 +122,9 @@ const ViewDiary = ({diaryId, setIsViewDiary}:Props) =>{
           >
             {diary.content}
           </p>
-          <div className="text-right text-sm text-gray-500 mt-1">
+          {/* <div className="text-right text-sm text-gray-500 mt-1">
             {diary.content.length} / {MAX_DIARY_CONTENT_LENGTH}
-          </div>
+          </div> */}
         </div>
         <div className="w-full mb-[MAX_DIARY_TITLE_LENGTHpx] flex gap-[12px]">
           {diary.tagList.map((tag, index) => (

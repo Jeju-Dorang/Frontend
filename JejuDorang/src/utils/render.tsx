@@ -1,9 +1,27 @@
-import starIcon from '#img/star.svg';
 import { Lodging } from '@type/Stays';
+
+const StarIcon = () => (
+  <svg
+    width="0"
+    height="0"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <mask id="star-mask">
+        <path
+          fill="white"
+          d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+        />
+      </mask>
+    </defs>
+  </svg>
+);
 
 export const renderStars = (rating: number) => {
   return (
     <div className="flex items-center">
+      <StarIcon />
       {[...Array(5)].map((_, index) => {
         const fillPercentage = Math.max(
           0,
@@ -12,17 +30,19 @@ export const renderStars = (rating: number) => {
         return (
           <div key={index} className="relative w-5 h-5">
             <div
-              className="absolute inset-0 z-10"
+              className="absolute inset-0 bg-gray-300"
               style={{
-                backgroundImage: `linear-gradient(to right, #FFD700 ${fillPercentage}%, transparent ${fillPercentage}%)`,
-                WebkitMaskImage: `url(${starIcon})`,
-                maskImage: `url(${starIcon})`,
+                maskImage: 'url(#star-mask)',
+                WebkitMaskImage: 'url(#star-mask)',
               }}
             />
-            <img
-              src={starIcon}
-              alt="Star"
-              className="w-full h-full opacity-30"
+            <div
+              className="absolute inset-0 bg-yellow-400"
+              style={{
+                width: `${fillPercentage}%`,
+                maskImage: 'url(#star-mask)',
+                WebkitMaskImage: 'url(#star-mask)',
+              }}
             />
           </div>
         );

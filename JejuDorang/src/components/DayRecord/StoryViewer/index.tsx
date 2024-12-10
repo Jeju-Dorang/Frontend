@@ -2,6 +2,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { DetailStory } from '@type/storyItem';
 import { getStory, postStoryLike } from '@apis/diary';
 import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
+import { useDebounce } from '@hooks/useDebounce';
 
 interface Props {
   diaryId: number;
@@ -15,6 +16,16 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [showContent, setShowContent] = useState<boolean>(false);
 
+  const debouncedPostLike = useDebounce(async (id: number) => {
+    const res = await postStoryLike(id);
+    if (!res) {
+      alert('좋아요 실패');
+      setIsLiked(!isLiked);
+    } else {
+      setIsLiked(!isLiked);
+    }
+  }, 300);
+
   useEffect(() => {
     fetchDiaryData(diaryId);
   }, [diaryId]);
@@ -26,10 +37,9 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
     setIsLiked(response.alreadyLike);
   };
 
-  const toggleLike = async () => {
+  const toggleLike = () => {
     setIsLiked(!isLiked);
-    const res = await postStoryLike(diaryId);
-    if (!res) alert('좋아요 실패');
+    debouncedPostLike(diaryId);
   };
 
   const toggleContent = () => {

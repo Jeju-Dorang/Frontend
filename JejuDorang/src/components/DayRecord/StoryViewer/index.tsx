@@ -24,7 +24,7 @@ const StoryViewer = ({ diaryId, onClose, onPrevious, onNext }: Props) => {
     } else {
       setIsLiked(!isLiked);
     }
-  }, 300);
+  }, 3000);
 
   useEffect(() => {
     fetchDiaryData(diaryId);

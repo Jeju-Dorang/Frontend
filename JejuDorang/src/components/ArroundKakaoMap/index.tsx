@@ -3,7 +3,6 @@ import { Fragment, useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { MAP_CATEGORY } from '@constants/category';
 import { Place, PlacesSearchResultItem } from '@type/place';
-import PlaceMarkers from '@components/ArroundKakaoMap/PlaceMarkers/index';
 import InvalidLocation from '@components/InvalidLocation/index';
 
 interface Props {
@@ -13,18 +12,111 @@ interface Props {
 }
 
 const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
-  const [places, setPlaces] = useState<Place[]>([]);
   const [map, setMap] = useState<kakao.maps.Map | null>(null);
   const [category, setCategory] = useState<CategoryCode>('CS2');
   const [markers, setMarkers] = useState<kakao.maps.Marker[]>([]);
+  const [clusterer, setClusterer] = useState<kakao.maps.MarkerClusterer | null>(null);
   const [infoWindow, setInfoWindow] = useState<kakao.maps.InfoWindow | null>(
     null,
   );
   const isInvalidLocation = lat === 0 && lng === 0;
 
+  // 클러스터러 초기화
   useEffect(() => {
     if (!map) return;
 
+    const newClusterer = new kakao.maps.MarkerClusterer({
+      map: map,
+      averageCenter: true,
+      minLevel: 5,
+      calculator: [10, 30, 50],
+      texts: (size: number) => {
+        return size.toString();
+      },
+      styles: [
+        {
+          width: '40px',
+          height: '40px',
+          background: 'rgba(255, 165, 0, 0.8)',
+          borderRadius: '50%',
+          color: '#fff',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          lineHeight: '40px',
+        },
+        {
+          width: '50px',
+          height: '50px',
+          background: 'rgba(255, 140, 0, 0.8)',
+          borderRadius: '50%',
+          color: '#fff',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          lineHeight: '50px',
+        },
+        {
+          width: '60px',
+          height: '60px',
+          background: 'rgba(255, 100, 0, 0.8)',
+          borderRadius: '50%',
+          color: '#fff',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          lineHeight: '60px',
+        },
+      ],
+    });
+
+    setClusterer(newClusterer);
+
+    return () => {
+      if (newClusterer) {
+        newClusterer.clear();
+      }
+    };
+  }, [map]);
+
+  // 마커 클릭 핸들러
+  const handleMarkerClick = (place: Place, marker: kakao.maps.Marker) => {
+    if (!map) return;
+
+    const findRoute = () => {
+      window.open(
+        `https://map.kakao.com/link/to/${place.place_name},${place.y},${place.x}/from/내 숙소,${lat},${lng}`,
+      );
+    };
+
+    const newInfoWindow = new kakao.maps.InfoWindow({
+      content: `
+        <div style="padding:5px;font-size:12px;text-align:center;min-width:150px;">
+          <div>${place.place_name}</div>
+          <button id="routeButton" style="margin-top:5px;padding:2px 5px;background-color:#FFA500;color:white;border:none;border-radius:3px;cursor:pointer;width:100%;">
+            길찾기
+          </button>
+        </div>
+      `,
+    });
+
+    if (infoWindow) {
+      infoWindow.close();
+    }
+
+    newInfoWindow.open(map, marker);
+    setInfoWindow(newInfoWindow);
+
+    setTimeout(() => {
+      const routeButton = document.getElementById('routeButton');
+      if (routeButton) {
+        routeButton.addEventListener('click', findRoute);
+      }
+    }, 100);
+  };
+
+  useEffect(() => {
+    if (!map || !clusterer) return;
+
+    // 기존 마커 제거
+    clusterer.clear();
     markers.forEach((marker) => marker.setMap(null));
     setMarkers([]);
     if (infoWindow) {
@@ -44,15 +136,24 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
           y: Number(item.y),
           x: Number(item.x),
         }));
-        setPlaces(formattedPlaces);
+
+        // 클러스터링을 위한 마커 생성
         const newMarkers = formattedPlaces.map((place) => {
           const marker = new kakao.maps.Marker({
             position: new kakao.maps.LatLng(place.y, place.x),
-            map: map,
           });
+
+          // 마커 클릭 이벤트 추가
+          kakao.maps.event.addListener(marker, 'click', () => {
+            handleMarkerClick(place, marker);
+          });
+
           return marker;
         });
+
         setMarkers(newMarkers);
+        // 클러스터러에 마커 추가
+        clusterer.addMarkers(newMarkers);
       } else {
         console.error('장소 검색 실패:', status);
       }
@@ -62,7 +163,7 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
       useMapBounds: true,
       location: new kakao.maps.LatLng(lat, lng),
     });
-  }, [lat, lng, category, map]);
+  }, [lat, lng, category, map, clusterer]);
 
   const handleCategoryChange = (buttonId: CategoryCode) => {
     setCategory(buttonId);
@@ -109,14 +210,6 @@ const ArroundKakaoMap = ({ lat, lng, css }: Props) => {
                 size: { width: 50, height: 50 },
                 options: { offset: { x: 25, y: 50 } },
               }}
-            />
-            <PlaceMarkers
-              places={places}
-              map={map}
-              infoWindow={infoWindow}
-              setInfoWindow={setInfoWindow}
-              myLat={lat}
-              myLng={lng}
             />
           </Map>
         </Fragment>

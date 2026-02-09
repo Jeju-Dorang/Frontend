@@ -66,8 +66,8 @@ const ListViewer = ({ question, onClose, onCommentAdded }: Props) => {
         <div className="mt-6">
           <h3 className="text-[14px] font-semibold mb-1 mx-[30px]">댓글</h3>
           <div className="space-y-2">
-            {question.comments.map((comment, index) => (
-              <Fragment key={index}>
+            {question.comments.map((comment) => (
+              <Fragment key={comment.commentId}>
                 <Comment comment={comment} />
                 <hr />
               </Fragment>

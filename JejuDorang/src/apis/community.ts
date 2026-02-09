@@ -19,7 +19,7 @@ const getQuestions = async (): Promise<Question[] | null> => {
     const response = await api.get<Question[]>(true, `/posts/questions`);
     return response.data;
   } catch (error) {
-    console.error('Failed to post question:', error);
+    console.error('Failed to get questions:', error);
     return null;
   }
 };
@@ -76,7 +76,7 @@ const postComment = async (
     await api.post<void, string>(true, `/posts/comment/${postId}`, content);
     return true;
   } catch (error) {
-    console.error('Failed to post question:', error);
+    console.error('Failed to post comment:', error);
     return false;
   }
 };

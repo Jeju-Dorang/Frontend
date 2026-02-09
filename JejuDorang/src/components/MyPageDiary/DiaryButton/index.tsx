@@ -1,10 +1,8 @@
-import { useEffect } from "react";
 import allView from '#img/myPage/diary/allView.webp'
 import like from '#img/myPage/diary/like.webp'
 import { useNavigate } from "react-router-dom";
 
 const DiaryButton= () => {
-    useEffect(() => {}, []);
     const navigate = useNavigate();
 
     const buttonData = [
@@ -16,9 +14,9 @@ const DiaryButton= () => {
 
     return (
         <div className="flex flex-row items-center justify-center mt-3 gap-3 mx-7">
-            {buttonData.map((button, index) => (
+            {buttonData.map((button) => (
                 <button
-                    key={index}
+                    key={button.label}
                     onClick={button.path ? () => navigate(button.path) : undefined}
                     className="flex flex-col gap-1 w-20 h-20 rounded-lg 
                                 border-gray-lg border-2 shadow-current items-center justify-center

@@ -1,6 +1,5 @@
 import Profile from '@components/Profile';
 import locationMark from '#img/myPage/locationMark.webp';
-import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { mypageProfile } from '@type/mypage';
 
@@ -12,7 +11,6 @@ const MyPageProfile = ({
 }: mypageProfile) => {
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
   return (
     <>
       <div className="flex justify-end items-center">

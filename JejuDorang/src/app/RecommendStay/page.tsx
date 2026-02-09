@@ -81,9 +81,9 @@ const RecommendStay = () => {
           className="w-full h-full"
           level={3}
         >
-          {stayData?.map((stay, index) => (
+          {stayData?.map((stay) => (
             <MapMarker
-              key={index}
+              key={stay.lodgingId}
               position={{
                 lat: Number(stay.latitude),
                 lng: Number(stay.longitude),

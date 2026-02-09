@@ -1,9 +1,7 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DiaryButton from "./DiaryButton";
 
 const MyPageDiary= () => {
-    useEffect(() => {}, []);
     return (
         <>
         <div className='flex flex-row justify-between items-center ml-7'>
